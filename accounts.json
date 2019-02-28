@@ -1,4 +1,4 @@
-{
+users = {
   "libraryName": "University of Toronto Library",
   "version": "1.0.0",
   "description": "Library Management System",
@@ -14,23 +14,23 @@
     },
     {
       "fullName": "Robert Karg",
-      "age": ,
-      "UID": ,
+      "age": 19,
+      "UID": 1,
     },
     {
       "fullName": "Jacob Huber",
-      "age": ,
-      "UID": ,
+      "age": 19,
+      "UID": 2,
     },
     {
       "fullName": "Sam Laurie",
-      "age": ,
-      "UID": ,
+      "age": 19,
+      "UID": 3,
     },
     {
       "fullName": "Sandesh Regmi",
       "age": 19,
-      "UID": 30044322,
+      "UID": 4,
     }
   ],
 
