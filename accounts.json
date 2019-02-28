@@ -1,0 +1,67 @@
+users = {
+  "libraryName": "University of Toronto Library",
+  "version": "1.0.0",
+  "description": "Library Management System",
+  "City": "Toronto",
+  "formed": 2019,
+  "groupNumber": 10,
+
+  "developers": [
+    {
+      "fullName": "Bruin Kunnas",
+      "age": 19,
+      "UID": 30047739,
+    },
+    {
+      "fullName": "Robert Karg",
+      "age": 19,
+      "UID": 1,
+    },
+    {
+      "fullName": "Jacob Huber",
+      "age": 19,
+      "UID": 2,
+    },
+    {
+      "fullName": "Sam Laurie",
+      "age": 19,
+      "UID": 3,
+    },
+    {
+      "fullName": "Sandesh Regmi",
+      "age": 19,
+      "UID": 4,
+    }
+  ],
+
+  "accounts": [
+    {
+      "email": "john.doe@utoronto.ca",
+      "fullName": "John Doe",
+      "role": "Admin",
+      "UID": 10099910,
+      "password": "L33t5p3@k"
+    },
+    {
+      "email": "sarah.little@utoronto.ca",
+      "fullName": "Sarah Little",
+      "role": "Librarian",
+      "UID": 10099911,
+      "password": "!L0v3B00k5"
+    },
+    {
+      "email": "sam.laurie@utoronto.ca",
+      "fullName": "Sam Laurie",
+      "role": "Student",
+      "UID": 20099910,
+      "password": "Password"
+    },
+    {
+      "email": "bruin.kunnas@utoronto.ca",
+      "fullName": "Bruin Kunnas",
+      "role": "Staff",
+      "UID": 10099912,
+      "password": 1234567890
+    }
+  ]
+}
