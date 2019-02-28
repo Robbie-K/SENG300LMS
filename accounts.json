@@ -3,7 +3,6 @@ users = {
   "version": "1.0.0",
   "description": "Library Management System",
   "City": "Toronto",
-  "formed": 2019,
   "groupNumber": 10,
 
   "developers": [
