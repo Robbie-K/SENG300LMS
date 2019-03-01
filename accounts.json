@@ -3,7 +3,6 @@ users = {
   "version": "1.0.0",
   "description": "Library Management System",
   "City": "Toronto",
-  "formed": 2019,
   "groupNumber": 10,
 
   "developers": [
@@ -25,7 +24,7 @@ users = {
     {
       "fullName": "Sam Laurie",
       "age": 19,
-      "UID": 30056429,
+      "UID": 3,
     },
     {
       "fullName": "Sandesh Regmi",
