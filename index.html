@@ -9,17 +9,21 @@
 <body><!--Body of webpage-->
 <center><!--Center align-->
   <img src="UTL-logo-blue.png" width="1000" height="300"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
+
   <font size="6">Please enter your login information below.</font><br/><!--Displays to enter login information-->
   <input type="text" id="email" placeholder="Email" style="font-size:20pt;"><br/><!--Takes input from user, specifically an email-->
   <input type="password" id="password" placeholder="Password" style="font-size:20pt;"><br/><!--Takes input from user, specifically a password-->
   <input type="button" id="log" value="Log in" onclick="logIn()" style="font-size:20pt;"><!--Button to submit login info, and attempt logging in-->
   <br/><br/><br/><br/><!--Breaks to create nice layout-->
+
   <input type="button" value="Create Account" onclick="window.location='application.html';" style="font-size:20pt;"><!--Button that redirects user to create an account page on click-->
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--Breaks to create nice layout-->
   <br/><br/><br/><br/><br/><br/><br/><br/>
+
   <input type="button" value="Contact Us" onclick="window.location='contact.html';" style="font-size:16pt;"><br/><br/><!--Button that redirects user to a page to contact staff upon click-->
   <font size="2">Developed by SENG300 Group #10</font><!--Displays creators of page-->
 </center><!--End of center align-->
+
 <script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
 <script type="text/JavaScript" src="login.js"></script><!--JavaScript used for ensuring login information entered is correct-->
 </body><!--End of body setup-->
