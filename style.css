@@ -57,9 +57,3 @@ body {
 .option:hover {
 	border-color: #FFF;
 }
-
-#buttons {
-	margin: 0 auto;
-	display: flex-inline;
-	width: 200px;
-}
