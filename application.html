@@ -9,11 +9,34 @@
 <body>
 <center>
   <!-- Adds an image for the top of the page along with the application form below. -->
-  <img src="UTL-logo-blue.png" width="1000" height="300"></img><br/>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQuzmQHiIuD-s__Ejn7rBvMKNd3DWHW79HsGJopmnVB0JPZg/viewform?embedded=true" width="700" height="1320" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></br>
+  <img src="UTL-logo-blue.png" width="900" height="200"></img><br/>
+  <p style="font-size: 140%">
+    This is an application form to recieve your University of Toronto library
+    account.</br>
+    With a registered account you gain access to borrowing and reserving library
+    resources.
+  </p>
 
-  <!-- Adds button to return back to the log in page.-->
-  <input type="button" value="Return to Login" onclick="window.location='index.html';" style="font-size:20pt;">
+  <font size="5">Email<font size="5" style="color:red;">*</font></br>
+  <input type="text" id="email" placeholder="Your email" style="font-size: 15pt;"></br></br>
+
+  <font size="5">Full Name<font size="5" style="color:red;">*</font></br>
+  <input type="text" id="fullName" placeholder="Full Name (First, Last)" style="font-size: 15pt;"></br></br>
+
+  <font size="5">UofT Student ID<font size="5" style="color:red;">*</font></br>
+  <input type="text" id="ID" placeholder="ID" style="font-size: 15pt;"></br></br>
+
+  <font size="5">Choose Password<font size="5" style="color:red;">*</font></br>
+  <input type="text" id="password" placeholder="Password" style="font-size: 15pt;"></br></br>
+
+  <font size="5">Confirm Password<font size="5" style="color:red;">*</font></br>
+  <input type="text" id="confirm" placeholder="Password" style="font-size: 15pt;"></br></br>
+
+  <!-- Adds button to submit application and return back to the log in page.-->
+  <input type="button" value="Submit" onclick="window.location='index.html';" style="font-size:15pt; margin-right:50px;">
+  <input type="button" value="Return to Login" onclick="window.location='index.html';" style="font-size:15pt;">
+  <!--<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQuzmQHiIuD-s__Ejn7rBvMKNd3DWHW79HsGJopmnVB0JPZg/viewform?embedded=true" width="700" height="1320" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></br>
+  -->
 </center>
 </body>
 </html>
