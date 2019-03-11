@@ -65,6 +65,7 @@ body {
 .option:hover {
 	border-color: #FFF;
 }
+<<<<<<< HEAD
 
 /*Style for navigation bar and cells*/
 .navBar {
@@ -87,3 +88,5 @@ body {
   background-color: #EEE;	/*Background colour for hovered nava bar*/
   color: blue;	/*Colour for hovered text*/
 }
+=======
+>>>>>>> Robbie

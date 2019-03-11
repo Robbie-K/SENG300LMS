@@ -1,6 +1,4 @@
 # SENG300LMS
-# Jacob Huber, Robert Karg, Bruin Kunnas, Sam Laurie, Sandesh Regmi
-
 Private repo for the SENG300 Library Management System
 
 Step 1: Click on this link to go to the log in page.
