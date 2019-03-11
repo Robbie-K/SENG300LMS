@@ -1,0 +1,12 @@
+Robbie:
+  - Changing the google forms (Application, Contact us)
+
+Bruin:
+  - Admin page and librarian restriction controls
+
+Sam:
+  - User account information (fees, return dates)
+
+Sandesh & Jacob:
+  - creating connection between website and database
+  - making search for information

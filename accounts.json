@@ -52,7 +52,11 @@ users = {
       "email": "sam.laurie@utoronto.ca",
       "fullName": "Sam Laurie",
       "role": "Student",
+<<<<<<< HEAD
       "UID": 20099910,
+=======
+      "UID": 10000000,
+>>>>>>> master
       "password": "Password"
     },
     {
