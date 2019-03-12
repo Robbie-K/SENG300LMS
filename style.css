@@ -13,6 +13,14 @@ body {
 	text-align: center;
 }
 
+#left-aligned {
+	width: 100%;
+	height: auto;
+
+	margin: 0px 50px 75px 50px;
+	text-align: left;
+}
+
 #user-input {
 	margin: 0;
 }
