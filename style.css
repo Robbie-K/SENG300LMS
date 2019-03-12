@@ -87,3 +87,28 @@ body {
   background-color: #EEE;	/*Background colour for hovered nava bar*/
   color: blue;	/*Colour for hovered text*/
 }
+
+table {
+	width:90%;
+}
+table, th, td {
+	border-collapse: collapse;
+}
+th {
+	padding: 15px;
+	text-align: center;
+}
+td {
+	padding: 15px;
+	text-align: left;
+}
+table#t01 tr:nth-child(even) {
+	background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+table#t01 th {
+	background-color: #AAA;
+	color: Black;
+}
