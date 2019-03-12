@@ -60,4 +60,25 @@ body {
 }
 =======
 }
->>>>>>> 0eda3bec43127957c55db0819c9fac36c55e5ac1
+
+/*Style for navigation bar and cells*/
+.navBar {
+  overflow: hidden;
+  background-color: #4169e1;	/*U of T blue*/
+}
+
+/*Style the nav bar links*/
+.navBar a {
+  float: left;	/*Cells left aligned*/
+  display: block;	/*Makes whole cell clickable*/
+  color: #fff;	/*Colour for unselected text in nav bar*/
+  text-align: center; /*Center text in cell*/
+  padding: 14px 20px;	/*Cell Size for nav bar item*/
+  text-decoration: none; /*No style of text*/
+}
+
+/* Change color on hover */
+.navBar a:hover {
+  background-color: #EEE;	/*Background colour for hovered nava bar*/
+  color: blue;	/*Colour for hovered text*/
+}
