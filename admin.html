@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> UofT Library </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/ico" href="UofT.png">
+</head>
+
+<body>
+  <center>
+    <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
+  </center>
+  <br>
+
+  <!--Displays navigation bar-->
+  <div class="navBar">
+    <a href="search.html">Home</a>
+    <a href="#">Order Products</a>
+    <a href="#">View History</a>
+    <a href="#">Damaged Books</a>
+    <a href="#">Approve Users</a>
+    <a href="#">Remove Users</a>
+    <a href="index.html">Logout</a>
+  </div>
+
+  <!--Displays current page-->
+  <center>
+    <h2>Account Information</h2>
+  </center>
+
+  <!--Displays body text-->
+  <div id=left-aligned>
+    <h3>New Users: </h3>
+    <h3>New Books: </h3>
+  </div>
+
+</body>
+<script type="text/JavaScript" src="script.js"></script>
+<script type="text/JavaScript" src="admin.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+    authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+    databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+    projectId: "librarymanagmentsystem-ce706",
+    storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+    messagingSenderId: "533299745296"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+</script>
+</html>

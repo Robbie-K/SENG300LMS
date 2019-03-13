@@ -1,0 +1,89 @@
+body {
+	margin: 0;
+
+	background-color: #EEE;
+	-webkit-transition: background-color 0.5s;
+}
+
+#centered {
+	width: 100%;
+	height: auto;
+
+	margin: 50px auto;
+	text-align: center;
+}
+
+#left-aligned {
+	width: 100%;
+	height: auto;
+
+	margin: 0px 50px 75px 50px;
+	text-align: left;
+}
+
+#user-input {
+	margin: 0;
+}
+
+#search {
+	width: 40%;
+	border-radius: 5px;
+	border: 1px solid #AAA;
+	background-color: #FFF;
+
+	padding: 10px;
+	font-size: 20pt;
+
+	-webkit-transition: width 0.5s;
+}
+
+#search:focus {
+	width: 80%;
+}
+
+#options {
+	margin: 0 auto;
+	display: flex-inline;
+	width: 200px;
+}
+
+.option {
+	flex: 1;
+	margin: 2px;
+	padding: 10px;
+
+	border: 1px solid #000;
+	border-radius: 5px;
+
+	color: #000;
+	font-weight: bold;
+	font-family: arial;
+
+	cursor: pointer;
+}
+
+.option:hover {
+	border-color: #FFF;
+}
+
+/*Style for navigation bar and cells*/
+.navBar {
+  overflow: hidden;
+  background-color: #1A5276;	/*U of T blue*/
+}
+
+/*Style the nav bar links*/
+.navBar a {
+  float: left;	/*Cells left aligned*/
+  display: block;	/*Makes whole cell clickable*/
+  color: #fff;	/*Colour for unselected text in nav bar*/
+  text-align: center; /*Center text in cell*/
+  padding: 14px 20px;	/*Cell Size for nav bar item*/
+  text-decoration: none; /*No style of text*/
+}
+
+/* Change color on hover */
+.navBar a:hover {
+  background-color: #EEE;	/*Background colour for hovered nava bar*/
+  color: blue;	/*Colour for hovered text*/
+}
