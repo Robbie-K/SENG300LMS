@@ -1,5 +1,6 @@
 
 //Get User Information
+//Once we can tell which user is online, add parameters to their history in database
 function userInfo() {
   var info = database.collection("/users/Sam Laurie/History").doc("S6g25Ra2kHJQKI1gYTLi");
   info.get().then(function(doc) {
