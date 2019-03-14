@@ -1,6 +1,6 @@
 function search(){
   var searchEntry = document.getElementById('search').value;
-  var book = database.collection("books").doc("The Name of The Wind");
+  var book = database.collection("books").doc(searchEntry);
   book.get().then(function(doc) {
     var title = doc.get("book_name");
     var table = document.getElementById("t01");
