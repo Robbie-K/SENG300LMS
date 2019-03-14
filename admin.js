@@ -1,59 +1,59 @@
 //SENG 300 L01 - Group 10 (Robbie K., Sam L., Sandesh R., Jacob H., Bruin K.)
 //Administration Controls
 
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
-  authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
-  databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
-  projectId: "librarymanagmentsystem-ce706",
-  storageBucket: "librarymanagmentsystem-ce706.appspot.com",
-  messagingSenderId: "533299745296"
-};
-var app = firebase.firestore;
-
 //Allows admin to approve user applications.
 function approveUsers() {
 
 }
 
 //Allows admin to remove users based on certain criteria.
-function removeUser(test) {
-  //var name = document.getElementById('name').value;
-  //var name = database.collection("users").doc(test);
-  //console.log(name);
-  var success = false;
+function removeUser() {
+  var name = document.getElementById('search').value;
 
-  if (test == "J Smith") {
-    console.log("its working");
-    success = true;
+  if (database.collection("users").doc(name) != null) {
+    var user = database.collection("users").doc(name);
 
-    //var user = database.collection("users").get(name);
-    //database.collection("oldUsers").set(user);
+    user.get().then(function(user) {
+      var firstName = user.get("firstName");
+      var lastName = user.get("lastName");
+      var id = user.get("id");
+      var email = user.get("email");
+      var password = user.get("password");
 
-    database.collection("oldUsers").doc(test).delete();
-    //break;
-  }
+      database.collection("oldUsers").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      });
 
-  if (success == false) {
-    var x = document.getElementById('wrongInfo').style.opacity = '1';
+      database.collection("users").doc(name).delete();
+    });
   }
 }
 
 //Remove books from library and add them to damaged book list.
 function addDamagedBooks() {
+  var damagedBook = document.getElementById('book').value;
 
+  if (database.collection("books").doc(damagedBook) != null) {
+    
+  }
 }
 
 //Allows admin to view history of orders.
 function viewHistory() {
   var book = document.getElementById('book').value;
   var currentBook = database.collection("books").doc("History").collection("history");
+
+  // currentBook.get().then(function(doc) {
+  //   var title = doc.get("book_name");
+  //   var
+  // });
 }
 
 //Allows admin to order new products for the library.
 function orderProducts() {
 
 }
-
-removeUser("J Smith");

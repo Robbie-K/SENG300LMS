@@ -20,7 +20,7 @@
     <a href="#">View History</a>
     <a href="#">Damaged Books</a>
     <a href="#">Approve Users</a>
-    <a href="removeUser()">Remove Users</a>
+    <a href="#" onclick="removeUser()">Remove Users</a>
     <a href="index.html">Logout</a>
   </div>
 
@@ -36,23 +36,25 @@
   </div>
 
 </body>
-<script type="text/JavaScript" src="script.js"></script>
-<script type="text/JavaScript" src="admin.js"></script>
+  <script type="text/JavaScript" src="script.js"></script>
+  <script type="text/JavaScript" src="admin.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
-    authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
-    databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
-    projectId: "librarymanagmentsystem-ce706",
-    storageBucket: "librarymanagmentsystem-ce706.appspot.com",
-    messagingSenderId: "533299745296"
-  };
-  var app = firebase.initializeApp(config);
-  var database = firebase.database(app);
-</script>
+<!--script for the database-->
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script type="text/JavaScript" src="functions.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+	    authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+	    databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+	    projectId: "librarymanagmentsystem-ce706",
+	    storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+	    messagingSenderId: "533299745296"
+	  };
+	  firebase.initializeApp(config);
+	  var database = firebase.firestore();
+	</script>
 </html>
