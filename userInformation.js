@@ -11,12 +11,10 @@ var config = {
 };
 var app = firebase.firestore;
 
-
 function userInformation() {
-  var userEmail = database.collection("users").doc("John Doe").field(); //Get email?
-  if (userEmail == "johndoe@ucalgary.ca") {
-    console.log("Correct read.");
-  }
+  var checkoutDate = database.collection("users").doc("Sandesh Regmi").collection("History").doc(mnn0sRR2Q4dz8pzUvn24).once('checkout');
+
+  window.alert(checkoutDate);
 
   //Get user fees
   //Get user books borrowed
