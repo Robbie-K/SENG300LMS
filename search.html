@@ -6,26 +6,46 @@
 </head>
 <body>
 
-<div id="centered">
-	<div id="user-input">
-		<input id="search" placeholder="What are you looking for?" type="text">
+	<div id="centered">
+		<div id="user-input">
+			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
+			<button class ="button" id ="searchButton" onclick="search()"> Search </button>
+		</div>
+		<br>
+		<div id="information">
+			<table id = "t01" class="table">
+				<tr>
+					<th>Book</th>
+					<th>Author</th>
+					<th>Published</th>
+					<th>ID</th>
+					<th>Quantity</th>
+					<th>SoftCopy</th>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<div id="options">
-		<div style="background-color: #F55" class="option">
-			BOOKS, CDS, DVDS
-		</div>
-		<div style="background-color: #5F5" class="option">
-			MATERIALS
-		</div>
-		<div style="background-color: #5EF" class="option" onclick="window.location='userInfo.html';">
-			ACCOUNT
-		</div>
-		<div style="background-color: #555" class="option" onclick="window.location='index.html';">
-			LOG OUT
-		</div>
-	</div>
-</div>
 
-</body>
-<script src="script.js"></script>
+	</body>
+	<script src="script.js"></script>
+
+	<!--script for the database-->
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script type="text/JavaScript" src="functions.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+	    authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+	    databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+	    projectId: "librarymanagmentsystem-ce706",
+	    storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+	    messagingSenderId: "533299745296"
+	  };
+	  firebase.initializeApp(config);
+
+	  var database = firebase.firestore();
+	</script>
 </html>

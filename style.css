@@ -91,6 +91,7 @@ body {
 table {
 	margin: 0 auto;
 	width:90%;
+
 	border: 1px solid black;
 }
 table, th, td {
