@@ -105,13 +105,13 @@ td {
 	padding: 15px;
 	text-align: left;
 }
-table#t01 tr:nth-child(even) {
+table#infoTable tr:nth-child(even) {
 	background-color: #eee;
 }
-table#t01 tr:nth-child(odd) {
+table#infoTable tr:nth-child(odd) {
  background-color: #fff;
 }
-table#t01 th {
+table#infoTable th {
 	background-color: #AAA;
 	color: Black;
 }
