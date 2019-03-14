@@ -38,7 +38,7 @@ function addDamagedBooks() {
   var damagedBook = document.getElementById('book').value;
 
   if (database.collection("books").doc(damagedBook) != null) {
-    
+
   }
 }
 
