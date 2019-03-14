@@ -3,7 +3,24 @@
 
 //Allows admin to approve user applications.
 function approveUsers() {
+  var user = database.collection("newUsers").doc(name);
 
+  user.get().then(function(user) {
+    var firstName = user.get("firstName");
+    var lastName = user.get("lastName");
+    var id = user.get("id");
+    var email = user.get("email");
+    var password = user.get("password");
+
+    document.getElementById('approve').onclick = function() {
+      database.collection("users").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      });
+    }
 }
 
 //Allows admin to remove users based on certain criteria.
@@ -68,8 +85,7 @@ function viewHistory() {
 
   currentBook.get().then(function(doc) {
     var title = doc.get("book_name");
-    var history = doc.collection("History");
-
+    var history = doc.get("history");
   });
 }
 
