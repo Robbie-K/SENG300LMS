@@ -7,19 +7,25 @@ function approveUsers() {
 }
 
 //Allows admin to remove users based on certain criteria.
-function removeUser() {
-  var input = document.getElementById('input').value;
+function removeUser(test) {
+  //var name = document.getElementById('name').value;
+  //var name = database.collection("users").doc(test);
+  //console.log(name);
   var success = false;
 
-  for (i = 0; i < database.ref('users/').length; i++) {
-    if (input == database.ref('users/email') || (input == database.ref('users/firstName') && input == database.ref('users/lastName'))) {
-      success = true;
-      database.ref('users/' + ("firstName" + "lastName").move('inactiveUsers/');
-    }
+  if (test == "J Smith") {
+    console.log("its working");
+    success = true;
+
+    //var user = database.collection("users").get(name);
+    //database.collection("oldUsers").set(user);
+
+    firebase.database().collection("oldUsers").doc(name).delete();
+    //break;
   }
 
   if (success == false) {
-    var x = document.getElementById("wrongInfo").style.opacity = '1';
+    var x = document.getElementById('wrongInfo').style.opacity = '1';
   }
 }
 
@@ -30,10 +36,13 @@ function addDamagedBooks() {
 
 //Allows admin to view history of orders.
 function viewHistory() {
-
+  var book = document.getElementById('book').value;
+  var currentBook = database.collection("books").doc("History").collection("history");
 }
 
 //Allows admin to order new products for the library.
 function orderProducts() {
 
 }
+
+removeUser("J Smith");

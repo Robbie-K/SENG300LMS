@@ -20,7 +20,7 @@
     <a href="#">View History</a>
     <a href="#">Damaged Books</a>
     <a href="#">Approve Users</a>
-    <a href="#">Remove Users</a>
+    <a href="removeUser()">Remove Users</a>
     <a href="index.html">Logout</a>
   </div>
 
@@ -50,8 +50,8 @@
     storageBucket: "librarymanagmentsystem-ce706.appspot.com",
     messagingSenderId: "533299745296"
   };
-  firebase.initializeApp(config);
+  var app = firebase.initializeApp(config);
+  var database = firebase.database(app);
 
-  var database = firebase.database();
 </script>
 </html>
