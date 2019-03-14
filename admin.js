@@ -1,6 +1,17 @@
 //SENG 300 L01 - Group 10 (Robbie K., Sam L., Sandesh R., Jacob H., Bruin K.)
 //Administration Controls
 
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+  authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+  databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+  projectId: "librarymanagmentsystem-ce706",
+  storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+  messagingSenderId: "533299745296"
+};
+var app = firebase.firestore;
+
 //Allows admin to approve user applications.
 function approveUsers() {
 
@@ -20,7 +31,7 @@ function removeUser(test) {
     //var user = database.collection("users").get(name);
     //database.collection("oldUsers").set(user);
 
-    firebase.database().collection("oldUsers").doc(name).delete();
+    database.collection("oldUsers").doc(test).delete();
     //break;
   }
 
