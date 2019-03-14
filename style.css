@@ -5,16 +5,25 @@ body {
 	-webkit-transition: background-color 0.5s;
 }
 
-#centered {
+#nav-bar {
+	top: 0;
+	left: 0;
+
+	position: fixed;
+
 	width: 100%;
 	height: auto;
 
-	margin: 50px auto;
 	text-align: center;
 }
 
 #user-input {
-	margin: 0;
+	margin: 64px 0;
+	display: inline-block;
+
+	text-align: center;
+
+	width: 100%;
 }
 
 #search {
@@ -34,8 +43,9 @@ body {
 }
 
 #options {
-	margin: 0 auto;
-	display: flex-inline;
+	padding: 10px;
+	float: right;
+	display: flex;
 	width: 200px;
 }
 
