@@ -54,7 +54,7 @@ function removeUser() {
 function addDamagedBooks() {
   var name = document.getElementById('book').value;
 
-  if (database.collection("books").doc(damagedBook) != null) {
+  if (database.collection("books").doc(name) != null) {
     var book = database.collection("books").doc(name);
 
     book.get().then(function(book) {
