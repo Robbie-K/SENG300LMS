@@ -14,31 +14,38 @@ var database = firebase.firestore();
 
 function search(){
   var searchEntry = document.getElementById('search').value;
-  var book = database.collection("books").doc(searchEntry);
-  book.get().then(function(doc) {
-    console.log(doc.get("book_name"));
-    var title = doc.get("book_name");
-    var author = doc.get("book_author");
-    var published = doc.get("Published");
-    var quantity = doc.get("Quantity");
-    var id = doc.get("book_id");
+  var book = database.collection("books");
+  var table = document.getElementById("bookTable");
+  var rowCount = 1;
+  book.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      var bookname = data.book_name;
+      var bookNameLower = bookname.toLowerCase();
+      var searchEntryLower = searchEntry.toLowerCase();
 
-    var table = document.getElementById("bookTable");
-    var row = table.insertRow(1);
-    var cell0 = row.insertCell(0);
-    var cell1 = row.insertCell(1);
-    var cell2 = row.insertCell(2);
-    var cell3 = row.insertCell(3);
-    var cell4 = row.insertCell(4);
-    var cell5 = row.insertCell(5);
-    cell0.innerHTML = title;
-    cell1.innerHTML = author;
-    cell2.innerHTML = published;
-    cell3.innerHTML = id;
-    cell4.innerHTML = quantity;
-    cell5.innerHTML = "nosoftcopy";
+      if(bookNameLower.includes(searchEntryLower) == true){
+        var author = data.book_author;
+        var published = data.Published;
+        var quantity = data.Quantity;
+        var id = data.book_id;
 
-
+        var row = table.insertRow(rowCount);
+        rowCount = rowCount + 1;
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
+        cell0.innerHTML = bookname;
+        cell1.innerHTML = author;
+        cell2.innerHTML = published;
+        cell3.innerHTML = id;
+        cell4.innerHTML = quantity;
+        cell5.innerHTML = "nosoftcopy";
+      }
+    })
   });
 
 }
