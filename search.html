@@ -6,26 +6,37 @@
 </head>
 <body>
 
-<div id="centered">
-	<div id="user-input">
-		<input id="search" placeholder="What are you looking for?" type="text">
-	</div>
-	<div id="options">
-		<div style="background-color: #F55" class="option">
-			BOOKS, CDS, DVDS
+	<div id="centered">
+		<div id="user-input">
+			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
+			<button class ="button" id ="searchButton" onclick="search()"> Search </button>
 		</div>
-		<div style="background-color: #5F5" class="option">
-			MATERIALS
-		</div>
-		<div style="background-color: #5EF" class="option">
-			ACCOUNT
-		</div>
+<<<<<<< HEAD
 		<div style="background-color: #555" class="option" onclick="window.location='index.html';">
 			LOG OUT
+=======
+		<div id="information">
+			<table id = "bookTable" class="table">
+				<tr>
+					<th>Book</th>
+					<th>Author</th>
+					<th>Published</th>
+					<th>ID</th>
+					<th>Quantity</th>
+					<th>SoftCopy</th>
+				</tr>
+			</table>
+>>>>>>> f385746d0477f88baec5386d1c66445235b74659
 		</div>
 	</div>
-</div>
 
-</body>
-<script src="script.js"></script>
+	</body>
+	<script src="script.js"></script>
+
+	<!--script for the database-->
+	
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script type="text/JavaScript" src="functions.js"></script>
+
 </html>

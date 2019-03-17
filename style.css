@@ -57,3 +57,24 @@ body {
 .option:hover {
 	border-color: #FFF;
 }
+<<<<<<< HEAD
+=======
+
+.button {
+	display: flex-inline;
+  background-color: #4CAF50;
+  color: white;
+	border: 1px solid #000;
+	border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.table{
+	width: 100%;
+  padding-top: 1%;
+}
+>>>>>>> f385746d0477f88baec5386d1c66445235b74659
