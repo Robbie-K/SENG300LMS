@@ -49,11 +49,11 @@ users = {
       "password": "!L0v3B00k5"
     },
     {
-      "email": "sam.laurie@ucalgary.ca",
+      "email": "sam.laurie@utoronto.ca",
       "fullName": "Sam Laurie",
       "role": "Student",
       "UID": 10000000,
-      "password": "password"
+      "password": "Password"
     },
     {
       "email": "bruin.kunnas@utoronto.ca",
@@ -61,6 +61,14 @@ users = {
       "role": "Staff",
       "UID": 10099912,
       "password": 1234567890
-    }
+        },
+        {
+        "email": "1234",
+        "fullName": "Dev",
+        "role": "Admin",
+        "UID": 100,
+        "password": 1
+        }
+
   ]
 }

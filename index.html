@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html> <!--Start of file-->
 
-<head><!--Head of weppage setup-->
-  <title> UofT Login </title><!--Set tab name to be UofT Login-->
-  <link rel="icon" type="image/ico" href="UofT.png"><!--Sets tab icon to be UofT logo-->
-</head><!--End of head setup-->
+<head>
+	<title> UofT Login </title>
+	<link rel="icon" type="image/ico" href="UofT.png">
+	
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+			authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+			databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+			projectId: "librarymanagmentsystem-ce706",
+			storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+			messagingSenderId: "533299745296"
+		};
+		firebase.initializeApp(config);
+		var database = firebase.firestore();
+	</script>
+	<script type="text/JavaScript" src="login.js"></script>
+
+</head>
+    
 <style>
 div {
         font-size: 2vw;
@@ -35,3 +55,4 @@ div {
 <script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
 <script type="text/JavaScript" src="login.js"></script><!--JavaScript used for ensuring login information entered is correct-->
 </html><!--End-->
+<html>

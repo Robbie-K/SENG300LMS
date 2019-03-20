@@ -20,11 +20,13 @@
   <text style="font-size: 2vw">Questions or Concerns<text style="font-size: 2vw; color:red;">*</text><br>
   <textarea type="text" id="contact" placeholder="Enter response here." style="font-size: 2vw; height: 200px; width: 400px"></textarea></br>
 
-  <!--
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdR2n24or47RlIaffxZia3gKPKJ1j-slkcNu_mR-tSy6ZZPKA/viewform?embedded=true" width="640" height="668" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe><br/> <!-- Adds contact form to the page. -->
 
   <!-- Adds button to submit contact form and return back to the log in page.-->
-  <input type="button" value="Submit" onclick="window.location='index.html';" style="font-size:2vw;">
+
+  <input type="button" value="Submit" onclick="collectData()" style="font-size:2vw;">
+  <input type="button" value="Return to Login" onclick="window.location='index.html';" style="font-size:2vw;">
+
 </center>
 </body>
+<script type="text/JavaScript" src="contact.js"></script><!-- script used for collecting the info -->
 </html>
