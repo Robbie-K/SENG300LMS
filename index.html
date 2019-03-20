@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 <html> <!--Start of file-->
 
-<head><!--Head of weppage setup-->
-  <title> UofT Login </title><!--Set tab name to be UofT Login-->
-  <link rel="icon" type="image/ico" href="UofT.png"><!--Sets tab icon to be UofT logo-->
-</head><!--End of head setup-->
+<head>
+	<title> UofT Login </title>
+	<link rel="icon" type="image/ico" href="UofT.png">
+	
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+			authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+			databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+			projectId: "librarymanagmentsystem-ce706",
+			storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+			messagingSenderId: "533299745296"
+		};
+		firebase.initializeApp(config);
+		var database = firebase.firestore();
+	</script>
+	<script type="text/JavaScript" src="login.js"></script>
 
+</head>
+    
+<style>
+div {
+        font-size: 2vw;
+        opacity: 0;
+        color: red;
+}
+</style>
 <body><!--Body of webpage-->
 <center><!--Center align-->
-  <img src="UTL-logo-blue.png" width="1000" height="300"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
+  <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
 
-  <font size="6">Please enter your login information below.</font><br/><!--Displays to enter login information-->
-  <input type="text" id="email" placeholder="Email" style="font-size:20pt;"><br/><!--Takes input from user, specifically an email-->
-  <input type="password" id="password" placeholder="Password" style="font-size:20pt;"><br/><!--Takes input from user, specifically a password-->
-  <input type="button" id="log" value="Log in" onclick="logIn()" style="font-size:20pt;"><!--Button to submit login info, and attempt logging in-->
+  <text style="font-size: 2vw">Please enter your login information below.</text><br/><!--Displays to enter login information-->
+  <input type="text" id="email" placeholder="Email" style="font-size:2vw;"><br/><!--Takes input from user, specifically an email-->
+  <input type="password" id="password" placeholder="Password" style="font-size:2vw;"><br/><!--Takes input from user, specifically a password-->
+  <input type="button" id="log" value="Log in" onclick="logIn()" style="font-size:2vw;"><!--Button to submit login info, and attempt logging in-->
+  <div id="wrongInfo">Wrong username or password</div>
   <br/><br/><br/><br/><!--Breaks to create nice layout-->
 
-  <input type="button" value="Create Account" onclick="window.location='application.html';" style="font-size:20pt;"><!--Button that redirects user to create an account page on click-->
+  <input type="button" value="Create Account" onclick="window.location='application.html';" style="font-size:2vw;"><!--Button that redirects user to create an account page on click-->
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--Breaks to create nice layout-->
-  <br/><br/><br/><br/><br/><br/><br/><br/>
 
-  <input type="button" value="Contact Us" onclick="window.location='contact.html';" style="font-size:16pt;"><br/><br/><!--Button that redirects user to a page to contact staff upon click-->
-  <font size="2">Developed by SENG300 Group #10</font><!--Displays creators of page-->
+
+  <input type="button" value="Contact Us" onclick="window.location='contact.html';" style="font-size:1.6vw;"><br/><br/><!--Button that redirects user to a page to contact staff upon click-->
+  <font size="2vw">Developed by SENG300 Group #10</font><!--Displays creators of page-->
 </center><!--End of center align-->
 
+</body><!--End of body setup-->
 <script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
 <script type="text/JavaScript" src="login.js"></script><!--JavaScript used for ensuring login information entered is correct-->
-</body><!--End of body setup-->
 </html><!--End-->
+<html>

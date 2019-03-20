@@ -61,6 +61,14 @@ users = {
       "role": "Staff",
       "UID": 10099912,
       "password": 1234567890
-    }
+        },
+        {
+        "email": "1234",
+        "fullName": "Dev",
+        "role": "Admin",
+        "UID": 100,
+        "password": 1
+        }
+
   ]
 }
