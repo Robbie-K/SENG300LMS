@@ -40,7 +40,6 @@ function checkFields() {
                                           password: pass
                                   });
                                   alert("Account has been made. You can now login.");
-                                  window.location.href="index.html";
                          }
                  });
          };
