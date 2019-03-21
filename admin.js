@@ -27,16 +27,20 @@ function approveUsers() {
 function removeUser() {
   var name = document.getElementById('search').value;
 
-  if (database.collection("users").doc(name) != null) {
+  if (database.collection("users").doc(name).exists) {
     var user = database.collection("users").doc(name);
+  } else if (database.collection("newUsers").doc(name).exists) {
+    var user = database.collection("newUsers").doc(name);
+  }
 
-    user.get().then(function(user) {
-      var firstName = user.get("firstName");
-      var lastName = user.get("lastName");
-      var id = user.get("id");
-      var email = user.get("email");
-      var password = user.get("password");
+  user.get().then(function(user) {
+    var firstName = user.get("firstName");
+    var lastName = user.get("lastName");
+    var id = user.get("id");
+    var email = user.get("email");
+    var password = user.get("password");
 
+    if (user == "users") {
       database.collection("oldUsers").doc(firstName + " " + lastName).set({
         firstName: firstName,
         lastName: lastName,
@@ -44,10 +48,10 @@ function removeUser() {
         email: email,
         password: password
       });
+    }
 
-      database.collection("users").doc(name).delete();
-    });
-  }
+    user.delete();
+  });
 }
 
 //Remove books from library and add them to damaged book list.
