@@ -47,5 +47,18 @@ function search(){
       }
     })
   });
+}
 
+function checkStatus()
+{
+  var user = database.collection('users');
+  user.get().then(function(user) {
+    var status = user.get("status");
+
+    if (status == "admin") {
+      window.location="admin.html";
+    } else {
+      window.location="userInfo.html";
+    }
+  });
 }

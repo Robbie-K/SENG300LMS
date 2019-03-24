@@ -2,7 +2,7 @@
 //Administration Controls
 
 //Allows admin to approve user applications.
-function approveUsers() {
+function approveUsers(name) {
   var user = database.collection("newUsers").doc(name);
 
   user.get().then(function(user) {
