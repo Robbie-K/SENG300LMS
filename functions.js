@@ -13,6 +13,9 @@ var database = firebase.firestore();
 
 
 function search(){
+  document.getElementById("userTable").style.display='none';
+  document.getElementById("bookTable").style.display;
+
   var searchEntry = document.getElementById('search').value;
   var book = database.collection("books");
   var table = document.getElementById("bookTable");
@@ -50,6 +53,9 @@ function search(){
 }
 
 function searchUser(){
+  document.getElementById("userTable").style.display;
+  document.getElementById("bookTable").style.display='none';
+
   var searchEntry = document.getElementById('search').value;
   var user = database.collection("users");
   var table = document.getElementById("userTable");
@@ -66,8 +72,10 @@ function searchUser(){
         var last = data.lastName;
         var id = data.id;
         var email = data.email;
-        var approve = document.createElement("Approve");
-        var remove = document.createElement("Remove");
+        var approve = document.createElement('button');
+        var remove = document.createElement('button');
+        approve.appendChild("Approve");
+        remove.appendChild("Remove");
 
         var row = table.insertRow(rowCount);
         rowCount = rowCount + 1;
