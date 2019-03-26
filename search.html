@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 	<title>UofT Library</title>
@@ -57,3 +58,52 @@
 	  var database = firebase.firestore();
 	</script>
 </html>
+=======
+<html>
+<head>
+	<title>UofT Library</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/ico" href="UofT.png">
+</head>
+<body>
+
+	<!--Create nav bar links-->
+	<div class="navBar">
+		<a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
+		<a href="#">Materials</a>	<!--Materials link-->
+		<a href="userInfo.html">Account</a> <!--Account info-->
+		<a href="index.html">Logout</a>	<!--Sign in link-->
+	</div>
+
+
+	<div id="centered">
+		<div id="user-input">
+			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
+			<button class ="button" id ="searchButton" onclick="search()"> Search </button>
+		</div>
+		<div id="information">
+			<table id = "bookTable" class="table">
+				<tr>
+					<th>Book</th>
+					<th>Author</th>
+					<th>Published</th>
+					<th>ID</th>
+					<th>Genre</th>
+					<th>Quantity</th>
+					<th>SoftCopy</th>
+					<th>Action</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	</body>
+	<script src="script.js"></script>
+
+	<!--script for the database-->
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script type="text/JavaScript" src="functions.js"></script>
+
+</html>
+>>>>>>> master

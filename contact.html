@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -28,3 +29,37 @@
 </center>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> UofT Contact Us </title> <!-- Sets the tab name. -->
+  <link rel="icon" type="image/ico" href="UofT.png"> <!-- Sets the tab icon. -->
+</head>
+
+<body>
+<center>
+  <img src="UTL-logo-blue.png" width="900" height="200"></img><!-- Adds image for the top of the page. -->
+  <p style="font-size: 2vw">
+    Please enter your information below to contact us about any questions,
+    comments, concerns, or bugs/errors that you may find in the system.
+  </p>
+
+  <text style="font-size: 2vw">Email<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="email" placeholder="Your email" style="font-size: 2vw;"></br></br>
+
+  <text style="font-size: 2vw">Questions or Concerns<text style="font-size: 2vw; color:red;">*</text><br>
+  <textarea type="text" id="contact" placeholder="Enter response here." style="font-size: 2vw; height: 200px; width: 400px"></textarea></br>
+
+
+  <!-- Adds button to submit contact form and return back to the log in page.-->
+
+  <input type="button" value="Submit" onclick="collectData()" style="font-size:2vw;">
+  <input type="button" value="Return to Login" onclick="window.location='index.html';" style="font-size:2vw;">
+
+</center>
+</body>
+<script type="text/JavaScript" src="contact.js"></script><!-- script used for collecting the info -->
+</html>
+>>>>>>> master
