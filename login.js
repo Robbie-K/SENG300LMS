@@ -18,7 +18,9 @@ function logIn() {
 
 			let fetchedPassword = user.get("password");
 			if (fetchedPassword == password.value) {
-				window.location.href = "search.html";
+				let userId = user.get("id");
+
+				window.location.href = "search.html?userId=" + userId;
 			} else {
 				let errorSpan = document.getElementById("error");
 				errorSpan.innerHTML = "Email or password are invalid.";
