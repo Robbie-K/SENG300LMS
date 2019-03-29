@@ -1,4 +1,4 @@
-// Returns the userId that is stored as a 
+// Returns the userId that is stored as a
 // GET variable. If no userId is set then
 // returns -1
 function getUserId() {
@@ -12,7 +12,7 @@ function getUserId() {
 		return -1;
 }
 
-// Update link references so that userId as a 
+// Update link references so that userId as a
 // GET variable is preserved among page transfers
 function updateLinks() {
 	let userId = getUserId();
@@ -23,6 +23,7 @@ function updateLinks() {
 	}
 }
 
+/*
 function makeColors() {
 	let all = document.body.getElementsByTagName("*");
 	for (let i = 0; i < all.length; i++) {
@@ -32,8 +33,9 @@ function makeColors() {
 		all[i].style.backgroundColor = bgColor;
 	}
 }
+*/
 
-// Waits for the DOM to fully load before trying 
+// Waits for the DOM to fully load before trying
 // to update link references
 document.addEventListener("DOMContentLoaded", function(event) {
    updateLinks();
