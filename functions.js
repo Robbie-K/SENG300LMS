@@ -66,3 +66,62 @@ input.addEventListener("keyup", function(event) {
     document.getElementById("searchButton").click();
   }
 });
+
+
+function searchUser(){
+  document.getElementById("userTable").style.display;
+  document.getElementById("bookTable").style.display='none';
+
+  var searchEntry = document.getElementById('search').value;
+  var user = database.collection("users");
+  var table = document.getElementById("userTable");
+  var rowCount = 1;
+  user.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      var name = data.firstName + data.lastName;
+      var userNameLower = name.toLowerCase();
+      var searchEntryLower = searchEntry.toLowerCase();
+
+      if(userNameLower.includes(searchEntryLower) == true){
+        var first = data.firstName;
+        var last = data.lastName;
+        var id = data.id;
+        var email = data.email;
+        var approve = document.createElement('button');
+        var remove = document.createElement('button');
+        approve.appendChild("Approve");
+        remove.appendChild("Remove");
+
+        var row = table.insertRow(rowCount);
+        rowCount = rowCount + 1;
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
+        cell0.innerHTML = first;
+        cell1.innerHTML = last;
+        cell2.innerHTML = id;
+        cell3.innerHTML = email;
+        cell4.innerHTML = approve;
+        cell5.innerHTML = remove;
+      }
+    })
+  });
+}
+
+function checkStatus()
+{
+  var user = database.collection('users');
+  user.get().then(function(user) {
+    var status = user.get("status");
+
+    if (status == "admin") {
+      window.location="admin.html";
+    } else {
+      window.location="userInfo.html";
+    }
+  });
+}
