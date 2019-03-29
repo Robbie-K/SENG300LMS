@@ -67,7 +67,7 @@ input.addEventListener("keyup", function(event) {
   }
 });
 
-
+//Creates the table containing user information for admin controls.
 function searchUser(){
   document.getElementById("userTable").style.display;
   document.getElementById("bookTable").style.display='none';
@@ -112,6 +112,8 @@ function searchUser(){
   });
 }
 
+//Checks the status of the user to determine what html file to use for controls.
+//Not fully functional, needs to be finished.
 function checkStatus()
 {
   var user = database.collection('users');

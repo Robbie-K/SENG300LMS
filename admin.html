@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!--Creates name for the tab on the browser and adds an icon-->
 <head>
   <title> UofT Library </title>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -25,12 +26,14 @@
   </div>
 
   <div id="centered">
+    <!--Adds search feature and buttons-->
     <div id="user-input">
 			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
 			<button class="button" id="bookSearch" onclick="search()">Search Book</button>
       <button class="button" id="userSearch" onclick="userSearch()">Search User</button>
 		</div>
 
+    <!--Creates table titles for books-->
 		<table id = "bookTable" class="table">
 			<tr>
 				<th>Book</th>
@@ -43,6 +46,7 @@
 		</table>
     </br>
 
+    <!--Creates table titles for users-->
 		<table id = "userTable" class="table">
 			<tr>
 				<th>Name</th>
