@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!--Creates name for the tab on the browser and adds an icon-->
 <head>
   <title> UofT Library </title>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -24,23 +25,44 @@
     <a href="index.html">Logout</a>
   </div>
 
-  <!--Displays current page-->
-  <center>
-    <h2>Account Information</h2>
-  </center>
+  <div id="centered">
+    <!--Adds search feature and buttons-->
+    <div id="user-input">
+			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
+			<button class="button" id="bookSearch" onclick="search()">Search Book</button>
+      <button class="button" id="userSearch" onclick="userSearch()">Search User</button>
+		</div>
 
-  <!--Displays body text-->
-  <div id=left-aligned>
-    <h3>New Users: </h3>
-    <h3>New Books: </h3>
-  </div>
+    <!--Creates table titles for books-->
+		<table id = "bookTable" class="table">
+			<tr>
+				<th>Book</th>
+				<th>Author</th>
+				<th>Published</th>
+				<th>ID</th>
+				<th>Quantity</th>
+				<th>SoftCopy</th>
+			</tr>
+		</table>
+    </br>
+
+    <!--Creates table titles for users-->
+		<table id = "userTable" class="table">
+			<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Email</th>
+        <th>Action</th>
+			</tr>
+		</table>
+
 
 </body>
   <script type="text/JavaScript" src="script.js"></script>
   <script type="text/JavaScript" src="admin.js"></script>
+  <script type="text/JavaScript" src="functions.js"></script>
 
 <!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
 </html>

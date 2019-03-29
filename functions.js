@@ -95,3 +95,16 @@ function setFilterGenre(){
   filter = "genre";
   document.getElementById("filterValue").innerHTML = "Search: Genre";
 }
+
+function checkStatus()
+{
+  var user = database.collection('users');
+  user.get().then(function(user) {
+    var status = user.get("status");
+
+    if (status == "admin") {
+      window.location="admin.html";
+    } else {
+      window.location="userInfo.html";
+    }
+  });

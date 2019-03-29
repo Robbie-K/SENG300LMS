@@ -1,6 +1,8 @@
 body {
 	margin: 0;
 
+	font-family: "Comic Sans MS";
+
 	background-color: #EEE;
 	-webkit-transition: background-color 0.5s;
 }
