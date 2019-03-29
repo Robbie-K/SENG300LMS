@@ -10,23 +10,36 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.firestore();
-
+var filter = "";
 
 function search(){
   var searchEntry = document.getElementById('search').value;
   var book = database.collection("books");
   var table = document.getElementById("bookTable");
+
   removeRows();
   var rowCount = 1;
   book.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
       var data = documentSnapshot.data();
       var bookname = data.book_name;
-      var bookNameLower = bookname.toLowerCase();
+      var author = data.book_author;
+      var genre = data.Genre;
+      var searchFilter = "";
+
+      if(filter == "author"){
+        var searchFilter = author.toLowerCase();
+      }
+      else if(filter == "genre"){
+        var searchFilter = genre.toLowerCase();
+      }
+      else{
+        var searchFilter = bookname.toLowerCase();
+      }
+
       var searchEntryLower = searchEntry.toLowerCase();
 
-      if(bookNameLower.includes(searchEntryLower) == true){
-        var author = data.book_author;
+      if(searchFilter.includes(searchEntryLower) == true){
         var published = data.Published;
         var quantity = data.Quantity;
         var id = data.book_id;
@@ -66,3 +79,19 @@ input.addEventListener("keyup", function(event) {
     document.getElementById("searchButton").click();
   }
 });
+
+function setFilterTitle(){
+  filter = "title";
+  var element = document.getElementById("currentFilter");
+  document.getElementById("filterValue").innerHTML = "Search: Title";
+}
+
+function setFilterAuthor(){
+  filter = "author";
+  document.getElementById("filterValue").innerHTML = "Search: Author";
+}
+
+function setFilterGenre(){
+  filter = "genre";
+  document.getElementById("filterValue").innerHTML = "Search: Genre";
+}

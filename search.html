@@ -13,10 +13,16 @@
 		<a href="userInfo.html">Account</a> <!--Account info-->
 		<a href="index.html">Logout</a>	<!--Sign in link-->
 	</div>
-
-
+	
 	<div id="centered">
 		<div id="user-input">
+			<div id = "filterInfo" class = "divFilter">
+				<a id= "filterValue" type = "text" >Search: Title</a>
+				<button id ="filterTitle" onclick="setFilterTitle()"> Title </button>
+				<button id ="filterAuthor" onclick="setFilterAuthor()"> Author </button>
+				<button id ="filterGenre" onclick="setFilterGenre()"> Genre </button>
+			</div>
+
 			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
 			<button class ="button" id ="searchButton" onclick="search()"> Search </button>
 		</div>

@@ -127,3 +127,7 @@ table#infoTable th {
 	width: 100%;
   padding-top: 1%;
 }
+
+.divFilter{
+	padding-bottom: .25%;
+}
