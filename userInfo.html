@@ -22,11 +22,7 @@
 		  <!--Displays body text-->
 			<table id=infoTable>
 			  <tr>
-			    <th colspan="6">Account Information</th>	<!--Displays current page-->
-			  </tr>
-			  <tr>
-			    <td>Owed Fees ($USD)</td>
-			    <td colspan="5" id=feesOwed></td>
+			    <th colspan="6">Current Books Borrowed</th>	<!--Displays current page-->
 			  </tr>
 			  <tr>
 			    <td>Books Borrowed</td>
@@ -53,11 +49,26 @@
 					<td id=dateRet5></td>
 		  	</tr>
 			</table>
-			<div id=centered>
-				<button class ="button" id ="refreshButton" onclick="userInfo()"> Refresh </button>
-			</div>
 
+			<br>
 
+			<!--Past user history-->
+			<table id=infoTable>
+			  <tr>
+			    <th colspan="6">Fees</th>
+			  </tr>
+			  <tr>
+			    <td>Owed Fees ($CND):</td>
+			    <td id=feesOwed></td>
+					<td>Paid Fees ($CND):</td>
+			    <td id=feesPaid></td>
+					<td>Total Fees ($CND):</td>
+			    <td id=feesTotal></td>
+			  </tr>
+			</table>
+
+			<br>
+			<br>
 	</body>
 	<script src="script.js"></script>
 
