@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 
 	<head>
@@ -92,3 +93,101 @@
 		var database = firebase.firestore();
 	</script>
 </html>
+=======
+<html>
+
+	<head>
+		<title>UofT Library</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="icon" type="image/ico" href="UofT.png">
+	</head>
+	<body onload="userInfo()">
+	  <center>
+	    <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
+		  <br>
+		</center>
+		  <!--Create nav bar links-->
+		  <div class="navBar">
+		    <a href="search.html">Home</a>	<!--Home page link-->
+		    <a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
+		    <a href="#">Materials</a>	<!--Materials link-->
+		    <a href="index.html">Logout</a>	<!--Sign in link-->
+		  </div>
+			<br>
+
+		  <!--Displays body text-->
+			<table id=infoTable>
+			  <tr>
+			    <th colspan="6">Current Books Borrowed</th>	<!--Displays current page-->
+			  </tr>
+			  <tr>
+			    <td>Books Borrowed</td>
+			    <td id=book1Name></td>
+					<td id=book2Name></td>
+					<td id=book3Name></td>
+			    <td id=book4Name></td>
+			    <td id=book5Name></td>
+			  </tr>
+				<tr>
+					<td>Date Checked Out (DD/MM/YY)</td>
+					<td id=dateOut1></td>
+			    <td id=dateOut2></td>
+					<td id=dateOut3></td>
+					<td id=dateOut4></td>
+					<td id=dateOut5></td>
+				</tr>
+			  <tr>
+			  	<td>Return Date (DD/MM/YY)</td>
+			    <td id=dateRet1></td>
+			    <td id=dateRet2></td>
+					<td id=dateRet3></td>
+					<td id=dateRet4></td>
+					<td id=dateRet5></td>
+		  	</tr>
+			</table>
+
+			<br>
+
+			<!--Past user history-->
+			<table id=infoTable>
+			  <tr>
+			    <th colspan="6">Fees</th>
+			  </tr>
+			  <tr>
+			    <td>Owed Fees ($CND):</td>
+			    <td id=feesOwed></td>
+					<td>Paid Fees ($CND):</td>
+			    <td id=feesPaid></td>
+					<td>Total Fees ($CND):</td>
+			    <td id=feesTotal></td>
+			  </tr>
+			</table>
+
+			<br>
+			<br>
+
+	</body>
+	<script src="script.js"></script>
+
+	<!--script for the database-->
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script type="text/JavaScript" src="userInformation.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+			authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+			databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+			projectId: "librarymanagmentsystem-ce706",
+			storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+			messagingSenderId: "533299745296"
+		};
+		firebase.initializeApp(config);
+
+		var database = firebase.firestore();
+	</script>
+	<script src="userId.js"></script>
+</html>
+>>>>>>> master

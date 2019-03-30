@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -57,3 +58,64 @@ div {
 
 <script type="text/JavaScript" src="application.js"></script><!-- script used for collecting the info -->
 </html>
+=======
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> UofT Create Account </title> <!-- Sets the tab name. -->
+  <link rel="icon" type="image/ico" href="UofT.png"> <!-- Sets the tab icon. -->
+</head>
+<style>
+div {
+        font-size: 2vw;
+        opacity: 0;
+        color: red;
+}
+</style>
+
+<body>
+<center>
+  <!-- Adds an image for the top of the page along with the application form below. -->
+  <img src="UTL-logo-blue.png" width="900vw" height="200vw"></img><br/>
+  <p style="font-size: 2vw">
+    This is an application form to recieve your University of Toronto library
+    account.</br>
+    With a registered account you gain access to borrowing and reserving library
+    resources.
+  </p>
+
+  <text style="font-size: 2vw">Email<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="email" placeholder="Your email" style="font-size: 2vw;"><br><br>
+
+  <text style="font-size: 2vw">First Name<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="firstName" placeholder="First" style="font-size: 2vw;"></br></br>
+
+
+  <text style="font-size: 2vw">Last Name<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="lastName" placeholder="Last" style="font-size: 2vw;"></br></br>
+
+  <text style="font-size: 2vw">UofT Student ID<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="ID" placeholder="ID" style="font-size: 2vw;"></br></br>
+
+  <text style="font-size: 2vw">Choose Password<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="password" placeholder="Password" style="font-size: 2vw;"></br></br>
+
+  <text style="font-size: 2vw">Confirm Password<text style="font-size: 2vw; color:red;">*</text><br>
+  <input type="text" id="confirm" placeholder="Password" style="font-size: 2vw;"></br></br>
+
+<div id="invalidInfo">Please enter valid info and fill all fields. Note: Use your U of T email and name associated with the University.</div>
+  <!-- Adds button to submit application and return back to the log in page.-->
+  <input type="button" value="Submit" onclick="checkFields()" style="font-size:1.5vw; margin-right:50px;">
+  <input type="button" value="Return to Login" onclick="window.location='index.html';" style="font-size:1.5vw;">
+  <!--<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQuzmQHiIuD-s__Ejn7rBvMKNd3DWHW79HsGJopmnVB0JPZg/viewform?embedded=true" width="700" height="1320" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe></br>
+  -->
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script src="userId.js"></script>
+<script type="text/JavaScript" src="application.js"></script><!-- script used for collecting the info -->
+</html>
+>>>>>>> master
