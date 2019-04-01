@@ -72,7 +72,9 @@ function search(){
         cell4.innerHTML = genre;
         cell5.innerHTML = quantity;
         cell6.innerHTML = "nosoftcopy";
-        cell7.innerHTML = "action"
+
+
+        createButton(cell7, quantity);
       }
     })
   });
@@ -129,3 +131,22 @@ function checkStatus()
       window.location="userInfo.html";
     }
   })};
+
+function createButton(cell, quantity){
+  var button = document.createElement("button");
+  if (quantity > 0){
+    button.innerHTML = "Reserve";
+    button.onclick = "printTest()";
+
+  }
+  else{
+    button.innerHTML = "Hold";
+  }
+  cell.appendChild(button);
+  //console.log(getUserId());
+
+}
+
+function printTest(){
+  console.log("test1");
+}
