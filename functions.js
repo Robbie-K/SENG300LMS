@@ -136,8 +136,9 @@ function createButton(cell, quantity){
   var button = document.createElement("button");
   if (quantity > 0){
     button.innerHTML = "Reserve";
-    button.onclick = "printTest()";
-
+    button.setAttribute("onclick", "");
+    // set a class for a button --> will add css
+    // set an id for the button so that it can be ascessed in other parts of the function
   }
   else{
     button.innerHTML = "Hold";
@@ -147,6 +148,13 @@ function createButton(cell, quantity){
 
 }
 
-function printTest(){
-  console.log("test1");
+function reserveBook(){
+  // console.log("test1");
+  // remember to change the code later so that the button changes to unreserved after
+  // checking if they reserved that book previously
+
+}
+
+function holdBook(){
+  // s
 }
