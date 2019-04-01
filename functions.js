@@ -63,12 +63,16 @@ function search(){
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
         var cell5 = row.insertCell(5);
+        var cell6 = row.insertCell(6);
+        var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;
+        cell2.innerHTML = published;cell5.innerHTML = "nosoftcopy";
         cell3.innerHTML = id;
-        cell4.innerHTML = quantity;
-        cell5.innerHTML = "nosoftcopy";
+        cell4.innerHTML = genre;
+        cell5.innerHTML = quantity;
+        cell6.innerHTML = "nosoftcopy";
+        cell7.innerHTML = "action"
       }
     })
   });
@@ -124,4 +128,4 @@ function checkStatus()
     } else {
       window.location="userInfo.html";
     }
-  });
+  })};
