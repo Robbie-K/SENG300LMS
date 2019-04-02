@@ -27,30 +27,48 @@
 </head>
 
 <style>
-div {
+#wrongInfo {
         font-size: 2vw;
         opacity: 0;
         color: red;
 }
 </style>
 <body><!--Body of webpage-->
-<center><!--Center align-->
-  <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
 
-  <text style="font-size: 2vw">Please enter your login information below.</text><br/><!--Displays to enter login information-->
-  <input type="text" id="email" placeholder="Email" style="font-size:2vw;"><br/><!--Takes input from user, specifically an email-->
-  <input type="password" id="password" placeholder="Password" style="font-size:2vw;"><br/><!--Takes input from user, specifically a password-->
-  <input type="button" id="log" value="Log in" onclick="logIn()" style="font-size:2vw;"><!--Button to submit login info, and attempt logging in-->
-  <div id="wrongInfo">Wrong username or password</div>
-  <br/><br/><br/><br/><!--Breaks to create nice layout-->
-
-  <input type="button" value="Create Account" onclick="window.location='application.html';" style="font-size:2vw;"><!--Button that redirects user to create an account page on click-->
-  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><!--Breaks to create nice layout-->
+	<div class="wrapper">
+		<header>
+			<!--Displays UofT banner on top of page with respective dimensions-->
+			<img src="UTL-logo-blue.png" width="450" height="100">
+		</header>
 
 
-  <input type="button" value="Contact Us" onclick="window.location='contact.html';" style="font-size:1.6vw;"><br/><br/><!--Button that redirects user to a page to contact staff upon click-->
-  <font size="2vw">Developed by SENG300 Group #10</font><!--Displays creators of page-->
-</center><!--End of center align-->
+		<main>
+			<!--Displays to enter login information-->
+			<b>Library Login</b><br>
+
+			<!--Takes input from user, specifically an email-->
+			<input type="text" id="email" placeholder="Email"><br>
+
+			<!--Takes input from user, specifically a password-->
+			<input type="password" id="password" placeholder="Password"><br>
+
+			<!--Button to submit login info, and attempt logging in-->
+			<input type="button" id="log" value="Log in" onclick="logIn()">
+			<div id="wrongInfo">Wrong username or password</div>
+
+
+			<!--Button that redirects user to create an account page on click-->
+			<a href="application.html"><input type="button" value="Create Account"></a><br>
+		</main>
+
+		<footer>
+			<!--Button that redirects user to a page to contact staff upon click-->
+			<a href='contact.html'><input type="button" value="Contact Us"></a>
+
+			<!--Displays creators of page-->
+			<p>Developed by SENG300 Group #10</p>
+		</footer>
+	</div>
 
 </body><!--End of body setup-->
 <script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
