@@ -26,12 +26,17 @@
 		<input required type="text" id="lastName" placeholder="Last Name"><br>
 		<input required type="text" id="ID" placeholder="University ID"><br><br>
 		<input required type="password" id="password" placeholder="Password"><br>
-		<input required type="password" id="confirm" placeholder="Confirm Password">
+		<input required type="password" id="confirm" placeholder="Confirm Password"><br>
 
-		<div id="wrongInfo">Please enter valid info and fill all fields. Note: Use your U of T email and name associated with the University.</div>
+		<input type="button" value="Submit" onclick="checkFields()"><br>
+		<div id="wrongInfo">
+			Please enter valid info and fill all fields.
+			<br>
+			Note: Use your U of T email and name associated with the University.
+		</div>
 		
 		<!-- Adds button to submit application and return back to the log in page.-->
-		<input type="button" value="Submit" onclick="checkFields()"><br>
+		<br>
 		<a href='index.html'><input type="button" value="Return to Login"></a>
 	</main>
 	<footer>

@@ -113,8 +113,8 @@ main {
 }
 
 #wrongInfo {
-    font-size: 2vw;
-    opacity: 0;
+    font-size: 10pt;
+    display: none;
     color: red;
 }
 

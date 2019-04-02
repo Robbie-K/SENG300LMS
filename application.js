@@ -26,7 +26,7 @@ function checkFields() {
    var allowed = undefined;
    // checking if any fields are empty
    if (first == "" || last == "" || pass == "" || confPass == "" || email == "" || id == "") {
-     document.getElementById('invalidInfo').style.opacity='1';
+     document.getElementById('wrongInfo').style.display = 'inline-block';
    // Adds the user if the doc doesn't already exist
   } else if (pass == confPass ) {
      var name = first + " " + last;
