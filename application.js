@@ -146,14 +146,16 @@ function checkExists(doc1,doc2) {
 
 // This function adds the user to the new users collection of the database
 function addUser(name, first, last, email, id, pass) {
-         database.collection('newUsers').doc(name).set({
+        return ( database.collection('newUsers').doc(name).set({
                   id: parseInt(id),
                   email: email,
                   firstName: first,
                   lastName: last,
                   password: pass
-          }).then(function () {
-                  alert("Account has been made. Please wait for admin verification. In the even that this takes longer than 2 business days please contact us.");
+          })).then(function () {
+                  database.collection('newUsers').doc(name).collection("History").doc("Current").set({});
+                  database.collection('newUsers').doc(name).collection("History").doc("Past").set({});
+                  alert("Account has been made. Please wait for admin verification. In the event that this takes longer than 2 business days please contact us.");
           });
 };
 
