@@ -146,9 +146,8 @@ function createButton(cell, quantity, type){
       button.innerHTML = "Hold";
     }
   } else if (type == 2) {
-    if (quantity > 0) {
-      button.innerHTML = "Approve";
-      button.setAttribute("onclick", "approveUsers()")
+    button.innerHTML = "Approve";
+    button.setAttribute("onclick", "approveUsers()")
     }
   } else if (type == 3) {
     button.innerHTML = "Remove";
