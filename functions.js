@@ -181,12 +181,14 @@ function createButton(cell, quantity, type){
   if (quantity > 0){
     button.innerHTML = "Reserve";
     button.setAttribute("onclick", "reserveBook()");
+    button.className = "genreButton greenButton";
     // set a class for a button --> will add css
     // set an id for the button so that it can be ascessed in other parts of the function
   }
   else{
     button.innerHTML = "Hold";
     button.setAttribute("onclick", "holdBook()");
+    button.className = "genreButton redButton";
   }
 
   cell.appendChild(button);
