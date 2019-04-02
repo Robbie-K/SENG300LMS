@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
+//var userId = getUserId();
 
 // function that searches for books/authors/etc
 function search(){
@@ -144,7 +145,6 @@ function createButton(cell, quantity){
     button.innerHTML = "Hold";
   }
   cell.appendChild(button);
-  //console.log(getUserId());
 
 }
 
@@ -157,4 +157,8 @@ function reserveBook(){
 
 function holdBook(){
   // s
+}
+
+function checkBookStatus(){
+
 }
