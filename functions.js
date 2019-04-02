@@ -75,7 +75,7 @@ function search(){
         cell6.innerHTML = "nosoftcopy";
 
 
-        createButton(cell7, quantity);
+        createButton(cell7, quantity, 1);
       }
     })
   });
