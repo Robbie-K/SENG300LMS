@@ -133,19 +133,29 @@ function checkStatus()
     }
   })};
 
-function createButton(cell, quantity){
+function createButton(cell, quantity, type){
   var button = document.createElement("button");
-  if (quantity > 0){
-    button.innerHTML = "Reserve";
-    button.setAttribute("onclick", "");
-    // set a class for a button --> will add css
-    // set an id for the button so that it can be ascessed in other parts of the function
+  if (type == 1) {
+    if (quantity > 0){
+      button.innerHTML = "Reserve";
+      button.setAttribute("onclick", "");
+      // set a class for a button --> will add css
+      // set an id for the button so that it can be ascessed in other parts of the function
+    }
+    else{
+      button.innerHTML = "Hold";
+    }
+  } else if (type == 2) {
+    if (quantity > 0) {
+      button.innerHTML = "Approve";
+      button.setAttribute("onclick", "approveUsers()")
+    }
+  } else if (type == 3) {
+    button.innerHTML = "Remove";
+    button.setAttribute("onclick", "removeUser()")
   }
-  else{
-    button.innerHTML = "Hold";
-  }
-  cell.appendChild(button);
 
+  cell.appendChild(button);
 }
 
 function reserveBook(){
