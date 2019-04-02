@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
-//var userId = getUserId();
 
 // function that searches for books/authors/etc
 function search(){
@@ -137,12 +136,13 @@ function createButton(cell, quantity){
   var button = document.createElement("button");
   if (quantity > 0){
     button.innerHTML = "Reserve";
-    button.setAttribute("onclick", "");
+    button.setAttribute("onclick", "reserveBook()");
     // set a class for a button --> will add css
     // set an id for the button so that it can be ascessed in other parts of the function
   }
   else{
     button.innerHTML = "Hold";
+    button.setAttribute("onclick", "holdBook()");
   }
   cell.appendChild(button);
 
@@ -152,6 +152,24 @@ function reserveBook(){
   // console.log("test1");
   // remember to change the code later so that the button changes to unreserved after
   // checking if they reserved that book previously
+  let currentUser = getUserId().toString();
+  var name = findName(currentUser).then(function(name){
+    console.log(name);
+  });
+}
+
+function findName(id){
+  var name = " ";
+  var usersInfo = database.collection("users").where("id", "==", id);
+  return usersInfo.get().then(function(querySnapshot){
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      //console.log(data);
+      name = data.firstName + " " + data.lastName;
+      //console.log(name);
+      return name;
+    })
+  });
 
 }
 
