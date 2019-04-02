@@ -68,7 +68,7 @@ function search(){
         var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;cell5.innerHTML = "nosoftcopy";
+        cell2.innerHTML = published;cell5.innerHTML = "N/A";
         cell3.innerHTML = id;
         cell4.innerHTML = genre;
         cell5.innerHTML = quantity;
