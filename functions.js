@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
+//var userId = getUserId();
 
 // function that searches for books/authors/etc
 function search(){
@@ -63,12 +64,18 @@ function search(){
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
         var cell5 = row.insertCell(5);
+        var cell6 = row.insertCell(6);
+        var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;
+        cell2.innerHTML = published;cell5.innerHTML = "nosoftcopy";
         cell3.innerHTML = id;
-        cell4.innerHTML = quantity;
-        cell5.innerHTML = "nosoftcopy";
+        cell4.innerHTML = genre;
+        cell5.innerHTML = quantity;
+        cell6.innerHTML = "nosoftcopy";
+
+
+        createButton(cell7, quantity);
       }
     })
   });
@@ -124,4 +131,34 @@ function checkStatus()
     } else {
       window.location="userInfo.html";
     }
-  });
+  })};
+
+function createButton(cell, quantity){
+  var button = document.createElement("button");
+  if (quantity > 0){
+    button.innerHTML = "Reserve";
+    button.setAttribute("onclick", "");
+    // set a class for a button --> will add css
+    // set an id for the button so that it can be ascessed in other parts of the function
+  }
+  else{
+    button.innerHTML = "Hold";
+  }
+  cell.appendChild(button);
+
+}
+
+function reserveBook(){
+  // console.log("test1");
+  // remember to change the code later so that the button changes to unreserved after
+  // checking if they reserved that book previously
+
+}
+
+function holdBook(){
+  // s
+}
+
+function checkBookStatus(){
+
+}

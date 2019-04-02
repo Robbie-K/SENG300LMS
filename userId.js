@@ -39,5 +39,5 @@ function makeColors() {
 // to update link references
 document.addEventListener("DOMContentLoaded", function(event) {
    updateLinks();
-   makeColors();
+   //makeColors();
 });
