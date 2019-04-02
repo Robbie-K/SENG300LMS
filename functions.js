@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
-//var userId = getUserId();
 
 // function that searches for books/authors/etc
 function search(){
@@ -68,18 +67,62 @@ function search(){
         var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;cell5.innerHTML = "nosoftcopy";
+        cell2.innerHTML = published;
         cell3.innerHTML = id;
         cell4.innerHTML = genre;
         cell5.innerHTML = quantity;
-        cell6.innerHTML = "nosoftcopy";
+        cell6.innerHTML = "N/A";
 
 
-        createButton(cell7, quantity);
+        createButton(cell7, quantity, 1);
       }
     })
   });
 }
+
+
+function searchUser(action){
+  document.getElementById("userTable").style.display;
+
+  var searchEntry = document.getElementById('search').value;
+  var user = database.collection("users");
+  var table = document.getElementById("userTable");
+  var rowCount = 1;
+  user.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      var name = data.firstName + data.lastName;
+      var userNameLower = name.toLowerCase();
+      var searchEntryLower = searchEntry.toLowerCase();
+
+      if(userNameLower.includes(searchEntryLower) == true){
+        var first = data.firstName;
+        var last = data.lastName;
+        var id = data.id;
+        var email = data.email;
+
+        var row = table.insertRow(rowCount);
+        rowCount = rowCount + 1;
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        cell0.innerHTML = first;
+        cell1.innerHTML = last;
+        cell2.innerHTML = id;
+        cell3.innerHTML = email;
+
+        if (action == "approve") {
+          creatButton(cell4, 0, 2);
+        } else if (aciton == "remove") {
+          createButton(cell4, 0, 3);
+        }
+      }
+    })
+  });
+}
+
 
 // goes through and removes all the rows of the table except for the first one
 function removeRows(){
@@ -124,41 +167,41 @@ function checkStatus()
 {
   var user = database.collection('users');
   user.get().then(function(user) {
-    var status = user.get("status");
+    var status = user.get("id");
 
-    if (status == "admin") {
+    if (id >= 10000000 && id < 30000000) {
       window.location="admin.html";
     } else {
       window.location="userInfo.html";
     }
   })};
 
-function createButton(cell, quantity){
+function createButton(cell, quantity, type){
   var button = document.createElement("button");
   if (quantity > 0){
     button.innerHTML = "Reserve";
-    button.setAttribute("onclick", "");
+    button.setAttribute("onclick", "reserveBook()");
     // set a class for a button --> will add css
     // set an id for the button so that it can be ascessed in other parts of the function
   }
   else{
     button.innerHTML = "Hold";
+    button.setAttribute("onclick", "holdBook()");
   }
-  cell.appendChild(button);
 
+  cell.appendChild(button);
 }
 
 function reserveBook(){
   // console.log("test1");
   // remember to change the code later so that the button changes to unreserved after
   // checking if they reserved that book previously
-
+  let currentUser = getUserId().toString();
+  var name = findName(currentUser).then(function(name){
+    console.log(name);
+  });
 }
 
 function holdBook(){
-  // s
-}
-
-function checkBookStatus(){
-
+  
 }

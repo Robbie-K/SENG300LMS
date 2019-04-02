@@ -13,7 +13,7 @@ users = {
     },
     {
       "fullName": "Robert Karg",
-      "age": 19,
+      "age": 22,
       "UID": 1,
     },
     {
@@ -24,7 +24,7 @@ users = {
     {
       "fullName": "Sam Laurie",
       "age": 19,
-      "UID": 3,
+      "UID": 30056429,
     },
     {
       "fullName": "Sandesh Regmi",
@@ -52,7 +52,7 @@ users = {
       "email": "sam.laurie@utoronto.ca",
       "fullName": "Sam Laurie",
       "role": "Student",
-      "UID": 10000000,
+      "UID": 20099910,
       "password": "Password"
     },
     {

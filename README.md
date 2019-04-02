@@ -1,27 +1,17 @@
-# SENG300LMS L01 - Group 10
+# SENG300LMS
 Private repo for the SENG300 Library Management System
 
 Step 1: Click on this link to go to the log in page.
 https://regmis.github.io/SENG300LMS/
 
-Step 2: Create a login account. 
+Step 2: Create a login account. This account is not automatically added to
+        the system currently.
 
 Step 3: Log in using this account:
-        email: bruinkunnas@ucalgary.ca
-        password: 4
+        email: john.doe@utoronto.ca
+        password: L33t5p3@k
 
-Step 4: Press the search button and a list of books that we
-        currently have in the database will be listed.
-        
-Step 5: Click on account at the top to view the outline of
-        what each user will see for the accounts.
-        
-Step 6: Click refresh at the bottom to update some information.
-        
-Step 7: Click home if you wish to return to the search menu.
+Step 4: Buttons and search bar are not implemented as we are working on the
+        data base.
 
-Step 8: Click Log out.
-
-Step 9: Click on contact us.
-
-Step 10: Write us something that we need to change or fix.
+Step 5: Log out.
