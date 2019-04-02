@@ -35,22 +35,18 @@ function checkFields() {
      // check if the info entered already is in use
      checkInfo(email,id)
      .then(function (doesNotExist) {
-      console.log(doesNotExist);
       // if the info does not exist
       if (doesNotExist) {
         allowed = true;
         // checks if the doc itself exists or not
         checkExists(doc1, doc2).then(function (exists) {
-          console.log(exists);
           return exists;
          }) .then(function (exists) {
-          console.log(exists + " " + allowed);
           // if the doc exists and the email and id don't we allow the user to create an account
           if (exists && allowed) {
             // addSameName finds the proper document name to use and returns a promise containing it
             addSameName(first, last, 1)
             .then(function (newName) {
-                console.log(newName);
                 if (newName != undefined) {
                   addUser(newName, first, last, email, id, pass);
               };
