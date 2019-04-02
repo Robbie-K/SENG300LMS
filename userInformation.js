@@ -54,7 +54,6 @@ function userInfo() {
   });
 }
 
-
 /*
   Takes in user's ID, and returns their full name
   as a string.
