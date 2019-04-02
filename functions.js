@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
-//var userId = getUserId();
 
 // function that searches for books/authors/etc
 function search(){
@@ -81,6 +80,50 @@ function search(){
   });
 }
 
+
+function searchUser(action){
+  document.getElementById("userTable").style.display;
+
+  var searchEntry = document.getElementById('search').value;
+  var user = database.collection("users");
+  var table = document.getElementById("userTable");
+  var rowCount = 1;
+  user.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      var name = data.firstName + data.lastName;
+      var userNameLower = name.toLowerCase();
+      var searchEntryLower = searchEntry.toLowerCase();
+
+      if(userNameLower.includes(searchEntryLower) == true){
+        var first = data.firstName;
+        var last = data.lastName;
+        var id = data.id;
+        var email = data.email;
+
+        var row = table.insertRow(rowCount);
+        rowCount = rowCount + 1;
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        cell0.innerHTML = first;
+        cell1.innerHTML = last;
+        cell2.innerHTML = id;
+        cell3.innerHTML = email;
+
+        if (action == "approve") {
+          creatButton(cell4, 0, 2);
+        } else if (aciton == "remove") {
+          createButton(cell4, 0, 3);
+        }
+      }
+    })
+  });
+}
+
+
 // goes through and removes all the rows of the table except for the first one
 function removeRows(){
   var table = document.getElementById("bookTable");
@@ -135,23 +178,15 @@ function checkStatus()
 
 function createButton(cell, quantity, type){
   var button = document.createElement("button");
-  if (type == 1) {
-    if (quantity > 0){
-      button.innerHTML = "Reserve";
-      button.setAttribute("onclick", "");
-      // set a class for a button --> will add css
-      // set an id for the button so that it can be ascessed in other parts of the function
-    }
-    else{
-      button.innerHTML = "Hold";
-    }
-  } else if (type == 2) {
-    button.innerHTML = "Approve";
-    button.setAttribute("onclick", "approveUsers()")
-    }
-  } else if (type == 3) {
-    button.innerHTML = "Remove";
-    button.setAttribute("onclick", "removeUser()")
+  if (quantity > 0){
+    button.innerHTML = "Reserve";
+    button.setAttribute("onclick", "reserveBook()");
+    // set a class for a button --> will add css
+    // set an id for the button so that it can be ascessed in other parts of the function
+  }
+  else{
+    button.innerHTML = "Hold";
+    button.setAttribute("onclick", "holdBook()");
   }
 
   cell.appendChild(button);
@@ -161,13 +196,12 @@ function reserveBook(){
   // console.log("test1");
   // remember to change the code later so that the button changes to unreserved after
   // checking if they reserved that book previously
-
+  let currentUser = getUserId().toString();
+  var name = findName(currentUser).then(function(name){
+    console.log(name);
+  });
 }
 
 function holdBook(){
-  // s
-}
-
-function checkBookStatus(){
-
+  
 }
