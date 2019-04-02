@@ -5,40 +5,53 @@
 	<link rel="icon" type="image/ico" href="UofT.png">
 </head>
 <body>
+	<div class="wrapper">
+		<header>
+			<img src="UTL-logo-blue.png" width="450" height="100"></img>
+		</header>
+		<!--Create nav bar links-->
+		<div class="navBar">
+			<a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
+			<a href="#">Materials</a>	<!--Materials link-->
+			<a href="userInfo.html">Account</a> <!--Account info-->
+			<a href="index.html">Logout</a>	<!--Sign in link-->
+		</div>
 
-	<!--Create nav bar links-->
-	<div class="navBar">
-		<a href="userInfo.html">Account</a> <!--Account info-->
-		<a href="index.html">Logout</a>	<!--Sign in link-->
-	</div>
+		<main>
+			<div id="centered">
+				<div id="user-input">
+					<div id="filterInfo" class="divFilter">
+						<b id="filterValue" type="text" >Filter by:</b><br>
+						<button class="genreButton active" id="filterTitle" onclick="setFilterTitle()"> Title </button>
+						<button class="genreButton" id="filterAuthor" onclick="setFilterAuthor()"> Author </button>
+						<button class="genreButton" id="filterGenre" onclick="setFilterGenre()"> Genre </button>
+					</div>
 
-	<div id="centered">
-		<div id="user-input">
-			<div id = "filterInfo" class = "divFilter">
-				<span id= "filterValue" type = "text" >Search: Title</span>
-				<button id ="filterTitle" onclick="setFilterTitle()"> Title </button>
-				<button id ="filterAuthor" onclick="setFilterAuthor()"> Author </button>
-				<button id ="filterGenre" onclick="setFilterGenre()"> Genre </button>
+					<input type="text" id="search" placeholder="What are you looking for?" type="text">
+					<button class="button" id="searchButton" onclick="search()"> Search </button>
+				</div>
+				<div id="information">
+					<table id = "bookTable" class="table">
+						<tr>
+							<th>Book</th>
+							<th>Author</th>
+							<th>Published</th>
+							<th>ID</th>
+							<th>Genre</th>
+							<th>Quantity</th>
+							<th>SoftCopy</th>
+							<th>Action</th>
+						</tr>
+					</table>
+				</div>
 			</div>
+		</main>
+		<footer>
 
-			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
-			<button class ="button" id ="searchButton" onclick="search()"> Search </button>
-		</div>
-		<div id="information">
-			<table id = "bookTable" class="table">
-				<tr>
-					<th>Title</th>
-					<th>Author</th>
-					<th>Published</th>
-					<th>ID</th>
-					<th>Genre</th>
-					<th>Quantity</th>
-					<th>SoftCopy</th>
-					<th>Action</th>
-				</tr>
-			</table>
-		</div>
+		</footer>
 	</div>
+
+	
 
 	</body>
 	<script src="script.js"></script>
@@ -48,5 +61,6 @@
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
 	<script type="text/JavaScript" src="functions.js"></script>
 	<script src="userId.js"></script>
+	<script src="genreButton.js"></script>
 
 </html>

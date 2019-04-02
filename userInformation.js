@@ -3,8 +3,8 @@
 //Once we can tell which user is online, add parameters to their history in database
 function userInfo() {
 
-  var userName;
-  var userID = getUserId();
+  var userName; //Creates userName variable
+  var userID = getUserId(); //Gets user ID
 
   getName(userID).then(function(userName) {
     var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
