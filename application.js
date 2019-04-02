@@ -14,134 +14,129 @@ var database = firebase.firestore();
 var exists1 = undefined;
 var exists2 = undefined;
 function checkFields() {
-        // var correct = 0;
-         //Takes information from application.html as input for variables
-         var first = document.getElementById('firstName').value;
-         var last = document.getElementById('lastName').value;
-         var pass = document.getElementById('password').value;
-         var confPass = document.getElementById('confirm').value;
-         var email = document.getElementById('email').value;
-         var id = document.getElementById('ID').value;
+  // var correct = 0;
+   //Takes information from application.html as input for variables
+   var first = document.getElementById('firstName').value;
+   var last = document.getElementById('lastName').value;
+   var pass = document.getElementById('password').value;
+   var confPass = document.getElementById('confirm').value;
+   var email = document.getElementById('email').value;
+   var id = document.getElementById('ID').value;
 
-         var allowed = undefined;
-         // checking if any fields are empty
-         if (first == "" || last == "" || pass == "" || confPass == "" || email == "" || id == "") {
-                 document.getElementById('invalidInfo').style.opacity='1';
-         // Adds the user if the doc doesn't already exist
-         } else if (pass == confPass ) {
-                 var name = first + " " + last;
-                 var doc1 = database.collection('users').doc(name);
-                 var doc2 = database.collection('newUsers').doc(name);
-                 // check if the info entered already is in use
-                 checkInfo(email,id)
-                 .then(function (doesNotExist) {
-                         console.log(doesNotExist);
-                         // if the info does not exist
-                         if (doesNotExist) {
-                                 allowed = true;
-                                 // checks if the doc itself exists or not
-                                checkExists(doc1, doc2).then(function (exists) {
-                                        console.log(exists);
-                                         return exists;
-                                 }) .then(function (exists) {
-                                         console.log(exists + " " + allowed);
-                                         // if the doc exists and the email and id don't we allow the user to create an account
-                                          if (exists && allowed) {
-                                                        // addSameName finds the proper document name to use and returns a promise containing it
-                                                        addSameName(first, last, 1)
-                                                        .then(function (newName) {
-                                                                console.log(newName);
-                                                                if (newName != undefined) {
-                                                                addUser(newName, first, last, email, id, pass);
-                                                        };
-                                                });
-                                         } else if (!exists && allowed){
-                                                 addUser(name, first, last, email, id, pass);
-                                         };
-                         });
-                         // if the info exists an error is displayed and nothing is changed in the database
-                         } else {
-                                 alert("An error has occured. Please try again or contact us.")
-                         };
+   var allowed = undefined;
+   // checking if any fields are empty
+   if (first == "" || last == "" || pass == "" || confPass == "" || email == "" || id == "") {
+     document.getElementById('invalidInfo').style.opacity='1';
+   // Adds the user if the doc doesn't already exist
+  } else if (pass == confPass ) {
+     var name = first + " " + last;
+     var doc1 = database.collection('users').doc(name);
+     var doc2 = database.collection('newUsers').doc(name);
+     // check if the info entered already is in use
+     checkInfo(email,id)
+     .then(function (doesNotExist) {
+      // if the info does not exist
+      if (doesNotExist) {
+        allowed = true;
+        // checks if the doc itself exists or not
+        checkExists(doc1, doc2).then(function (exists) {
+          return exists;
+         }) .then(function (exists) {
+          // if the doc exists and the email and id don't we allow the user to create an account
+          if (exists && allowed) {
+            // addSameName finds the proper document name to use and returns a promise containing it
+            addSameName(first, last, 1)
+            .then(function (newName) {
+                if (newName != undefined) {
+                  addUser(newName, first, last, email, id, pass);
+              };
+            });
+          } else if (!exists && allowed){
+            addUser(name, first, last, email, id, pass);
+          };
+ });
 
-        });
-        };
+ // if the info exists an error is displayed and nothing is changed in the database
+       } else {
+          alert("An error has occured. Please try again or contact us.")
+       };
+
+  });
+  };
 
 
 };
 
 // This function checks if the email or id entered is already in use in the database
 function checkInfo(email, id) {
-        var count = 0;
-        // To make asynchronous tasks more manageable the whole promise is returned, then true or false can be accessed from there
-        // in another promise
-        return (
-        // checks for the email in users
-        checkEmail(email,"users").then(function (querySnapshot) {
-                count += querySnapshotCheck(querySnapshot);
-                // checks for the email in new users
-                return checkEmail(email,"newUsers");
-        }).then(function (querySnapshot) {
-                count += querySnapshotCheck(querySnapshot);
-                // checks for the id in users
-                return checkId(id, "users");
-        }).then(function (querySnapshot) {
-                count += querySnapshotCheck(querySnapshot);
-                // check for the id in new users
-                return checkId(id,"newUsers");
-        }).then(function (querySnapshot) {
-                count += querySnapshotCheck(querySnapshot);
-                // if any of the above exist the count will be 1 or higher and false will be returned
-                if (count >= 1) {
-                        return false;
-                } else { // if none exist false is returned
-                        return true;
-                };
-        }));
+  var count = 0;
+  // To make asynchronous tasks more manageable the whole promise is returned, then true or false can be accessed from there
+  // in another promise
+  return (
+  // checks for the email in users
+  checkEmail(email,"users").then(function (querySnapshot) {
+    count += querySnapshotCheck(querySnapshot);
+    // checks for the email in new users
+    return checkEmail(email,"newUsers");
+  }).then(function (querySnapshot) {
+    count += querySnapshotCheck(querySnapshot);
+    // checks for the id in users
+    return checkId(id, "users");
+  }).then(function (querySnapshot) {
+    count += querySnapshotCheck(querySnapshot);
+    // check for the id in new users
+    return checkId(id,"newUsers");
+  }).then(function (querySnapshot) {
+    count += querySnapshotCheck(querySnapshot);
+    // if any of the above exist the count will be 1 or higher and false will be returned
+    if (count >= 1) {
+      return false;
+    } else { // if none exist false is returned
+      return true;
+    };
+  }));
 
 };
 
 
 // simply returns a query with all docs with the matching email
 function checkEmail(email, collectionName) {
-        return database.collection(collectionName).where("email", "==", email).get();
+  return database.collection(collectionName).where("email", "==", email).get();
 };
 
 // simply returns a query with all docs with the matching id
 function checkId(id, collectionName) {
-        return database.collection(collectionName).where("id", "==", id ).get()
+  return database.collection(collectionName).where("id", "==", id ).get()
 };
 
 // this function returns the size of a snapshot
 function querySnapshotCheck(querySnapshot) {
-        return querySnapshot.size;
+  return querySnapshot.size;
 };
 
 // checks if the document exists in either users or new users
 function checkExists(doc1,doc2) {
-        return(
-        doc1.get().then(function(doc) {
-            if (doc.exists) {
-                console.log("Document exists");
-                return true;
-        } else {
-                return false;
-        };
-                }).then(function (result) {
-                if (result) {
-                        return true;
-                } else {
-                        doc2.get().then(function(doc) {
-                            if (doc.exists) {
-                                console.log("Document exists");
-                                return true;
-                        } else {
-                                return false;
-                        };
-                        });
-                };
-        })
-        );
+  return(
+  doc1.get().then(function(doc) {
+    if (doc.exists) {
+      return true;
+  } else {
+      return false;
+  };
+  }).then(function (result) {
+  if (result) {
+          return true;
+  } else {
+      doc2.get().then(function(doc) {
+        if (doc.exists) {
+            return true;
+      } else {
+          return false;
+      };
+      });
+  };
+  })
+  );
 };
 
 // This function adds the user to the new users collection of the database
