@@ -124,9 +124,9 @@ function checkStatus()
 {
   var user = database.collection('users');
   user.get().then(function(user) {
-    var status = user.get("status");
+    var status = user.get("id");
 
-    if (status == "admin") {
+    if (id >= 10000000 && id < 30000000) {
       window.location="admin.html";
     } else {
       window.location="userInfo.html";
