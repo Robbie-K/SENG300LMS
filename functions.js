@@ -68,14 +68,14 @@ function search(){
         var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;cell5.innerHTML = "nosoftcopy";
+        cell2.innerHTML = published;
         cell3.innerHTML = id;
         cell4.innerHTML = genre;
         cell5.innerHTML = quantity;
-        cell6.innerHTML = "nosoftcopy";
+        cell6.innerHTML = "N/A";
 
 
-        createButton(cell7, quantity);
+        createButton(cell7, quantity, 1);
       }
     })
   });
@@ -133,19 +133,28 @@ function checkStatus()
     }
   })};
 
-function createButton(cell, quantity){
+function createButton(cell, quantity, type){
   var button = document.createElement("button");
-  if (quantity > 0){
-    button.innerHTML = "Reserve";
-    button.setAttribute("onclick", "");
-    // set a class for a button --> will add css
-    // set an id for the button so that it can be ascessed in other parts of the function
+  if (type == 1) {
+    if (quantity > 0){
+      button.innerHTML = "Reserve";
+      button.setAttribute("onclick", "");
+      // set a class for a button --> will add css
+      // set an id for the button so that it can be ascessed in other parts of the function
+    }
+    else{
+      button.innerHTML = "Hold";
+    }
+  } else if (type == 2) {
+    button.innerHTML = "Approve";
+    button.setAttribute("onclick", "approveUsers()")
+    }
+  } else if (type == 3) {
+    button.innerHTML = "Remove";
+    button.setAttribute("onclick", "removeUser()")
   }
-  else{
-    button.innerHTML = "Hold";
-  }
-  cell.appendChild(button);
 
+  cell.appendChild(button);
 }
 
 function reserveBook(){
