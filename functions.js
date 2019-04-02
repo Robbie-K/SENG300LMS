@@ -68,11 +68,11 @@ function search(){
         var cell7 = row.insertCell(7);
         cell0.innerHTML = bookname;
         cell1.innerHTML = author;
-        cell2.innerHTML = published;cell5.innerHTML = "N/A";
+        cell2.innerHTML = published;
         cell3.innerHTML = id;
         cell4.innerHTML = genre;
         cell5.innerHTML = quantity;
-        cell6.innerHTML = "nosoftcopy";
+        cell6.innerHTML = "N/A";
 
 
         createButton(cell7, quantity, 1);
