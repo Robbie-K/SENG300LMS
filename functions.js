@@ -26,7 +26,7 @@ function search(){
   // counts rows up and gets books
   var rowCount = 1;
   book.get().then(function(querySnapshot) {
-    querySnapshot.forEach(function (documentSnapshot){
+    querySnapshot.forEach(function (documentSnapshot) {
       // going through each book in the database to allow for searching filters
       // getting all the info related to all books
       var data = documentSnapshot.data();
@@ -76,7 +76,8 @@ function search(){
 
         createButton(cell7, quantity, 1);
       }
-    })
+    });
+    table.style.display = "table";
   });
 }
 
