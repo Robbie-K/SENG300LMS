@@ -102,19 +102,19 @@ main {
 }
 
 .redButton {
-	background-color: #5E5;
-}
-
-.redButton:hover {
-	background-color: #7F7;
-}
-
-.greenButton {
 	background-color: #E55;
 }
 
-.greenButton:hover {
+.redButton:hover {
 	background-color: #F77;
+}
+
+.greenButton {
+	background-color: #5E5;
+}
+
+.greenButton:hover {
+	background-color: #7F7;
 }
 
 #wrongInfo {
