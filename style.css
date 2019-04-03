@@ -10,7 +10,7 @@ body {
 
 input {
 	border-radius: 15px;
-	border: 1px solid transparent;
+	border: 1px solid #AAA;
 	margin: 5px;
 	padding: 5px;
 
@@ -78,18 +78,23 @@ main {
 }
 
 .button {
-	display: flex-inline;
+	padding: 15px;
+	
 	background-color: #57B;
 	color: #FFF;
+
 	border: 1px solid #000;
 	border-radius: 10px;
-	padding: 15px;
+	
 	text-align: center;
 	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
 
 	outline: none;
+}
+
+.button:hover {
+	background-color: #79D;
+	cursor: pointer;
 }
 
 .genreButton:hover {
@@ -97,19 +102,19 @@ main {
 }
 
 .redButton {
-	background-color: #5E5;
-}
-
-.redButton:hover {
-	background-color: #7F7;
-}
-
-.greenButton {
 	background-color: #E55;
 }
 
-.greenButton:hover {
+.redButton:hover {
 	background-color: #F77;
+}
+
+.greenButton {
+	background-color: #5E5;
+}
+
+.greenButton:hover {
+	background-color: #7F7;
 }
 
 #wrongInfo {
@@ -176,7 +181,7 @@ main {
 /*Style for navigation bar and cells*/
 .navBar {
   overflow: hidden;
-  background-color: #4169e1;	/*U of T blue*/
+  background-color: #036;	/*U of T blue*/
 }
 
 /*Style the nav bar links*/
@@ -191,8 +196,8 @@ main {
 
 /* Change color on hover */
 .navBar a:hover {
-  background-color: #EEE;	/*Background colour for hovered nava bar*/
-  color: blue;	/*Colour for hovered text*/
+  background-color: #258;	/*Background colour for hovered nava bar*/
+
 }
 
 table {

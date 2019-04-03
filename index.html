@@ -26,15 +26,7 @@
 
 </head>
 
-<style>
-#wrongInfo {
-        font-size: 2vw;
-        opacity: 0;
-        color: red;
-}
-</style>
 <body><!--Body of webpage-->
-
 	<div class="wrapper">
 		<header>
 			<!--Displays UofT banner on top of page with respective dimensions-->
@@ -53,12 +45,12 @@
 			<input type="password" id="password" placeholder="Password"><br>
 
 			<!--Button to submit login info, and attempt logging in-->
-			<input type="button" id="log" value="Log in" onclick="logIn()"><br><br>
-			<div id="wrongInfo">Wrong username or password</div>
-
+			<input type="button" id="log" value="Log in" onclick="logIn()"><br>
+			
+			<div id="wrongInfo">Email or password are invalid.</div>
 
 			<!--Button that redirects user to create an account page on click-->
-			<a href="application.html"><input type="button" value="Create Account"></a>
+			<br><a href="application.html"><input type="button" value="Create Account"></a>
 		</main>
 
 		<footer>
@@ -70,8 +62,9 @@
 			<span style="font-size: 8pt">Bruin Kunnas, Jacob Huber, Robert Karg, Sam Laurie, Sandesh Regmi</span>
 		</footer>
 	</div>
-
 </body><!--End of body setup-->
+
 <script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
 <script type="text/JavaScript" src="login.js"></script><!--JavaScript used for ensuring login information entered is correct-->
+
 </html><!--End-->
