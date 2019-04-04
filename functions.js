@@ -179,18 +179,31 @@ function checkStatus()
 
 function createButton(cell, quantity, type){
   var button = document.createElement("button");
-  if (quantity > 0){
-    button.innerHTML = "Reserve";
-    button.setAttribute("onclick", "reserveBook()");
+  if (type == 1)
+  {
+    if (quantity > 0){
+      button.innerHTML = "Reserve";
+      button.setAttribute("onclick", "reserveBook()");
+      button.className = "genreButton greenButton";
+      // set a class for a button --> will add css
+      // set an id for the button so that it can be ascessed in other parts of the function
+    }
+    else {
+      button.innerHTML = "Hold";
+      button.setAttribute("onclick", "holdBook()");
+      button.className = "genreButton redButton";
+    }
+  } else if (type == 2) {
+    button.innerHTML = "Approve";
+    button.setAttribute("onclick", "approveUsers()");
     button.className = "genreButton greenButton";
-    // set a class for a button --> will add css
-    // set an id for the button so that it can be ascessed in other parts of the function
-  }
-  else{
-    button.innerHTML = "Hold";
-    button.setAttribute("onclick", "holdBook()");
+  } else if (type == 3) {
+    button.innerHTML = "Remove";
+    button.setAttribute("onclick", "removeUser()");
     button.className = "genreButton redButton";
   }
+
+
 
   cell.appendChild(button);
 }
