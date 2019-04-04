@@ -195,7 +195,7 @@ function createButton(cell, quantity, type){
   cell.appendChild(button);
 }
 
-function reserveBook(){
+function reserveBook(id, bookname, date){
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
   getName(userID).then(function(userName) {
@@ -205,7 +205,7 @@ function reserveBook(){
       console.log(booksCheckedOut);
 
       database.collection("users").doc(userName).collection("History").doc("Current").set({
-        book1Name: ""
+        book1Name: "test1"
       });
     });
   });
