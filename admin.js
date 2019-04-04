@@ -58,15 +58,20 @@ function approveUsers(name) {
 }
 
 //Allows admin to remove users based on certain criteria.
-function removeUser() {
-  var name = document.getElementById('search').value;
+function removeUser(name) {
 
   //Checks if the users already exists in the database.
-  if (database.collection("users").doc(name).exists) {
-    var user = database.collection("users").doc(name);
-  } else if (database.collection("newUsers").doc(name).exists) {
-    var user = database.collection("newUsers").doc(name);
-  }
+  if (database.collection("users").doc(name).get().then(doc => {
+    if (doc.exists) {
+      var user = database.collection("users").doc(name);
+    }
+  }));
+
+  if (database.collection("newUsers").doc(name).get().then(doc => {
+    if (doc.exists) {
+      var user = database.collection("newUsers").doc(name);
+    }
+  }));
 
   //Gets the users information from either "newUsers" or "users".
   user.get().then(function(user) {
