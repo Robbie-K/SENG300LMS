@@ -196,15 +196,21 @@ function createButton(cell, quantity, type){
 }
 
 function reserveBook(){
-  // console.log("test1");
-  // remember to change the code later so that the button changes to unreserved after
-  // checking if they reserved that book previously
-  let currentUser = getUserId().toString();
-  var name = findName(currentUser).then(function(name){
-    console.log(name);
+  var userName; //Creates userName variable
+  var userID = getUserId(); //Gets user ID
+  getName(userID).then(function(userName) {
+    var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
+    info.get().then(function(doc) { // Function of getting database fields in history
+      var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
+      console.log(booksCheckedOut);
+
+      database.collection("users").doc(userName).collection("History").doc("Current").set({
+        book1Name: ""
+      });
+    });
   });
 }
 
 function holdBook(){
-  
+
 }
