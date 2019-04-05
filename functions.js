@@ -177,20 +177,24 @@ function checkStatus()
     }
   })};
 
+
 function createButton(cell, quantity, type){
   var button = document.createElement("button");
+
+  var test = "thisistestingthisis";
+
   if (type == 1)
   {
     if (quantity > 0){
       button.innerHTML = "Reserve";
-      button.setAttribute("onclick", "reserveBook()");
+      button.onclick = function() { reserveBook(test); };
       button.className = "genreButton greenButton";
       // set a class for a button --> will add css
       // set an id for the button so that it can be ascessed in other parts of the function
     }
     else {
       button.innerHTML = "Hold";
-      button.setAttribute("onclick", "holdBook()");
+      button.setAttribute("onclick", "holdBook(test)");
       button.className = "genreButton redButton";
     }
   } else if (type == 2) {
@@ -208,17 +212,19 @@ function createButton(cell, quantity, type){
   cell.appendChild(button);
 }
 
-function reserveBook(id, bookname, date){
+
+function reserveBook(test){
+  console.log(test);
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
   getName(userID).then(function(userName) {
     var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
     info.get().then(function(doc) { // Function of getting database fields in history
       var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
-      console.log(booksCheckedOut);
+      //console.log(booksCheckedOut);
 
-      database.collection("users").doc(userName).collection("History").doc("Current").set({
-        book1Name: "test1"
+      database.collection("users").doc(userName).collection("History").doc("Current").update({
+        //book1Name: "test1"
       });
     });
   });
