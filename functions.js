@@ -74,7 +74,7 @@ function search(){
         cell6.innerHTML = "N/A";
 
 
-        createButton(cell7, quantity, 1);
+        createButton(cell7, quantity, 1, bookname, id);
       }
     });
     table.style.display = "table";
@@ -178,16 +178,14 @@ function checkStatus()
   })};
 
 
-function createButton(cell, quantity, type){
+function createButton(cell, quantity, type, bookName, bookID){
   var button = document.createElement("button");
-
-  var test = "thisistestingthisis";
 
   if (type == 1)
   {
     if (quantity > 0){
       button.innerHTML = "Reserve";
-      button.onclick = function() { reserveBook(test); };
+      button.onclick = function() { reserveBook(bookName, bookID); };
       button.className = "genreButton greenButton";
       // set a class for a button --> will add css
       // set an id for the button so that it can be ascessed in other parts of the function
@@ -213,8 +211,15 @@ function createButton(cell, quantity, type){
 }
 
 
-function reserveBook(test){
-  console.log(test);
+function reserveBook(bookName, bookID){
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var today = day + "/" + month + "/" + year;
+  console.log(today);
+  console.log(bookName, bookID);
+
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
   getName(userID).then(function(userName) {
@@ -232,4 +237,8 @@ function reserveBook(test){
 
 function holdBook(){
 
+}
+
+function calcReturnDate(){
+  
 }
