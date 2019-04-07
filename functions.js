@@ -206,9 +206,9 @@ function reserveBook(bookName, bookID, button){
   var dateFormat = new Date(year, month, day);
   var newDate = new Date();
   newDate.setDate(dateFormat.getDate() + 14); // adding 2 weeks
-  console.log(newDate);
+  //console.log(newDate);
 
-  var subtractDate = newDate - dateFormat;
+  //var subtractDate = newDate - dateFormat;
   //console.log(Math.floor(subtractDate/86400000));
 
   var userName; //Creates userName variable
@@ -227,7 +227,7 @@ function reserveBook(bookName, bookID, button){
       //  ID1, book1Name, dateOut1, dateRet1, booksCheckedOut
       if(newBooksCheckedOut == 1){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
-          Id1: bookID,
+          ID1: bookID,
           book1Name: bookName,
           dateOut1: dateFormat,
           dateRet1: newDate,
@@ -236,7 +236,7 @@ function reserveBook(bookName, bookID, button){
       }
       else if(newBooksCheckedOut == 2){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
-          Id2: bookID,
+          ID2: bookID,
           book2Name: bookName,
           dateOut2: dateFormat,
           dateRet2: newDate,
@@ -245,7 +245,7 @@ function reserveBook(bookName, bookID, button){
       }
       else if(newBooksCheckedOut == 3){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
-          Id3: bookID,
+          ID3: bookID,
           book3Name: bookName,
           dateOut3: dateFormat,
           dateRet3: newDate,
@@ -254,7 +254,7 @@ function reserveBook(bookName, bookID, button){
       }
       else if(newBooksCheckedOut == 4){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
-          Id4: bookID,
+          ID4: bookID,
           book4Name: bookName,
           dateOut4: dateFormat,
           dateRet4: newDate,
@@ -263,12 +263,15 @@ function reserveBook(bookName, bookID, button){
       }
       else if(newBooksCheckedOut == 5){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
-          Id5: bookID,
+          ID5: bookID,
           book5Name: bookName,
           dateOut5: dateFormat,
           dateRet5: newDate,
           booksCheckedOut: newBooksCheckedOut
         });
+      }
+      else if(newBooksCheckedOut >= 6){
+        window.alert("You can only have up to 5 books checked out.")
       }
     });
   });
@@ -287,5 +290,43 @@ function unholdBook(){
 }
 
 function calcReturnDate(){
+
+}
+
+
+function findCheckedStatus(bookName, bookID, quantity, button){
+  var userName; //Creates userName variable
+  var userID = getUserId(); //Gets user ID
+  getName(userID).then(function(userName) {
+    var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
+    info.get().then(function(doc) { // Function of getting database fields in history
+      var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
+      var book1Name = doc.get("book1Name");
+      var book2Name = doc.get("book2Name");
+      var book3Name = doc.get("book3Name");
+      var book4Name = doc.get("book4Name");
+      var book5Name = doc.get("book5Name");
+
+      if( quatity > 0){
+        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+          // set to un reserve button
+        }
+        else{
+          // set to reserve button
+        }
+      }
+      else{
+        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+          // set to unhold button
+        }
+        else{
+          // set to hold button
+        }
+      }
+    });
+  });
+}
+
+function changeQuantity(amount, bookName){
 
 }
