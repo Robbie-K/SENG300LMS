@@ -28,12 +28,12 @@
     <!--Adds search feature and buttons-->
     <div id="user-input">
 			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
-			<button class="button" id="bookSearch" onclick="search()">Search Book</button>
+			<button class="button" id="searchButton" onclick="search()">Search Book</button>
       <button class="button" id="userSearch" onclick="userSearch()">Search User</button>
 		</div>
 
     <!--Creates table titles for books-->
-		<table id = "bookTable" class="table">
+		<table style="display: none;" id = "bookTable" class="table">
 			<tr>
 				<th>Book</th>
 				<th>Author</th>
@@ -46,7 +46,7 @@
     </br>
 
     <!--Creates table titles for users-->
-		<table id = "userTable" class="table">
+		<table style="display: none;" id = "userTable" class="table">
 			<tr>
 				<th>Name</th>
 				<th>ID</th>

@@ -163,20 +163,6 @@ function setFilterGenre(){
   document.getElementById("filterValue").innerHTML = "Search: Genre";
 }
 
-// check status page for the users
-function checkStatus()
-{
-  var user = database.collection('users');
-  user.get().then(function(user) {
-    var status = user.get("id");
-
-    if (id >= 10000000 && id < 30000000) {
-      window.location="admin.html";
-    } else {
-      window.location="userInfo.html";
-    }
-  })};
-
 
 function createButton(cell, quantity, type, bookName, bookID){
   var button = document.createElement("button");
