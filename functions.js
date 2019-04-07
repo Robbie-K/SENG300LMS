@@ -185,7 +185,7 @@ function createButton(cell, quantity, type, bookName, bookID){
   {
     if (quantity > 0){
       button.innerHTML = "Reserve";
-      button.onclick = function() { reserveBook(bookName, bookID); };
+      button.onclick = function() { reserveBook(bookName, bookID, button); };
       button.className = "genreButton greenButton";
       // set a class for a button --> will add css
       // set an id for the button so that it can be ascessed in other parts of the function
@@ -195,30 +195,35 @@ function createButton(cell, quantity, type, bookName, bookID){
       button.setAttribute("onclick", "holdBook(test)");
       button.className = "genreButton redButton";
     }
-  } else if (type == 2) {
+  }
+  else if (type == 2) {
     button.innerHTML = "Approve";
     button.setAttribute("onclick", "approveUsers()");
     button.className = "genreButton greenButton";
-  } else if (type == 3) {
+  }
+  else if (type == 3) {
     button.innerHTML = "Remove";
     button.setAttribute("onclick", "removeUser()");
     button.className = "genreButton redButton";
   }
-
-
-
   cell.appendChild(button);
 }
 
 
-function reserveBook(bookName, bookID){
+function reserveBook(bookName, bookID, button){
   var date = new Date();
   var day = date.getDate();
   var month = date.getMonth();
   var year = date.getFullYear();
-  var today = day + "/" + month + "/" + year;
-  console.log(today);
-  console.log(bookName, bookID);
+
+  // year month day
+  var dateFormat = new Date(year, month, day);
+  var newDate = new Date();
+  newDate.setDate(dateFormat.getDate() + 14); // adding 2 weeks
+  console.log(newDate);
+
+  var subtractDate = newDate - dateFormat;
+  //console.log(Math.floor(subtractDate/86400000));
 
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
@@ -226,11 +231,59 @@ function reserveBook(bookName, bookID){
     var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
     info.get().then(function(doc) { // Function of getting database fields in history
       var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
-      //console.log(booksCheckedOut);
+      var newBooksCheckedOut = booksCheckedOut + 1;
 
-      database.collection("users").doc(userName).collection("History").doc("Current").update({
-        //book1Name: "test1"
-      });
+      if(newBooksCheckedOut <= 5){
+        button.innerHTML = "Un-Reserve";
+        button.onclick = function() { unreserveBook(bookName, bookID, button); };
+        button.className = "genreButton greenButton";
+      }
+      //  ID1, book1Name, dateOut1, dateRet1, booksCheckedOut
+      if(newBooksCheckedOut == 1){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          Id1: bookID,
+          book1Name: bookName,
+          dateOut1: dateFormat,
+          dateRet1: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 2){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          Id2: bookID,
+          book2Name: bookName,
+          dateOut2: dateFormat,
+          dateRet2: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 3){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          Id3: bookID,
+          book3Name: bookName,
+          dateOut3: dateFormat,
+          dateRet3: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 4){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          Id4: bookID,
+          book4Name: bookName,
+          dateOut4: dateFormat,
+          dateRet4: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 5){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          Id5: bookID,
+          book5Name: bookName,
+          dateOut5: dateFormat,
+          dateRet5: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
     });
   });
 }
@@ -239,6 +292,14 @@ function holdBook(){
 
 }
 
+function unreserveBook(){
+
+}
+
+function unholdBook(){
+
+}
+
 function calcReturnDate(){
-  
+
 }
