@@ -22,7 +22,7 @@ function search(){
 
   // makes sure to remove all the rows before the code starts
   // this allows for table to look normaly every search
-  removeRows();
+  removeRows("bookTable");
   // counts rows up and gets books
   var rowCount = 1;
   book.get().then(function(querySnapshot) {
@@ -82,21 +82,32 @@ function search(){
 }
 
 
-function searchUser(action){
-  document.getElementById("userTable").style.display;
+function searchUser() {
+  var userType = "";
+  var tableType = "";
+
+  if (filter == "newUser") {
+    userType = "newUser";
+  } else if (filter == "users") {
+    userType = "users";
+  } else {
+    search();
+  }
 
   var searchEntry = document.getElementById('search').value;
-  var user = database.collection("users");
+  var user = database.collection(userType);
   var table = document.getElementById("userTable");
+
+  removeRows("userTable");
+
   var rowCount = 1;
   user.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
       var data = documentSnapshot.data();
       var name = data.firstName + data.lastName;
-      var userNameLower = name.toLowerCase();
       var searchEntryLower = searchEntry.toLowerCase();
 
-      if(userNameLower.includes(searchEntryLower) == true){
+      if(name.includes(searchEntryLower) == true){
         var first = data.firstName;
         var last = data.lastName;
         var id = data.id;
@@ -114,22 +125,25 @@ function searchUser(action){
         cell2.innerHTML = id;
         cell3.innerHTML = email;
 
-        if (action == "approve") {
+        if (userType == "users") {
           creatButton(cell4, 0, 2);
-        } else if (aciton == "remove") {
-          createButton(cell4, 0, 3);
+        } else if (userType == "newUsers") {
+          var cell5 = row.insertCell(5);
+          createButton(cell4, 0, 2, "", "");
+          createButton(cell5, 0, 3, "", "");
         }
       }
-    })
+    });
+    table.style.display = "table";
   });
 }
 
 
 // goes through and removes all the rows of the table except for the first one
-function removeRows(){
-  var table = document.getElementById("bookTable");
+function removeRows(tableType){
+  var table = document.getElementById(tableType);
   var rowlength = table.rows.length;
-  while( rowlength > 1){
+  while(rowlength > 1){
     table.deleteRow(rowlength -1);
     rowlength = table.rows.length;
   }
@@ -161,6 +175,26 @@ function setFilterAuthor(){
 function setFilterGenre(){
   filter = "genre";
   document.getElementById("filterValue").innerHTML = "Search: Genre";
+}
+
+
+// setting the filter to search for new users
+function setFilterNewUser() {
+  filter = "newUser";
+  var element = document.getElementById("currentFilter");
+  document.getElementById("filterValue").innerHTML = "Search: New User";
+}
+
+// setting the filter to search for current users
+function setFilterUser() {
+  filter = "user";
+  document.getElementById("filterValue").innerHTML = "Search: User";
+}
+
+// seeting the filter to search for books
+function setFilterBook() {
+  filter = "books";
+  document.getElementById("filterValue").innerHTML = "Search: Books";
 }
 
 

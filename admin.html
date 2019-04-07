@@ -27,9 +27,15 @@
   <div id="centered">
     <!--Adds search feature and buttons-->
     <div id="user-input">
+      <div id="filterInfo" class="divFilter">
+        <b id="filterValue" type="text">Search: New User</b><br>
+        <button class="genreButton active" id="filterNewUser" onclick="setFilterNewUser()">New User</button>
+        <button class="genreButton" id="filterUser" onclick="setFilterUser()">User</button>
+        <button class="genreButton" id="filterBook" onclick="setFilterBook()">Books</button>
+      </div>
+
 			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
-			<button class="button" id="searchButton" onclick="search()">Search Book</button>
-      <button class="button" id="userSearch" onclick="userSearch()">Search User</button>
+			<button class="button" id="searchButton" onclick="searchUser()">Search</button>
 		</div>
 
     <!--Creates table titles for books-->
@@ -51,7 +57,8 @@
 				<th>Name</th>
 				<th>ID</th>
 				<th>Email</th>
-        <th>Action</th>
+        <th>Approve</th>
+        <th>Remove</th>
 			</tr>
 		</table>
 
@@ -60,6 +67,7 @@
   <script type="text/JavaScript" src="script.js"></script>
   <script type="text/JavaScript" src="admin.js"></script>
   <script type="text/JavaScript" src="functions.js"></script>
+  <script type="text/JavaScript" src="genreButton.js"></script>
 
 <!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
