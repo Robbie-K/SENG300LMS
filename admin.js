@@ -15,13 +15,47 @@ function approveUsers(name) {
     var password = user.get("password");
 
     //Sets the users information into users collection in the database.
-    database.collection("users").doc(firstName + " " + lastName).set({
-      firstName: firstName,
-      lastName: lastName,
-      id: id,
-      email: email,
-      password: password
+    document.getElementById('approve').onclick = function() {
+      database.collection("users").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      }).then(function() {
+          database.collection('newUsers').doc(name).collection("History").doc("Current").set({
+          ID1: "",
+          ID2: "",
+          ID3: "",
+          ID4: "",
+          ID5: "",
+          book1Name: "",
+          book2Name: "",
+          book3Name: "",
+          book4Name: "",
+          book5Name: "",
+          booksCheckedOut: 0,
+          dateOut1: "",
+          dateOut2: "",
+          dateOut3: "",
+          dateOut4: "",
+          dateOut5: "",
+          dateRet1: "",
+          dateRet2: "",
+          dateRet3: "",
+          dateRet4: "",
+          dateRet5: "",
+          feesOwed: 0,
+          feesPaid: 0,
+          feesTotal: 0
+        });
+        database.collection('newUsers').doc(name).collection("History").doc("Past").set({});
     });
+
+    //Deletes the user from "newUsers".
+    user.delete();
+
+  });
 
     database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
       ID1: "",

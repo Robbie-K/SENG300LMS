@@ -235,104 +235,32 @@ function createButton(cell, quantity, type, name, bookID){
 
 
 function reserveBook(bookName, bookID, button){
-  var date = new Date();
-  var day = date.getDate();
-  var month = date.getMonth();
-  var year = date.getFullYear();
-
-  // year month day
-  var dateFormat = new Date(year, month, day);
-  var newDate = new Date();
-  newDate.setDate(dateFormat.getDate() + 14); // adding 2 weeks
-  //console.log(newDate);
-
-  //var subtractDate = newDate - dateFormat;
-  //console.log(Math.floor(subtractDate/86400000));
-
-  var userName; //Creates userName variable
-  var userID = getUserId(); //Gets user ID
-  getName(userID).then(function(userName) {
-    var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
-    info.get().then(function(doc) { // Function of getting database fields in history
-      var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
-      var newBooksCheckedOut = booksCheckedOut + 1;
-
-      if(newBooksCheckedOut <= 5){
-        button.innerHTML = "Un-Reserve";
-        button.onclick = function() { unreserveBook(bookName, bookID, button); };
-        button.className = "genreButton greenButton";
-      }
-      //  ID1, book1Name, dateOut1, dateRet1, booksCheckedOut
-      if(newBooksCheckedOut == 1){
-        database.collection("users").doc(userName).collection("History").doc("Current").update({
-          ID1: bookID,
-          book1Name: bookName,
-          dateOut1: dateFormat,
-          dateRet1: newDate,
-          booksCheckedOut: newBooksCheckedOut
-        });
-      }
-      else if(newBooksCheckedOut == 2){
-        database.collection("users").doc(userName).collection("History").doc("Current").update({
-          ID2: bookID,
-          book2Name: bookName,
-          dateOut2: dateFormat,
-          dateRet2: newDate,
-          booksCheckedOut: newBooksCheckedOut
-        });
-      }
-      else if(newBooksCheckedOut == 3){
-        database.collection("users").doc(userName).collection("History").doc("Current").update({
-          ID3: bookID,
-          book3Name: bookName,
-          dateOut3: dateFormat,
-          dateRet3: newDate,
-          booksCheckedOut: newBooksCheckedOut
-        });
-      }
-      else if(newBooksCheckedOut == 4){
-        database.collection("users").doc(userName).collection("History").doc("Current").update({
-          ID4: bookID,
-          book4Name: bookName,
-          dateOut4: dateFormat,
-          dateRet4: newDate,
-          booksCheckedOut: newBooksCheckedOut
-        });
-      }
-      else if(newBooksCheckedOut == 5){
-        database.collection("users").doc(userName).collection("History").doc("Current").update({
-          ID5: bookID,
-          book5Name: bookName,
-          dateOut5: dateFormat,
-          dateRet5: newDate,
-          booksCheckedOut: newBooksCheckedOut
-        });
-      }
-      else if(newBooksCheckedOut >= 6){
-        window.alert("You can only have up to 5 books checked out.")
-      }
-    });
-  });
+  changeQuery("set", bookName, bookID);
+  button.innerHTML = "Un-Reserve";
+  button.onclick = function() { unreserveBook(name, bookID, button); };
 }
 
 function holdBook(){
-
+  changeQuery("set", bookName, bookID);
+  button.innerHTML = "Un-Hold";
+  button.onclick = function() { unholdBook(name, bookID, button); };
 }
 
 function unreserveBook(){
-
+  changeQuery("clear", bookName, bookID);
+  button.innerHTML = "Reserve";
+  button.onclick = function() { reserveBook(name, bookID, button); };
 }
 
 function unholdBook(){
-
-}
-
-function calcReturnDate(){
-
+  changeQuery("clear", bookName, bookID);
+  button.innerHTML = "Hold";
+  button.onclick = function() { holdBook(name, bookID, button); };
 }
 
 
 function findCheckedStatus(bookName, bookID, quantity, button){
+
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
   getName(userID).then(function(userName) {
@@ -347,28 +275,115 @@ function findCheckedStatus(bookName, bookID, quantity, button){
 
       if( quatity > 0){
         if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
-          // set to un reserve button
+          button.innerHTML = "Un-Reserve";
+          button.onclick = function() { unreserveBook(bookName, bookID, button); };
         }
         else{
-          // set to reserve button
+          button.innerHTML = "Reserve";
+          button.onclick = function() { reserveBook(bookName, bookID, button); };
         }
       }
       else{
         if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
-          // set to unhold button
+          button.innerHTML = "Un-Hold";
+          button.onclick = function() { unholdBook(bookName, bookID, button); };
         }
         else{
-          // set to hold button
+          button.innerHTML = "Hold";
+          button.onclick = function() { holdBook(bookName, bookID, button); };
         }
       }
     });
   });
 }
 
-function changeQuantity(amount, bookName){
+function changeQuery(criteria, bookName, bookId){
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  // year month day
+  var dateFormat = new Date(year, month, day);
+  var newDate = new Date();
+  newDate.setDate(dateFormat.getDate() + 14); // adding 2 weeks
+  var newBookInfo = bookName;
+  //var subtractDate = (newDate - dateFormat)/86400000;
 
-}
+  var userName; //Creates userName variable
+  var userID = getUserId(); //Gets user ID
+  getName(userID).then(function(userName) {
+    var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
+    info.get().then(function(doc) { // Function of getting database fields in history
+      var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
+      var book1Name = doc.get("book1Name");
+      var book2Name = doc.get("book2Name");
+      var book3Name = doc.get("book3Name");
+      var book4Name = doc.get("book4Name");
+      var book5Name = doc.get("book5Name");
+      var newBooksCheckedOut = doc.get("booksCheckedOut");
+      /*
+      either checking if the criteria is to clear the book name or if its to set the right info
+      */
+      if(criteria == "clear"){
+        dateFormat = "";
+        newDate = "";
+        newBookInfo = "";
+        bookId = "";
+        dateFormat = "";
+        newDate = "";
+        newBooksCheckedOut = newBooksCheckedOut - 1;
+      }
+      else{
+        newBooksCheckedOut = newBooksCheckedOut + 1;
+      }
 
-function logout() {
+      if(book1Name == criteria){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID1: bookID,
+          book1Name: bookName,
+          dateOut1: dateFormat,
+          dateRet1: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(book2Name == criteria){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID2: bookID,
+          book2Name: bookName,
+          dateOut2: dateFormat,
+          dateRet2: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(book3Name == criteria){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID3: bookID,
+          book3Name: bookName,
+          dateOut3: dateFormat,
+          dateRet3: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(book4Name == criteria){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID4: bookID,
+          book4Name: bookName,
+          dateOut4: dateFormat,
+          dateRet4: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(book5Name == criteria){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID5: bookID,
+          book5Name: bookName,
+          dateOut5: dateFormat,
+          dateRet5: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+
+    });
+  });
 
 }
