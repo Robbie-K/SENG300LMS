@@ -13,6 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.firestore();
 var exists1 = undefined;
 var exists2 = undefined;
+
 function checkFields() {
   // var correct = 0;
    //Takes information from application.html as input for variables
@@ -95,7 +96,6 @@ function checkInfo(email, id) {
       return true;
     };
   }));
-
 };
 
 
@@ -134,50 +134,21 @@ function checkExists(doc1,doc2) {
           return false;
       };
       });
-  };
-  })
-  );
+    };
+  }));
 };
 
 // This function adds the user to the new users collection of the database
 function addUser(name, first, last, email, id, pass) {
-        return ( database.collection('newUsers').doc(name).set({
-                  id: parseInt(id),
-                  email: email,
-                  firstName: first,
-                  lastName: last,
-                  password: pass
-          })).then(function () {
-                  database.collection('newUsers').doc(name).collection("History").doc("Current").set({
-                    ID1: "",
-                    ID2: "",
-                    ID3: "",
-                    ID4: "",
-                    ID5: "",
-                    book1Name: "",
-                    book2Name: "",
-                    book3Name: "",
-                    book4Name: "",
-                    book5Name: "",
-                    booksCheckedOut: 0,
-                    dateOut1: "",
-                    dateOut2: "",
-                    dateOut3: "",
-                    dateOut4: "",
-                    dateOut5: "",
-                    dateRet1: "",
-                    dateRet2: "",
-                    dateRet3: "",
-                    dateRet4: "",
-                    dateRet5: "",
-                    feesOwed: 0,
-                    feesPaid: 0,
-                    feesTotal: 0
-                  });
-                  database.collection('newUsers').doc(name).collection("History").doc("Past").set({});
-                  // database.collection('newUsers').doc(name).collection("History").doc("Past").collection("Books").set({});
-                  alert("Account has been made. Please wait for admin verification. In the event that this takes longer than 2 business days please contact us.");
-          });
+  return ( database.collection('newUsers').doc(name).set({
+    id: parseInt(id),
+    email: email,
+    firstName: first,
+    lastName: last,
+    password: pass
+  })).then(function () {
+    alert("Account has been made. Please wait for admin verification. In the event that this takes longer than 2 business days please contact us.");
+  });
 };
 
 // Tbis function allows for people with the exact same first and last name to create accounts
