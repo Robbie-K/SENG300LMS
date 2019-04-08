@@ -83,15 +83,14 @@ function search(){
 
 
 function searchUser() {
-  var userType = "";
-  var tableType = "";
+  var userType;
 
-  if (filter == "newUser") {
-    userType = "newUser";
+  if (filter == "books") {
+    userType = "books";
   } else if (filter == "users") {
     userType = "users";
   } else {
-    search();
+    userType = "newUsers";
   }
 
   var searchEntry = document.getElementById('search').value;
@@ -104,15 +103,17 @@ function searchUser() {
   user.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
       var data = documentSnapshot.data();
-      var name = data.firstName + data.lastName;
+      var firstName = data.firstName;
+      var lastName = data.lastName;
       var searchEntryLower = searchEntry.toLowerCase();
       var nameLower = name.toLowerCase();
 
-      if(nameLower.includes(searchEntryLower) == true){
+      if(nameLower.includes(searchEntryLower) == true || nameLower.includes(searchEntryLower) == true){
         var first = data.firstName;
         var last = data.lastName;
         var id = data.id;
         var email = data.email;
+        var extra = " ";
 
         var row = table.insertRow(rowCount);
         rowCount = rowCount + 1;
@@ -121,17 +122,17 @@ function searchUser() {
         var cell2 = row.insertCell(2);
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
-        cell0.innerHTML = first;
-        cell1.innerHTML = last;
-        cell2.innerHTML = id;
-        cell3.innerHTML = email;
+        var cell5 = row.insertCell(5);
+        cell0.innerHTML = first + " " + last;
+        cell1.innerHTML = id;
+        cell2.innerHTML = email;
 
         if (userType == "users") {
-          creatButton(cell4, 0, 2, "", "");
+          createButton(cell4, 0, 3, "", "");
+          cell3.innerHTML = extra;
         } else if (userType == "newUsers") {
-          var cell5 = row.insertCell(5);
-          createButton(cell4, 0, 2, "", "");
-          createButton(cell5, 0, 3, "", "");
+          createButton(cell3, 0, 2, "", "");
+          createButton(cell4, 0, 3, "", "");
         }
       }
     });
@@ -188,8 +189,8 @@ function setFilterNewUser() {
 
 // setting the filter to search for current users
 function setFilterUser() {
-  filter = "user";
-  document.getElementById("filterValue").innerHTML = "Search: User";
+  filter = "users";
+  document.getElementById("filterValue").innerHTML = "Search: Users";
 }
 
 // seeting the filter to search for books
