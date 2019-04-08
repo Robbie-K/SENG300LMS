@@ -106,8 +106,9 @@ function searchUser() {
       var data = documentSnapshot.data();
       var name = data.firstName + data.lastName;
       var searchEntryLower = searchEntry.toLowerCase();
+      var nameLower = name.toLowerCase();
 
-      if(name.includes(searchEntryLower) == true){
+      if(nameLower.includes(searchEntryLower) == true){
         var first = data.firstName;
         var last = data.lastName;
         var id = data.id;
@@ -126,7 +127,7 @@ function searchUser() {
         cell3.innerHTML = email;
 
         if (userType == "users") {
-          creatButton(cell4, 0, 2);
+          creatButton(cell4, 0, 2, "", "");
         } else if (userType == "newUsers") {
           var cell5 = row.insertCell(5);
           createButton(cell4, 0, 2, "", "");
@@ -362,5 +363,9 @@ function findCheckedStatus(bookName, bookID, quantity, button){
 }
 
 function changeQuantity(amount, bookName){
+
+}
+
+function logout() {
 
 }
