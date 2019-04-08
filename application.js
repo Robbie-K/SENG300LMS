@@ -43,15 +43,15 @@ function checkFields() {
           return exists;
          }) .then(function (exists) {
           // if the doc exists and the email and id don't we allow the user to create an account
-          if (exists && allowed) {
-            // addSameName finds the proper document name to use and returns a promise containing it
-            addSameName(first, last, 1)
-            .then(function (newName) {
-                if (newName != undefined) {
-                  addUser(newName, first, last, email, id, pass);
-              };
-            });
-          } else if (!exists && allowed){
+          // if (exists && allowed) {
+          //   // addSameName finds the proper document name to use and returns a promise containing it
+          //   addSameName(first, last, 1)
+          //   .then(function (newName) {
+          //       if (newName != undefined) {
+          //         addUser(newName, first, last, email, id, pass);
+          //     };
+          //   });
+           if (!exists && allowed){
             addUser(name, first, last, email, id, pass);
           };
  });
