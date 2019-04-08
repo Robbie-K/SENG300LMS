@@ -15,19 +15,17 @@ function approveUsers(name) {
     var password = user.get("password");
 
     //Sets the users information into users collection in the database.
-    document.getElementById('approve').onclick = function() {
-      database.collection("users").doc(firstName + " " + lastName).set({
-        firstName: firstName,
-        lastName: lastName,
-        id: id,
-        email: email,
-        password: password
-      });
-    }
-
-    //Deletes the user from "newUsers".
-    user.delete();
+    database.collection("users").doc(name).set({
+      firstName: firstName,
+      lastName: lastName,
+      id: id,
+      email: email,
+      password: password
+    });
   });
+
+  //Deletes the user from "newUsers".
+  user.delete();
 }
 
 //Allows admin to remove users based on certain criteria.

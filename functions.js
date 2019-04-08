@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();
 var filter = "";
+var globalName = "";
 
 // function that searches for books/authors/etc
 function search(){
@@ -105,6 +106,7 @@ function searchUser() {
       var data = documentSnapshot.data();
       var firstName = data.firstName;
       var lastName = data.lastName;
+      globalName = firstName + " " + lastName;
       var searchEntryLower = searchEntry.toLowerCase();
       var nameLower = name.toLowerCase();
 
@@ -128,11 +130,11 @@ function searchUser() {
         cell2.innerHTML = email;
 
         if (userType == "users") {
-          createButton(cell4, 0, 3, "", "");
+          createButton(cell4, 0, 3, globalName, "");
           cell3.innerHTML = extra;
         } else if (userType == "newUsers") {
-          createButton(cell3, 0, 2, "", "");
-          createButton(cell4, 0, 3, "", "");
+          createButton(cell3, 0, 2, globalName, "");
+          createButton(cell4, 0, 3, globalName, "");
         }
       }
     });
@@ -200,14 +202,14 @@ function setFilterBook() {
 }
 
 
-function createButton(cell, quantity, type, bookName, bookID){
+function createButton(cell, quantity, type, name, bookID){
   var button = document.createElement("button");
 
   if (type == 1)
   {
     if (quantity > 0){
       button.innerHTML = "Reserve";
-      button.onclick = function() { reserveBook(bookName, bookID, button); };
+      button.onclick = function() { reserveBook(name, bookID, button); };
       button.className = "genreButton greenButton";
       // set a class for a button --> will add css
       // set an id for the button so that it can be ascessed in other parts of the function
@@ -220,12 +222,12 @@ function createButton(cell, quantity, type, bookName, bookID){
   }
   else if (type == 2) {
     button.innerHTML = "Approve";
-    button.setAttribute("onclick", "approveUsers()");
+    button.onclick = function() {approveUsers(name);};
     button.className = "genreButton greenButton";
   }
   else if (type == 3) {
     button.innerHTML = "Remove";
-    button.setAttribute("onclick", "removeUser()");
+    button.onclick = function() {removeUser(name);};
     button.className = "genreButton redButton";
   }
   cell.appendChild(button);

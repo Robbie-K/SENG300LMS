@@ -19,7 +19,7 @@ function logIn() {
 			if (fetchedPassword == password.value) {
 				let userId = user.get("id");
 
-				if (userId >= 10000000 && userId < 20000000) {
+				if (userId >= 10099900 && userId < 10099999) {
 					window.location.href = "admin.html?userId=" + userId;
 				} else {
 					window.location.href = "search.html?userId=" + userId;
