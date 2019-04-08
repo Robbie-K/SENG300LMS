@@ -121,7 +121,7 @@ function addDamagedBooks() {
         book_author: author,
         book_id: id,
       });
-    }
+    });
 
     //Reduce the quantity of that book by 1 as it is now damaged.
     quantity -= 1;

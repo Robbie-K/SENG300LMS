@@ -27,13 +27,31 @@
   <div id="centered">
     <!--Adds search feature and buttons-->
     <div id="user-input">
+      <div id="filterInfo" class="divFilter">
+        <b id="filterValue" type="text">Search: New User</b><br>
+        <button class="genreButton active" id="filterNewUser" onclick="setFilterNewUser()">New User</button>
+        <button class="genreButton" id="filterUser" onclick="setFilterUser()">Users</button>
+        <button class="genreButton" id="filterBook" onclick="setFilterBook()">Books</button>
+      </div>
+
 			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
-			<button class="button" id="bookSearch" onclick="search()">Search Book</button>
-      <button class="button" id="userSearch" onclick="userSearch()">Search User</button>
+			<button class="button" id="searchButton" onclick="searchUser()">Search</button>
 		</div>
 
-    <!--Creates table titles for books-->
-		<table id = "bookTable" class="table">
+    <!--Creates table titles for users-->
+		<table style="display: none;" id = "userTable" class="table">
+			<tr>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Email</th>
+        <th>Approve</th>
+        <th>Remove</th>
+			</tr>
+		</table>
+  </div>
+
+    <!--Creates table titles for books
+		<table style="display: none;" id = "bookTable" class="table">
 			<tr>
 				<th>Book</th>
 				<th>Author</th>
@@ -42,26 +60,17 @@
 				<th>Quantity</th>
 				<th>SoftCopy</th>
 			</tr>
-		</table>
+		</table>-->
     </br>
 
-    <!--Creates table titles for users-->
-		<table id = "userTable" class="table">
-			<tr>
-				<th>Name</th>
-				<th>ID</th>
-				<th>Email</th>
-        <th>Action</th>
-			</tr>
-		</table>
-
-
 </body>
+<!--script for the database-->
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
   <script type="text/JavaScript" src="script.js"></script>
   <script type="text/JavaScript" src="admin.js"></script>
   <script type="text/JavaScript" src="functions.js"></script>
-
-<!--script for the database-->
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+  <script type="text/JavaScript" src="userInformation.js"></script>
+  <script src="userId.js"></script>
+  <script src="genreButton.js"></script>
 </html>

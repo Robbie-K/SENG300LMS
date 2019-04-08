@@ -22,7 +22,7 @@ function search(){
 
   // makes sure to remove all the rows before the code starts
   // this allows for table to look normaly every search
-  removeRows();
+  removeRows("bookTable");
   // counts rows up and gets books
   var rowCount = 1;
   book.get().then(function(querySnapshot) {
@@ -74,7 +74,7 @@ function search(){
         cell6.innerHTML = "N/A";
 
 
-        createButton(cell7, quantity, 1);
+        createButton(cell7, quantity, 1, bookname, id);
       }
     });
     table.style.display = "table";
@@ -82,25 +82,38 @@ function search(){
 }
 
 
-function searchUser(action){
-  document.getElementById("userTable").style.display;
+function searchUser() {
+  var userType;
+
+  if (filter == "books") {
+    userType = "books";
+  } else if (filter == "users") {
+    userType = "users";
+  } else {
+    userType = "newUsers";
+  }
 
   var searchEntry = document.getElementById('search').value;
-  var user = database.collection("users");
+  var user = database.collection(userType);
   var table = document.getElementById("userTable");
+
+  removeRows("userTable");
+
   var rowCount = 1;
   user.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
       var data = documentSnapshot.data();
-      var name = data.firstName + data.lastName;
-      var userNameLower = name.toLowerCase();
+      var firstName = data.firstName;
+      var lastName = data.lastName;
       var searchEntryLower = searchEntry.toLowerCase();
+      var nameLower = name.toLowerCase();
 
-      if(userNameLower.includes(searchEntryLower) == true){
+      if(nameLower.includes(searchEntryLower) == true || nameLower.includes(searchEntryLower) == true){
         var first = data.firstName;
         var last = data.lastName;
         var id = data.id;
         var email = data.email;
+        var extra = " ";
 
         var row = table.insertRow(rowCount);
         rowCount = rowCount + 1;
@@ -109,27 +122,30 @@ function searchUser(action){
         var cell2 = row.insertCell(2);
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
-        cell0.innerHTML = first;
-        cell1.innerHTML = last;
-        cell2.innerHTML = id;
-        cell3.innerHTML = email;
+        var cell5 = row.insertCell(5);
+        cell0.innerHTML = first + " " + last;
+        cell1.innerHTML = id;
+        cell2.innerHTML = email;
 
-        if (action == "approve") {
-          creatButton(cell4, 0, 2);
-        } else if (aciton == "remove") {
-          createButton(cell4, 0, 3);
+        if (userType == "users") {
+          createButton(cell4, 0, 3, "", "");
+          cell3.innerHTML = extra;
+        } else if (userType == "newUsers") {
+          createButton(cell3, 0, 2, "", "");
+          createButton(cell4, 0, 3, "", "");
         }
       }
-    })
+    });
+    table.style.display = "table";
   });
 }
 
 
 // goes through and removes all the rows of the table except for the first one
-function removeRows(){
-  var table = document.getElementById("bookTable");
+function removeRows(tableType){
+  var table = document.getElementById(tableType);
   var rowlength = table.rows.length;
-  while( rowlength > 1){
+  while(rowlength > 1){
     table.deleteRow(rowlength -1);
     rowlength = table.rows.length;
   }
@@ -163,67 +179,194 @@ function setFilterGenre(){
   document.getElementById("filterValue").innerHTML = "Search: Genre";
 }
 
-// check status page for the users
-function checkStatus()
-{
-  var user = database.collection('users');
-  user.get().then(function(user) {
-    var status = user.get("id");
 
-    if (id >= 10000000 && id < 30000000) {
-      window.location="admin.html";
-    } else {
-      window.location="userInfo.html";
-    }
-  })};
+// setting the filter to search for new users
+function setFilterNewUser() {
+  filter = "newUser";
+  var element = document.getElementById("currentFilter");
+  document.getElementById("filterValue").innerHTML = "Search: New User";
+}
 
-function createButton(cell, quantity, type){
+// setting the filter to search for current users
+function setFilterUser() {
+  filter = "users";
+  document.getElementById("filterValue").innerHTML = "Search: Users";
+}
+
+// seeting the filter to search for books
+function setFilterBook() {
+  filter = "books";
+  document.getElementById("filterValue").innerHTML = "Search: Books";
+}
+
+
+function createButton(cell, quantity, type, bookName, bookID){
   var button = document.createElement("button");
+
   if (type == 1)
   {
     if (quantity > 0){
       button.innerHTML = "Reserve";
-      button.setAttribute("onclick", "reserveBook()");
+      button.onclick = function() { reserveBook(bookName, bookID, button); };
       button.className = "genreButton greenButton";
       // set a class for a button --> will add css
       // set an id for the button so that it can be ascessed in other parts of the function
     }
     else {
       button.innerHTML = "Hold";
-      button.setAttribute("onclick", "holdBook()");
+      button.setAttribute("onclick", "holdBook(test)");
       button.className = "genreButton redButton";
     }
-  } else if (type == 2) {
+  }
+  else if (type == 2) {
     button.innerHTML = "Approve";
     button.setAttribute("onclick", "approveUsers()");
     button.className = "genreButton greenButton";
-  } else if (type == 3) {
+  }
+  else if (type == 3) {
     button.innerHTML = "Remove";
     button.setAttribute("onclick", "removeUser()");
     button.className = "genreButton redButton";
   }
-
-
-
   cell.appendChild(button);
 }
 
-function reserveBook(id, bookname, date){
+
+function reserveBook(bookName, bookID, button){
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+
+  // year month day
+  var dateFormat = new Date(year, month, day);
+  var newDate = new Date();
+  newDate.setDate(dateFormat.getDate() + 14); // adding 2 weeks
+  //console.log(newDate);
+
+  //var subtractDate = newDate - dateFormat;
+  //console.log(Math.floor(subtractDate/86400000));
+
   var userName; //Creates userName variable
   var userID = getUserId(); //Gets user ID
   getName(userID).then(function(userName) {
     var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
     info.get().then(function(doc) { // Function of getting database fields in history
       var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
-      console.log(booksCheckedOut);
+      var newBooksCheckedOut = booksCheckedOut + 1;
 
-      database.collection("users").doc(userName).collection("History").doc("Current").set({
-        book1Name: "test1"
-      });
+      if(newBooksCheckedOut <= 5){
+        button.innerHTML = "Un-Reserve";
+        button.onclick = function() { unreserveBook(bookName, bookID, button); };
+        button.className = "genreButton greenButton";
+      }
+      //  ID1, book1Name, dateOut1, dateRet1, booksCheckedOut
+      if(newBooksCheckedOut == 1){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID1: bookID,
+          book1Name: bookName,
+          dateOut1: dateFormat,
+          dateRet1: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 2){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID2: bookID,
+          book2Name: bookName,
+          dateOut2: dateFormat,
+          dateRet2: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 3){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID3: bookID,
+          book3Name: bookName,
+          dateOut3: dateFormat,
+          dateRet3: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 4){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID4: bookID,
+          book4Name: bookName,
+          dateOut4: dateFormat,
+          dateRet4: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut == 5){
+        database.collection("users").doc(userName).collection("History").doc("Current").update({
+          ID5: bookID,
+          book5Name: bookName,
+          dateOut5: dateFormat,
+          dateRet5: newDate,
+          booksCheckedOut: newBooksCheckedOut
+        });
+      }
+      else if(newBooksCheckedOut >= 6){
+        window.alert("You can only have up to 5 books checked out.")
+      }
     });
   });
 }
 
 function holdBook(){
+
+}
+
+function unreserveBook(){
+
+}
+
+function unholdBook(){
+
+}
+
+function calcReturnDate(){
+
+}
+
+
+function findCheckedStatus(bookName, bookID, quantity, button){
+  var userName; //Creates userName variable
+  var userID = getUserId(); //Gets user ID
+  getName(userID).then(function(userName) {
+    var info = database.collection("users").doc(userName).collection("History").doc("Current"); //Gets current user's history
+    info.get().then(function(doc) { // Function of getting database fields in history
+      var booksCheckedOut = doc.get("booksCheckedOut"); //Set varible to be feesOwed from database
+      var book1Name = doc.get("book1Name");
+      var book2Name = doc.get("book2Name");
+      var book3Name = doc.get("book3Name");
+      var book4Name = doc.get("book4Name");
+      var book5Name = doc.get("book5Name");
+
+      if( quatity > 0){
+        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+          // set to un reserve button
+        }
+        else{
+          // set to reserve button
+        }
+      }
+      else{
+        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+          // set to unhold button
+        }
+        else{
+          // set to hold button
+        }
+      }
+    });
+  });
+}
+
+function changeQuantity(amount, bookName){
+
+}
+
+function logout() {
 
 }
