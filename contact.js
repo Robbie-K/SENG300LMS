@@ -36,8 +36,7 @@ function collectData() {
 			// Let the user know their response was submitted
 			// and return them back to the login.
 
-			alert("Message has been submitted. Thanks for the feedback!");
-    		window.location.href = "index.html";
+			make_alert("Message has been submitted. Thanks for the feedback!", "window.location.href = 'index.html';");
 		});
 	});       
 }

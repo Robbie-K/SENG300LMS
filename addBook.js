@@ -92,7 +92,7 @@ function createNewBook() {
 		}).then(function() {
 			// Add a history collection to the book to track who has which one.
 			books.doc(s_book_name).collection('History').doc("history").set({});
-			alert("This book been added.");
+			make_alert("This book been added.", "");
 		});
 	});	
 }

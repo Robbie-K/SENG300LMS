@@ -53,7 +53,7 @@ function approveUsers(name) {
 
         //Deletes the user from "newUsers".
         person.delete();
-        alert(firstName + " " + lastName + " has been successfully approved.");
+        make_alert(firstName + " " + lastName + " has been successfully approved.", "");
       });
     };
   });
