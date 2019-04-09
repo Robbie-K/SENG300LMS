@@ -151,6 +151,7 @@ function reviewContactForms() {
   form.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
       var data = documentSnapshot.data();
+      var id = documentSnapshot.id;
       var email = data.email;
       var message = data.message;
 
@@ -161,7 +162,7 @@ function reviewContactForms() {
       var cell2 = row.insertCell(2);
       cell0.innerHTML = email;
       cell1.innerHTML = message;
-      createButton(cell2, 0, 4, "", "");
+      createButton(cell2, 0, 4, id, "");
     });
     table.style.display = "table";
   });
@@ -246,7 +247,7 @@ function createButton(cell, quantity, type, name, bookID){
   }
   else if (type == 4) {
     button.innerHTML = "Remove";
-    button.onclick = function() {removeMessage();};
+    button.onclick = function() {removeMessage(name);};
     button.className = "genreButton redButton";
   }
   cell.appendChild(button);
