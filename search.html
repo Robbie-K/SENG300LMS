@@ -50,28 +50,26 @@
 
 		</footer>
 	</div>
+</body>
 
+<script src="script.js"></script>
+<script>
+	function checkUser() {
+		var userId = getUserId();
+		if (userId >= 10099900 && userId < 10099999) {
+			window.location.href = "admin.html?userId=" + userId;
+		} else {
+			window.location.href = "userInfo.html?userId=" + userId;
+		}
+	};
 
+  function logout() {
+    var url = window.location.toString();
+    url = url.split("?")[0];
 
-	</body>
-	<script src="script.js"></script>
-	<script>
-		function checkUser() {
-			var userId = getUserId();
-			if (userId >= 10099900 && userId < 10099999) {
-				window.location.href = "admin.html?userId=" + userId;
-			} else {
-				window.location.href = "userInfo.html?userId=" + userId;
-			}
-		};
-
-	  function logout() {
-	    var url = window.location.toString();
-	    url = url.split("?")[0];
-
-	    window.location.href = "index.html";
-	  }
-	</script>
+    window.location.href = "index.html";
+  }
+</script>
 
 	<!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>

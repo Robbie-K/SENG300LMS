@@ -9,45 +9,46 @@
 </head>
 
 <body>
-  <center>
-    <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
-  </center>
-  <br>
+  <div class="wrapper">
+		<header>
+			<img src="UTL-logo-blue.png" width="450" height="100"></img>
+		</header>
 
-  <!--Displays navigation bar-->
-  <div class="navBar">
-    <a href="search.html">Home</a>
-    <a href="#" onclicl="">Order Products</a>
-    <a href="#" onclick="">View History</a>
-    <a href="#" onclick="">Damaged Books</a>
-    <a href="#" onclick="">Users</a>
-    <a href="#" onclick="logout()">Logout</a>
-  </div>
+    <!--Displays navigation bar-->
+    <div class="navBar">
+      <a href="search.html">Home</a>
+      <a href="#" onclicl="">Order Products</a>
+      <a href="#" onclick="">View History</a>
+      <a href="#" onclick="">Damaged Books</a>
+      <a href="#" onclick="">Users</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
 
-  <div id="centered">
-    <!--Adds search feature and buttons-->
-    <div id="user-input">
-      <div id="filterInfo" class="divFilter">
-        <b id="filterValue" type="text">Search: New User</b><br>
-        <button class="genreButton active" id="filterNewUser" onclick="setFilterNewUser()">New User</button>
-        <button class="genreButton" id="filterUser" onclick="setFilterUser()">Users</button>
-        <button class="genreButton" id="filterBook" onclick="setFilterBook()">Books</button>
-      </div>
+    <div id="centered">
+      <!--Adds search feature and buttons-->
+      <div id="user-input">
+        <div id="filterInfo" class="divFilter">
+          <b id="filterValue" type="text">Search: New User</b><br>
+          <button class="genreButton active" id="filterNewUser" onclick="setFilterNewUser()">New User</button>
+          <button class="genreButton" id="filterUser" onclick="setFilterUser()">Users</button>
+          <button class="genreButton" id="filterBook" onclick="setFilterBook()">Books</button>
+        </div>
 
-			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
-			<button class="button" id="searchButton" onclick="searchUser()">Search</button>
-		</div>
+  			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
+  			<button class="button" id="searchButton" onclick="searchUser()">Search</button>
+  		</div>
 
-    <!--Creates table titles for users-->
-		<table style="display: none;" id = "userTable" class="table">
-			<tr>
-				<th>Name</th>
-				<th>ID</th>
-				<th>Email</th>
-        <th>Approve</th>
-        <th>Remove</th>
-			</tr>
-		</table>
+      <!--Creates table titles for users-->
+  		<table style="display: none;" id = "userTable" class="table">
+  			<tr>
+  				<th>Name</th>
+  				<th>ID</th>
+  				<th>Email</th>
+          <th>Approve</th>
+          <th>Remove</th>
+  			</tr>
+  		</table>
+    </div>
   </div>
 
     <!--Creates table titles for books
@@ -62,7 +63,6 @@
 			</tr>
 		</table>-->
     </br>
-
 </body>
 
 <script>
