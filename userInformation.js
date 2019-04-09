@@ -75,10 +75,7 @@ function getName(userID){
 }
 
 function convertDay(dateIn){
-  if(dateIn == ""){
-    return "";
-  }
-  else{
+  if(dateIn != ""){
     let date = dateIn.toDate();
 
     let month = date.getUTCMonth() + 1;
@@ -87,5 +84,8 @@ function convertDay(dateIn){
 
     var dayFormat = year + "-" + month + "-" + day;
     return dayFormat;
+  }
+  else{
+    return "";
   }
 }
