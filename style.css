@@ -78,7 +78,7 @@ main {
 }
 
 .button {
-	padding: 15px;
+	padding: 10px;
 	
 	background-color: #57B;
 	color: #FFF;
@@ -87,7 +87,7 @@ main {
 	border-radius: 10px;
 	
 	text-align: center;
-	font-size: 16px;
+	font-size: 20pt;
 
 	outline: none;
 }
@@ -151,6 +151,8 @@ main {
 
 	padding: 10px;
 	font-size: 20pt;
+
+	margin: 0;
 }
 
 #options {
