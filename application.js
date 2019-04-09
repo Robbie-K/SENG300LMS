@@ -141,7 +141,7 @@ function checkExists(doc1,doc2) {
 // This function adds the user to the new users collection of the database
 function addUser(name, first, last, email, id, pass) {
   return ( database.collection('newUsers').doc(name).set({
-    id: parseInt(id),
+    id: id,
     email: email,
     firstName: first,
     lastName: last,
