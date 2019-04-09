@@ -108,7 +108,7 @@ function searchUser() {
       var lastName = data.lastName;
       globalName = firstName + " " + lastName;
       var searchEntryLower = searchEntry.toLowerCase();
-      var nameLower = name.toLowerCase();
+      var nameLower = globalName.toLowerCase();
 
       if(nameLower.includes(searchEntryLower) == true || nameLower.includes(searchEntryLower) == true){
         var first = data.firstName;
