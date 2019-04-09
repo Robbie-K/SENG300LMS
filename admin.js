@@ -15,75 +15,150 @@ function approveUsers(name) {
     var password = user.get("password");
 
     //Sets the users information into users collection in the database.
-    database.collection("users").doc(firstName + " " + lastName).set({
-      firstName: firstName,
-      lastName: lastName,
-      id: id,
-      email: email,
-      password: password
-    }).then(function() {
-      database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
-        ID1: "",
-        ID2: "",
-        ID3: "",
-        ID4: "",
-        ID5: "",
-        book1Name: "",
-        book2Name: "",
-        book3Name: "",
-        book4Name: "",
-        book5Name: "",
-        booksCheckedOut: 0,
-        dateOut1: "",
-        dateOut2: "",
-        dateOut3: "",
-        dateOut4: "",
-        dateOut5: "",
-        dateRet1: "",
-        dateRet2: "",
-        dateRet3: "",
-        dateRet4: "",
-        dateRet5: "",
-        feesOwed: 0,
-        feesPaid: 0,
-        feesTotal: 0
-      });
-      database.collection('users').doc(name).collection("History").doc("Past").set({});
-
-      //Deletes the user from "newUsers".
-      person.delete();
-      alert(firstName + " " + lastName + " has been successfully approved.");
+    document.getElementById('approve').onclick = function() {
+      database.collection("users").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      }).then(function() {
+          database.collection('newUsers').doc(name).collection("History").doc("Current").set({
+          ID1: "",
+          ID2: "",
+          ID3: "",
+          ID4: "",
+          ID5: "",
+          book1Name: "",
+          book2Name: "",
+          book3Name: "",
+          book4Name: "",
+          book5Name: "",
+          booksCheckedOut: 0,
+          dateOut1: "",
+          dateOut2: "",
+          dateOut3: "",
+          dateOut4: "",
+          dateOut5: "",
+          dateRet1: "",
+          dateRet2: "",
+          dateRet3: "",
+          dateRet4: "",
+          dateRet5: "",
+          feesOwed: 0,
+          feesPaid: 0,
+          feesTotal: 0
+        });
+        database.collection('newUsers').doc(name).collection("History").doc("Past").set({});
     });
+
+    //Deletes the user from "newUsers".
+    user.delete();
+
   });
-};
+
+    database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
+      ID1: "",
+      ID2: "",
+      ID3: "",
+      ID4: "",
+      ID5: "",
+      book1Name: "",
+      book2Name: "",
+      book3Name: "",
+      book4Name: "",
+      book5Name: "",
+      booksCheckedOut: 0,
+      dateOut1: "",
+      dateOut2: "",
+      dateOut3: "",
+      dateOut4: "",
+      dateOut5: "",
+      dateRet1: "",
+      dateRet2: "",
+      dateRet3: "",
+      dateRet4: "",
+      dateRet5: "",
+      feesOwed: 0,
+      feesPaid: 0,
+      feesTotal: 0
+    });
+    database.collection('users').doc(name).collection("History").doc("Past").set({});
+
+    //Deletes the user from "newUsers".
+    person.delete();
+    alert(firstName + " " + lastName + " has been successfully approved.");
+  });
+}
 
 //Allows admin to remove users based on certain criteria.
 function removeUser(name) {
-
+  var USERS = 1;
+  var NEW_USERS = 0;
+  var section = undefined;
   //Checks if the users already exists in the database.
-  if (database.collection("users").doc(name).get().then(doc => {
-    if (doc.exists) {
-      var user = database.collection("users").doc(name);
-    }
-  }));
+  var doc1 = database.collection("users").doc(name);
+  var doc2 = databas.collection("newUsers").doc(name);
 
-  if (database.collection("newUsers").doc(name).get().then(doc => {
-    if (doc.exists) {
-      var user = database.collection("newUsers").doc(name);
-    }
-  }));
+  checkDoc(doc1).then(function (doc){
+    if (doc != undefined) {
+      section = USERS;
+      return doc;
+  } else {
+    checkDoc(doc2).then(function(doc) {
+      if (doc != undefined) {
+        section = NEW_USERS;
+        return doc;
+      };
+    });
+  };
+})
+
 
   //Gets the users information from either "newUsers" or "users".
-  user.get().then(function(user) {
+  .then(function(user) {
     var firstName = user.get("firstName");
     var lastName = user.get("lastName");
     var id = user.get("id");
     var email = user.get("email");
     var password = user.get("password");
+    var hist = user.collection("History");
+    var current = hist.doc("Current");
+    var past = hist.doc("Past");
+
+
+
+
 
     //If the user was in "users" collection, then it moves the information into
     //the "oldUsers" collection.
-    if (user == "users") {
+    if (section == USERS) {
+
+      var id1 = current.get("ID1");
+      var id2 = current.get("ID2");
+      var id3 = current.get("ID3 ");
+      var id4 = current.get("ID4");
+      var id5 = current.get("ID5");
+      var book1Name = current.get("book1Name");
+      var book2Name = current.get("book2Name");
+      var book3Name = current.get("book3Name");
+      var book4Name = current.get("book4Name");
+      var book5Name = current.get("book5Name");
+      var numBooks = current.get("booksCheckedOut");
+      var dateOut1 = current.get("dateOut1");
+      var dateOut2 = current.get("dateOut2");
+      var dateOut3 = current.get("dateOut3");
+      var dateOut4 = current.get("dateOut4");
+      var dateOut5 = current.get("dateOut5");
+      var dateRet1 = current.get("dateRet1");
+      var dateRet2 = current.get("dateRet2");
+      var dateRet3 = current.get("dateRet3");
+      var dateRet4 = current.get("dateRet4");
+      var dateRet5 = current.get("dateRet5");
+      var feesOwed = current.get("feesOwed");
+      var feesPaid = current.get("feesPaid");
+      var feesTotal = current.get("feesTotal");
+
       database.collection("oldUsers").doc(firstName + " " + lastName).set({
         firstName: firstName,
         lastName: lastName,
@@ -91,10 +166,39 @@ function removeUser(name) {
         email: email,
         password: password
       });
-    }
 
-    //Deletes the user information from its collection.
-    user.delete();
+      database.collection(oldUsers").doc(firstName + " " + lastName).collection("History").doc("Current")
+      .set( {
+        ID1: id1,
+        ID2: id2,
+        ID3: id3,
+        ID4: id4,
+        ID5: id5,
+        book1Name: book1Name,
+        book2Name: book2Name,
+        book3Name: book3Name,
+        book4Name: book4Name,
+        book5Name: book5Name,
+        booksCheckedOut: numBooks,
+        dateOut1: dateOut1,
+        dateOut2: dateOut2,
+        dateOut3: dateOut3,
+        dateOut4: dateOut4,
+        dateOut5: dateOut5,
+        dateRet1: dateRet1,
+        dateRet2: dateRet2,
+        dateRet3: dateRet3,
+        dateRet4: dateRet4,
+        dateRet5: dateRet5,
+        feesOwed: feesOwed,
+        feesPaid: feesPaid,
+        feesTotal: feesTotal
+      }).then(user.delete(););
+    } else {
+      user.delete();
+    };
+
+
   });
 }
 
@@ -149,4 +253,14 @@ function viewHistory() {
 //Allows admin to order new products for the library.
 function orderProducts() {
 
+}
+
+function checkDoc(doc1) {
+  return (doc1.get().then(function(doc) {
+    if (doc.exists) {
+      return doc;
+    }  else {
+      return undefined;
+    };
+  }));
 }
