@@ -13,7 +13,7 @@
 		<div class="navBar">
 			<a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
 			<a href="#">Materials</a>	<!--Materials link-->
-			<a href="userInfo.html">Account</a> <!--Account info-->
+			<a href="#" onclick="checkUser()">Account</a> <!--Account info-->
 			<a href="index.html" onclick="logout()">Logout</a>	<!--Sign in link-->
 		</div>
 
@@ -55,6 +55,16 @@
 
 	</body>
 	<script src="script.js"></script>
+	<script>
+		function checkUser() {
+			var userId = getUserId();
+			if (userId >= 10099900 && userId < 10099999) {
+				window.location.href = "admin.html?userId=" + userId;
+			} else {
+				window.location.href = "userInfo.html?userId=" + userId;
+			}
+		};
+	</script>
 
 	<!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
