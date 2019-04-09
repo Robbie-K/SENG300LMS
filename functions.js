@@ -353,6 +353,7 @@ function changeQuery(criteria, bookName, bookID){
       if set- find clear spot and put book information there
       */
       var findCriteria;
+      var changeVal = 0;
 
       if(criteria == "clear"){
         dateFormat = "";
@@ -361,10 +362,12 @@ function changeQuery(criteria, bookName, bookID){
         bookID = "";
         newBooksCheckedOut = newBooksCheckedOut - 1;
         findCriteria = bookName;
+        changeVal = 1;
       }
       else{
         newBooksCheckedOut = newBooksCheckedOut + 1;
         findCriteria = "";
+        changeVal = -1;
       }
 
       if(newBooksCheckedOut > 5){
@@ -373,6 +376,7 @@ function changeQuery(criteria, bookName, bookID){
       }
 
       if(book1Name == findCriteria){
+        updateBookQuantity(bookName, changeVal);
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID1: bookID,
           book1Name: newBookInfo,
@@ -382,6 +386,7 @@ function changeQuery(criteria, bookName, bookID){
         });
       }
       else if(book2Name == findCriteria){
+        updateBookQuantity(bookName, changeVal);
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID2: bookID,
           book2Name: newBookInfo,
@@ -391,6 +396,7 @@ function changeQuery(criteria, bookName, bookID){
         });
       }
       else if(book3Name == findCriteria){
+        updateBookQuantity(bookName, changeVal);
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID3: bookID,
           book3Name: newBookInfo,
@@ -400,6 +406,7 @@ function changeQuery(criteria, bookName, bookID){
         });
       }
       else if(book4Name == findCriteria){
+        updateBookQuantity(bookName, changeVal);
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID4: bookID,
           book4Name: newBookInfo,
@@ -409,6 +416,7 @@ function changeQuery(criteria, bookName, bookID){
         });
       }
       else if(book5Name == findCriteria){
+        updateBookQuantity(bookName, changeVal);
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID5: bookID,
           book5Name: newBookInfo,
@@ -421,4 +429,17 @@ function changeQuery(criteria, bookName, bookID){
     });
   });
 
+}
+
+function updateBookQuantity(bookName, changeVal){
+  var info = database.collection("books").doc(bookName);
+  info.get().then(function(doc) {
+    var quantity = doc.get("Quantity");
+    var quantityNum = parseInt(quantity);
+    var updateQuantity = quantityNum + changeVal;
+    var updateQuantity = updateQuantity.toString();
+    database.collection("books").doc(bookName).update({
+      Quantity: updateQuantity
+    });
+  });
 }
