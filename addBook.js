@@ -71,6 +71,7 @@ function createNewBook() {
 	let s_book_author = document.getElementById("book_author").value;
 	let s_book_published = document.getElementById("book_published").value;
 	let s_book_quantity = document.getElementById("book_quantity").value;
+	let s_book_genre = document.getElementById("book_quantity").value;
 
 	// Get reference to the collection 'books'
 	let books = database.collection('books');
@@ -84,8 +85,9 @@ function createNewBook() {
 		books.doc(s_book_name).set({
 			book_name: s_book_name,
 			book_author: s_book_author,
-			book_published: s_book_published,
-			book_quantity: s_book_quantity,
+			Published: s_book_published,
+			Quantity: s_book_quantity,
+			Genre: s_book_genre,
 			book_id: size
 		}).then(function() {
 			// Add a history collection to the book to track who has which one.
