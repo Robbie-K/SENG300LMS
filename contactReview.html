@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<!--Creates name for the tab on the browser and adds an icon-->
+<head>
+  <title> UofT Library </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/ico" href="UofT.png">
+</head>
+
+<body onload="reviewContactForms()">
+  <div class="wrapper">
+		<header>
+			<img src="UTL-logo-blue.png" width="450" height="100"></img>
+		</header>
+
+    <!--Displays navigation bar-->
+    <div class="navBar">
+      <a href="search.html">Home</a>
+      <a href="admin.html" onclick="">Users</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+    <main>
+      <div id="centered">
+        <!--Creates table titles for contact forms-->
+    		<table id = "contactTable" class="table">
+    			<tr>
+    				<th>Email</th>
+    				<th>Message</th>
+            <th>Remove</th>
+    			</tr>
+    		</table>
+      </div>
+    </main>
+
+    <footer>
+    </footer>
+  </div>
+</body>
+
+<script>
+  function logout() {
+    var url = window.location.toString();
+    url = url.split("?")[0];
+
+    window.location.href = "index.html";
+  }
+</script>
+
+<!--script for the database-->
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+  <script type="text/JavaScript" src="script.js"></script>
+  <script type="text/JavaScript" src="admin.js"></script>
+  <script type="text/JavaScript" src="functions.js"></script>
+  <script src="userId.js"></script>
+  <script src="genreButton.js"></script>
+</html>

@@ -23,7 +23,7 @@ function approveUsers(name) {
         email: email,
         password: password
       }).then(function() {
-          database.collection('newUsers').doc(name).collection("History").doc("Current").set({
+        database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
           ID1: "",
           ID2: "",
           ID3: "",
@@ -49,94 +49,71 @@ function approveUsers(name) {
           feesPaid: 0,
           feesTotal: 0
         });
-        database.collection('newUsers').doc(name).collection("History").doc("Past").set({});
-    });
+        database.collection('users').doc(name).collection("History").doc("Past").set({});
 
-    //Deletes the user from "newUsers".
-    user.delete();
-
+        //Deletes the user from "newUsers".
+        person.delete();
+        alert(firstName + " " + lastName + " has been successfully approved.");
+      });
+    };
   });
-
-    database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
-      ID1: "",
-      ID2: "",
-      ID3: "",
-      ID4: "",
-      ID5: "",
-      book1Name: "",
-      book2Name: "",
-      book3Name: "",
-      book4Name: "",
-      book5Name: "",
-      booksCheckedOut: 0,
-      dateOut1: "",
-      dateOut2: "",
-      dateOut3: "",
-      dateOut4: "",
-      dateOut5: "",
-      dateRet1: "",
-      dateRet2: "",
-      dateRet3: "",
-      dateRet4: "",
-      dateRet5: "",
-      feesOwed: 0,
-      feesPaid: 0,
-      feesTotal: 0
-    });
-    database.collection('users').doc(name).collection("History").doc("Past").set({});
-
-    //Deletes the user from "newUsers".
-    person.delete();
-    alert(firstName + " " + lastName + " has been successfully approved.");
-  });
-}
+};
 
 //Allows admin to remove users based on certain criteria.
 function removeUser(name) {
   var USERS = 1;
   var NEW_USERS = 0;
   var section = undefined;
+
+
   //Checks if the users already exists in the database.
   var doc1 = database.collection("users").doc(name);
-  var doc2 = databas.collection("newUsers").doc(name);
+  var doc2 = database.collection("newUsers").doc(name);
 
   checkDoc(doc1).then(function (doc){
     if (doc != undefined) {
       section = USERS;
-      return doc;
-  } else {
-    checkDoc(doc2).then(function(doc) {
-      if (doc != undefined) {
-        section = NEW_USERS;
-        return doc;
-      };
-    });
-  };
-})
-
-
+    } else {
+      // checkDoc(doc2).then(function(doc) {
+      //   if (doc != undefined) {
+      section = NEW_USERS;
+    };
+  })
   //Gets the users information from either "newUsers" or "users".
-  .then(function(user) {
-    var firstName = user.get("firstName");
-    var lastName = user.get("lastName");
-    var id = user.get("id");
-    var email = user.get("email");
-    var password = user.get("password");
-    var hist = user.collection("History");
-    var current = hist.doc("Current");
-    var past = hist.doc("Past");
+  .then(function() {
+    if (section == USERS) {
+      var doc = database.collection("users").doc(name);
+    } else {
+      var doc = database.collection("newUsers").doc(name);
+    };
+    return doc.get();
+  }).then(function(doc) {
+    var firstName = doc.get("firstName");
+    var lastName = doc.get("lastName");
+    var id = doc.get("id");
+    var email = doc.get("email");
+    var password = doc.get("password");
+    if (section == USERS) {
+      database.collection("oldUsers").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      });
+      return database.collection("users").doc(name).collection("History").doc("Current").get()
+    } else {
+      return undefined;
+    }
 
-
-
-
-
+  }).then(function(current) {
     //If the user was in "users" collection, then it moves the information into
     //the "oldUsers" collection.
-    if (section == USERS) {
+    if (current != undefined) {
 
       var id1 = current.get("ID1");
       var id2 = current.get("ID2");
-      var id3 = current.get("ID3 ");
+      var id3 = current.get("ID3");
       var id4 = current.get("ID4");
       var id5 = current.get("ID5");
       var book1Name = current.get("book1Name");
@@ -159,15 +136,9 @@ function removeUser(name) {
       var feesPaid = current.get("feesPaid");
       var feesTotal = current.get("feesTotal");
 
-      database.collection("oldUsers").doc(firstName + " " + lastName).set({
-        firstName: firstName,
-        lastName: lastName,
-        id: id,
-        email: email,
-        password: password
-      });
 
-      database.collection(oldUsers").doc(firstName + " " + lastName).collection("History").doc("Current")
+
+      database.collection("oldUsers").doc(name).collection("History").doc("Current")
       .set( {
         ID1: id1,
         ID2: id2,
@@ -193,11 +164,10 @@ function removeUser(name) {
         feesOwed: feesOwed,
         feesPaid: feesPaid,
         feesTotal: feesTotal
-      }).then(user.delete(););
+      }).then(doc1.delete());
     } else {
-      user.delete();
+      doc2.delete();
     };
-
 
   });
 }
@@ -258,7 +228,7 @@ function orderProducts() {
 function checkDoc(doc1) {
   return (doc1.get().then(function(doc) {
     if (doc.exists) {
-      return doc;
+      return doc1;
     }  else {
       return undefined;
     };

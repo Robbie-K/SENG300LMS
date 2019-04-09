@@ -28,6 +28,7 @@ function userInfo() {
       var dateOut5 = doc.get("dateOut5"); //book 5 checkout date
       var dateRet5 = doc.get("dateRet5"); //book 5 return date
 
+
       /*
       Inputs each coresponding variable into the proper place in
       the user's information table displayed in userInfo.html
@@ -40,20 +41,19 @@ function userInfo() {
       document.getElementById("book3Name").innerHTML = book3Name;
       document.getElementById("book4Name").innerHTML = book4Name;
       document.getElementById("book5Name").innerHTML = book5Name;
-      document.getElementById("dateOut1").innerHTML = dateOut1;
-      document.getElementById("dateOut2").innerHTML = dateOut2;
-      document.getElementById("dateOut3").innerHTML = dateOut3;
-      document.getElementById("dateOut4").innerHTML = dateOut4;
-      document.getElementById("dateOut5").innerHTML = dateOut5;
-      document.getElementById("dateRet1").innerHTML = dateRet1;
-      document.getElementById("dateRet2").innerHTML = dateRet2;
-      document.getElementById("dateRet3").innerHTML = dateRet3;
-      document.getElementById("dateRet4").innerHTML = dateRet4;
-      document.getElementById("dateRet5").innerHTML = dateRet4;
+      document.getElementById("dateOut1").innerHTML = convertDay(dateOut1);
+      document.getElementById("dateOut2").innerHTML = convertDay(dateOut2);
+      document.getElementById("dateOut3").innerHTML = convertDay(dateOut3);
+      document.getElementById("dateOut4").innerHTML = convertDay(dateOut4);
+      document.getElementById("dateOut5").innerHTML = convertDay(dateOut5);
+      document.getElementById("dateRet1").innerHTML = convertDay(dateRet1);
+      document.getElementById("dateRet2").innerHTML = convertDay(dateRet2);
+      document.getElementById("dateRet3").innerHTML = convertDay(dateRet3);
+      document.getElementById("dateRet4").innerHTML = convertDay(dateRet4);
+      document.getElementById("dateRet5").innerHTML = convertDay(dateRet5);
     });
   });
 }
-
 
 /*
   Takes in user's ID, and returns their full name
@@ -72,5 +72,20 @@ function getName(userID){
       return userName;  //return full name
     }
   });
+}
 
+function convertDay(dateIn){
+  if(dateIn != ""){
+    let date = dateIn.toDate();
+
+    let month = date.getUTCMonth() + 1;
+    let day = date.getUTCDate();
+    let year = date.getUTCFullYear();
+
+    var dayFormat = year + "-" + month + "-" + day;
+    return dayFormat;
+  }
+  else{
+    return "";
+  }
 }

@@ -78,7 +78,7 @@ main {
 }
 
 .button {
-	padding: 15px;
+	padding: 10px;
 	
 	background-color: #57B;
 	color: #FFF;
@@ -87,7 +87,7 @@ main {
 	border-radius: 10px;
 	
 	text-align: center;
-	font-size: 16px;
+	font-size: 20pt;
 
 	outline: none;
 }
@@ -151,6 +151,8 @@ main {
 
 	padding: 10px;
 	font-size: 20pt;
+
+	margin: 0;
 }
 
 #options {
@@ -186,7 +188,7 @@ main {
 
 /*Style the nav bar links*/
 .navBar a {
-  float: left;	/*Cells left aligned*/
+  float: right;	/*Cells left aligned*/
   display: block;	/*Makes whole cell clickable*/
   color: #fff;	/*Colour for unselected text in nav bar*/
   text-align: center; /*Center text in cell*/
