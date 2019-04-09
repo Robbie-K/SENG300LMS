@@ -188,7 +188,7 @@ main {
 
 /*Style the nav bar links*/
 .navBar a {
-  float: right;	/*Cells left aligned*/
+  float: left;	/*Cells left aligned*/
   display: block;	/*Makes whole cell clickable*/
   color: #fff;	/*Colour for unselected text in nav bar*/
   text-align: center; /*Center text in cell*/
