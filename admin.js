@@ -73,12 +73,12 @@ function removeUser(name) {
   checkDoc(doc1).then(function (doc){
     if (doc != undefined) {
       section = USERS;
-  } else {
-    // checkDoc(doc2).then(function(doc) {
-    //   if (doc != undefined) {
-        section = NEW_USERS;
-      };
-    })
+    } else {
+      // checkDoc(doc2).then(function(doc) {
+      //   if (doc != undefined) {
+      section = NEW_USERS;
+    };
+  })
   //Gets the users information from either "newUsers" or "users".
   .then(function() {
     if (section == USERS) {
@@ -86,55 +86,55 @@ function removeUser(name) {
     } else {
       var doc = database.collection("newUsers").doc(name);
     };
-  return doc.get();
-}).then(function(doc) {
-  var firstName = doc.get("firstName");
-  var lastName = doc.get("lastName");
-  var id = doc.get("id");
-  var email = doc.get("email");
-  var password = doc.get("password");
-  if (section == USERS) {
-    database.collection("oldUsers").doc(firstName + " " + lastName).set({
-      firstName: firstName,
-      lastName: lastName,
-      id: id,
-      email: email,
-      password: password
-    });
-    return database.collection("users").doc(name).collection("History").doc("Current").get()
-  } else {
-    return undefined;
-  }
+    return doc.get();
+  }).then(function(doc) {
+    var firstName = doc.get("firstName");
+    var lastName = doc.get("lastName");
+    var id = doc.get("id");
+    var email = doc.get("email");
+    var password = doc.get("password");
+    if (section == USERS) {
+      database.collection("oldUsers").doc(firstName + " " + lastName).set({
+        firstName: firstName,
+        lastName: lastName,
+        id: id,
+        email: email,
+        password: password
+      });
+      return database.collection("users").doc(name).collection("History").doc("Current").get()
+    } else {
+      return undefined;
+    }
 
-}).then(function(current) {
-  //If the user was in "users" collection, then it moves the information into
-  //the "oldUsers" collection.
-  if (current != undefined) {
+  }).then(function(current) {
+    //If the user was in "users" collection, then it moves the information into
+    //the "oldUsers" collection.
+    if (current != undefined) {
 
-    var id1 = current.get("ID1");
-    var id2 = current.get("ID2");
-    var id3 = current.get("ID3");
-    var id4 = current.get("ID4");
-    var id5 = current.get("ID5");
-    var book1Name = current.get("book1Name");
-    var book2Name = current.get("book2Name");
-    var book3Name = current.get("book3Name");
-    var book4Name = current.get("book4Name");
-    var book5Name = current.get("book5Name");
-    var numBooks = current.get("booksCheckedOut");
-    var dateOut1 = current.get("dateOut1");
-    var dateOut2 = current.get("dateOut2");
-    var dateOut3 = current.get("dateOut3");
-    var dateOut4 = current.get("dateOut4");
-    var dateOut5 = current.get("dateOut5");
-    var dateRet1 = current.get("dateRet1");
-    var dateRet2 = current.get("dateRet2");
-    var dateRet3 = current.get("dateRet3");
-    var dateRet4 = current.get("dateRet4");
-    var dateRet5 = current.get("dateRet5");
-    var feesOwed = current.get("feesOwed");
-    var feesPaid = current.get("feesPaid");
-    var feesTotal = current.get("feesTotal");
+      var id1 = current.get("ID1");
+      var id2 = current.get("ID2");
+      var id3 = current.get("ID3");
+      var id4 = current.get("ID4");
+      var id5 = current.get("ID5");
+      var book1Name = current.get("book1Name");
+      var book2Name = current.get("book2Name");
+      var book3Name = current.get("book3Name");
+      var book4Name = current.get("book4Name");
+      var book5Name = current.get("book5Name");
+      var numBooks = current.get("booksCheckedOut");
+      var dateOut1 = current.get("dateOut1");
+      var dateOut2 = current.get("dateOut2");
+      var dateOut3 = current.get("dateOut3");
+      var dateOut4 = current.get("dateOut4");
+      var dateOut5 = current.get("dateOut5");
+      var dateRet1 = current.get("dateRet1");
+      var dateRet2 = current.get("dateRet2");
+      var dateRet3 = current.get("dateRet3");
+      var dateRet4 = current.get("dateRet4");
+      var dateRet5 = current.get("dateRet5");
+      var feesOwed = current.get("feesOwed");
+      var feesPaid = current.get("feesPaid");
+      var feesTotal = current.get("feesTotal");
 
 
 
