@@ -161,7 +161,7 @@ function reviewContactForms() {
       var cell2 = row.insertCell(2);
       cell0.innerHTML = email;
       cell1.innerHTML = message;
-      createButton(cell2, 0, 3, "", "");
+      createButton(cell2, 0, 4, "", "");
     });
     table.style.display = "table";
   });
@@ -242,6 +242,11 @@ function createButton(cell, quantity, type, name, bookID){
   else if (type == 3) {
     button.innerHTML = "Remove";
     button.onclick = function() {removeUser(name);};
+    button.className = "genreButton redButton";
+  }
+  else if (type == 4) {
+    button.innerHTML = "Remove";
+    button.onclick = function() {removeMessage();};
     button.className = "genreButton redButton";
   }
   cell.appendChild(button);
