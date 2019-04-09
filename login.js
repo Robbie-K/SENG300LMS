@@ -7,7 +7,6 @@ function logIn() {
 	let email = document.getElementById('email');
 	let password = document.getElementById('password');
 
-
 	let success;
 
 	let userQuery = database.collection("users").where("email", "==", email.value);
@@ -32,8 +31,15 @@ function logIn() {
 				email.value = "";
 				password.value = "";
 			}
-
 		}
 	});
-
 };
+
+// makes it so that the search bar activitates when they hit "enter"
+var input = document.getElementById("password");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("log").click();
+  }
+});

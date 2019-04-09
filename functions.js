@@ -124,7 +124,6 @@ function searchUser() {
         var cell2 = row.insertCell(2);
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
-        var cell5 = row.insertCell(5);
         cell0.innerHTML = first + " " + last;
         cell1.innerHTML = id;
         cell2.innerHTML = email;
@@ -137,6 +136,32 @@ function searchUser() {
           createButton(cell4, 0, 3, globalName, "");
         }
       }
+    });
+    table.style.display = "table";
+  });
+}
+
+function reviewContactForms() {
+  var form = database.collection("contact");
+  var table = document.getElementById("contactTable");
+
+  removeRows("contactTable");
+
+  var rowCount = 1;
+  form.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function (documentSnapshot){
+      var data = documentSnapshot.data();
+      var email = data.email;
+      var message = data.message;
+
+      var row = table.insertRow(rowCount);
+      rowCount = rowCount + 1;
+      var cell0 = row.insertCell(0);
+      var cell1 = row.insertCell(1);
+      var cell2 = row.insertCell(2);
+      cell0.innerHTML = email;
+      cell1.innerHTML = message;
+      createButton(cell2, 0, 4, "", "");
     });
     table.style.display = "table";
   });
@@ -217,6 +242,11 @@ function createButton(cell, quantity, type, name, bookID){
   else if (type == 3) {
     button.innerHTML = "Remove";
     button.onclick = function() {removeUser(name);};
+    button.className = "genreButton redButton";
+  }
+  else if (type == 4) {
+    button.innerHTML = "Remove";
+    button.onclick = function() {removeMessage();};
     button.className = "genreButton redButton";
   }
   cell.appendChild(button);
