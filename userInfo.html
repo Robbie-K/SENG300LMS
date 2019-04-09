@@ -6,72 +6,80 @@
 		<link rel="icon" type="image/ico" href="UofT.png">
 	</head>
 	<body onload="userInfo()">
-	  <center>
-	    <img src="UTL-logo-blue.png" width="900" height="200"></img><br/><!--Displays UofT banner on top of page with respective dimensions-->
-		  <br>
-		</center>
-		  <!--Create nav bar links-->
-		  <div class="navBar">
-		    <a href="search.html">Home</a>	<!--Home page link-->
-		    <a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
-		    <a href="#">Materials</a>	<!--Materials link-->
-		    <a href="index.html">Logout</a>	<!--Sign in link-->
-		  </div>
-			<br>
+		<div class="wrapper">
+			<header>
+				<!--Displays UofT banner on top of page with respective dimensions-->
+			    <img src="UTL-logo-blue.png" width="450" height="100"></img><br>
+			</header>
+			<div class="navBar">
+				<!--Create nav bar links-->
+				<a href="search.html">Home</a>	<!--Home page link-->
+				<a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
+				<a href="#">Materials</a>	<!--Materials link-->
+				<a href="#" onclick="logout()">Logout</a>	<!--Sign in link-->
+			</div>
+			<main>
+				<table id=infoTable>
+					<tr>
+						<th colspan="6">Current Books Borrowed</th>	<!--Displays current page-->
+					</tr>
+					<tr>
+						<td>Books Borrowed</td>
+						<td id=book1Name></td>
+						<td id=book2Name></td>
+						<td id=book3Name></td>
+						<td id=book4Name></td>
+						<td id=book5Name></td>
+					</tr>
+					<tr>
+						<td>Date Checked Out (DD/MM/YY)</td>
+						<td id=dateOut1></td>
+						<td id=dateOut2></td>
+						<td id=dateOut3></td>
+						<td id=dateOut4></td>
+						<td id=dateOut5></td>
+					</tr>
+					<tr>
+						<td>Return Date (DD/MM/YY)</td>
+						<td id=dateRet1></td>
+						<td id=dateRet2></td>
+						<td id=dateRet3></td>
+						<td id=dateRet4></td>
+						<td id=dateRet5></td>
+					</tr>
+				</table>
 
-		  <!--Displays body text-->
-			<table id=infoTable>
-			  <tr>
-			    <th colspan="6">Current Books Borrowed</th>	<!--Displays current page-->
-			  </tr>
-			  <tr>
-			    <td>Books Borrowed</td>
-			    <td id=book1Name></td>
-					<td id=book2Name></td>
-					<td id=book3Name></td>
-			    <td id=book4Name></td>
-			    <td id=book5Name></td>
-			  </tr>
-				<tr>
-					<td>Date Checked Out (DD/MM/YY)</td>
-					<td id=dateOut1></td>
-			    <td id=dateOut2></td>
-					<td id=dateOut3></td>
-					<td id=dateOut4></td>
-					<td id=dateOut5></td>
-				</tr>
-			  <tr>
-			  	<td>Return Date (DD/MM/YY)</td>
-			    <td id=dateRet1></td>
-			    <td id=dateRet2></td>
-					<td id=dateRet3></td>
-					<td id=dateRet4></td>
-					<td id=dateRet5></td>
-		  	</tr>
-			</table>
+				<br>
 
-			<br>
-
-			<!--Past user history-->
-			<table id=infoTable>
-			  <tr>
-			    <th colspan="6">Fees</th>
-			  </tr>
-			  <tr>
-			    <td>Owed Fees ($CND):</td>
-			    <td id=feesOwed></td>
-					<td>Paid Fees ($CND):</td>
-			    <td id=feesPaid></td>
-					<td>Total Fees ($CND):</td>
-			    <td id=feesTotal></td>
-			  </tr>
-			</table>
-
-			<br>
-			<br>
-
+				<!--Past user history-->
+				<table id=infoTable>
+					<tr>
+						<th colspan="6">Fees</th>
+					</tr>
+					<tr>
+						<td>Owed Fees ($CAD):</td>
+						<td id=feesOwed></td>
+						<td>Paid Fees ($CAD):</td>
+						<td id=feesPaid></td>
+						<td>Total Fees ($CAD):</td>
+						<td id=feesTotal></td>
+					</tr>
+				</table>
+			</main>
+			<footer>
+			</footer>
+		</div>
 	</body>
 	<script src="script.js"></script>
+
+	<script>
+	  function logout() {
+	    var url = window.location.toString();
+	    url = url.split("?")[0];
+
+	    window.location.href = "index.html";
+	  }
+	</script>
 
 	<!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>

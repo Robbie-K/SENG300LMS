@@ -3,11 +3,11 @@
 
 //Allows admin to approve user applications.
 function approveUsers(name) {
-  var user = database.collection("newUsers").doc(name);
+  var person = database.collection("newUsers").doc(name);
 
   //Gets the current users information from newUsers to be able to transfer it
   //to "users".
-  user.get().then(function(user) {
+  person.get().then(function(user) {
     var firstName = user.get("firstName");
     var lastName = user.get("lastName");
     var id = user.get("id");
@@ -15,31 +15,63 @@ function approveUsers(name) {
     var password = user.get("password");
 
     //Sets the users information into users collection in the database.
-    document.getElementById('approve').onclick = function() {
-      database.collection("users").doc(firstName + " " + lastName).set({
-        firstName: firstName,
-        lastName: lastName,
-        id: id,
-        email: email,
-        password: password
+    database.collection("users").doc(firstName + " " + lastName).set({
+      firstName: firstName,
+      lastName: lastName,
+      id: id,
+      email: email,
+      password: password
+    }).then(function() {
+      database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
+        ID1: "",
+        ID2: "",
+        ID3: "",
+        ID4: "",
+        ID5: "",
+        book1Name: "",
+        book2Name: "",
+        book3Name: "",
+        book4Name: "",
+        book5Name: "",
+        booksCheckedOut: 0,
+        dateOut1: "",
+        dateOut2: "",
+        dateOut3: "",
+        dateOut4: "",
+        dateOut5: "",
+        dateRet1: "",
+        dateRet2: "",
+        dateRet3: "",
+        dateRet4: "",
+        dateRet5: "",
+        feesOwed: 0,
+        feesPaid: 0,
+        feesTotal: 0
       });
-    }
+      database.collection('users').doc(name).collection("History").doc("Past").set({});
 
-    //Deletes the user from "newUsers".
-    user.delete();
+      //Deletes the user from "newUsers".
+      person.delete();
+      alert(firstName + " " + lastName + " has been successfully approved.");
+    });
   });
-}
+};
 
 //Allows admin to remove users based on certain criteria.
-function removeUser() {
-  var name = document.getElementById('search').value;
+function removeUser(name) {
 
   //Checks if the users already exists in the database.
-  if (database.collection("users").doc(name).exists) {
-    var user = database.collection("users").doc(name);
-  } else if (database.collection("newUsers").doc(name).exists) {
-    var user = database.collection("newUsers").doc(name);
-  }
+  if (database.collection("users").doc(name).get().then(doc => {
+    if (doc.exists) {
+      var user = database.collection("users").doc(name);
+    }
+  }));
+
+  if (database.collection("newUsers").doc(name).get().then(doc => {
+    if (doc.exists) {
+      var user = database.collection("newUsers").doc(name);
+    }
+  }));
 
   //Gets the users information from either "newUsers" or "users".
   user.get().then(function(user) {
@@ -89,7 +121,7 @@ function addDamagedBooks() {
         book_author: author,
         book_id: id,
       });
-    }
+    });
 
     //Reduce the quantity of that book by 1 as it is now damaged.
     quantity -= 1;

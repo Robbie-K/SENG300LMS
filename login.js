@@ -11,7 +11,6 @@ function logIn() {
 	let success;
 
 	let userQuery = database.collection("users").where("email", "==", email.value);
-
 	userQuery.get().then(function(snapshot) {
 		if (!snapshot.empty) {
 			let user = snapshot.docs[0];
@@ -20,10 +19,15 @@ function logIn() {
 			if (fetchedPassword == password.value) {
 				let userId = user.get("id");
 
-				window.location.href = "search.html?userId=" + userId;
+				if (userId >= 10099900 && userId < 10099999) {
+					window.location.href = "admin.html?userId=" + userId;
+				} else {
+					window.location.href = "search.html?userId=" + userId;
+				}
+
 			} else {
-				let errorSpan = document.getElementById("error");
-				errorSpan.innerHTML = "Email or password are invalid.";
+				let errorSpan = document.getElementById("wrongInfo");
+				errorSpan.style.display = 'inline';
 
 				email.value = "";
 				password.value = "";
@@ -31,6 +35,5 @@ function logIn() {
 
 		}
 	});
-
 
 };

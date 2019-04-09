@@ -1,9 +1,126 @@
-<<<<<<< HEAD
 body {
 	margin: 0;
 
 	background-color: #EEE;
 	-webkit-transition: background-color 0.5s;
+
+	width: 100%;
+	height: 100%;
+}
+
+input {
+	border-radius: 15px;
+	border: 1px solid #AAA;
+	margin: 5px;
+	padding: 5px;
+
+	min-width: 225px;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 2pt 1pt #ACF;
+}
+
+input[type=button]:hover {
+	background-color: #ACF;
+	cursor: pointer;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+
+    /* Direction of the items, can be row or column */
+    flex-direction: column;
+}
+
+header,
+footer {
+	background-color: #CCC;
+	text-align: center;
+    height: auto;
+    padding: 10px;
+}
+
+main {
+    flex: 1;
+	padding: 25px;
+
+	text-align: center;
+	background-color: #EEE;
+
+	border-top: 1px solid #00F;
+	border-bottom: 1px solid #00F;
+
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.genreButton {
+	height: 25px;
+	width: 100px;
+	border-radius: 10px;
+
+	color: #FFF;
+
+	background-color: #57B;
+	border: 1px solid #000;
+
+	outline: none;
+	cursor: pointer;
+}
+
+.active {
+	background-color: #9CF;
+	border-color: #00A;
+	color: #000;
+}
+
+.button {
+	padding: 15px;
+	
+	background-color: #57B;
+	color: #FFF;
+
+	border: 1px solid #000;
+	border-radius: 10px;
+	
+	text-align: center;
+	font-size: 16px;
+
+	outline: none;
+}
+
+.button:hover {
+	background-color: #79D;
+	cursor: pointer;
+}
+
+.genreButton:hover {
+	background-color: #79E;
+}
+
+.redButton {
+	background-color: #E55;
+}
+
+.redButton:hover {
+	background-color: #F77;
+}
+
+.greenButton {
+	background-color: #5E5;
+}
+
+.greenButton:hover {
+	background-color: #7F7;
+}
+
+#wrongInfo {
+    font-size: 10pt;
+    display: none;
+    color: red;
 }
 
 #centered {
@@ -64,7 +181,7 @@ body {
 /*Style for navigation bar and cells*/
 .navBar {
   overflow: hidden;
-  background-color: #4169e1;	/*U of T blue*/
+  background-color: #036;	/*U of T blue*/
 }
 
 /*Style the nav bar links*/
@@ -79,8 +196,8 @@ body {
 
 /* Change color on hover */
 .navBar a:hover {
-  background-color: #EEE;	/*Background colour for hovered nava bar*/
-  color: blue;	/*Colour for hovered text*/
+  background-color: #258;	/*Background colour for hovered nava bar*/
+
 }
 
 table {
@@ -100,165 +217,22 @@ td {
 	padding: 15px;
 	text-align: left;
 }
-table#infoTable tr:nth-child(even) {
+table tr:nth-child(even) {
 	background-color: #eee;
 }
-table#infoTable tr:nth-child(odd) {
+table tr:nth-child(odd) {
  background-color: #fff;
 }
-table#infoTable th {
+table th {
 	background-color: #AAA;
 	color: Black;
 }
 
-.button {
-	display: flex-inline;
-  background-color: #4CAF50;
-  color: white;
-	border: 1px solid #000;
-	border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+
 
 .table{
 	width: 100%;
-  padding-top: 1%;
-}
-=======
-body {
-	margin: 0;
-
-	font-family: "Comic Sans MS";
-
-	background-color: #EEE;
-	-webkit-transition: background-color 0.5s;
-}
-
-#centered {
-	width: 100%;
-	height: auto;
-
-	margin: 50px auto;
-	text-align: center;
-}
-
-#left-aligned {
-	width: 100%;
-	height: auto;
-
-	margin: 0px 50px 75px 50px;
-	text-align: left;
-}
-
-#user-input {
-	margin: 0;
-}
-
-#search {
-	width: 40%;
-	border-radius: 5px;
-	border: 1px solid #AAA;
-	background-color: #FFF;
-
-	padding: 10px;
-	font-size: 20pt;
-}
-
-#options {
-	margin: 0 auto;
-	display: flex-inline;
-	width: 200px;
-}
-
-.option {
-	flex: 1;
-	margin: 2px;
-	padding: 10px;
-
-	border: 1px solid #000;
-	border-radius: 5px;
-
-	color: #000;
-	font-weight: bold;
-	font-family: arial;
-
-	cursor: pointer;
-}
-
-.option:hover {
-	border-color: #FFF;
-}
-
-/*Style for navigation bar and cells*/
-.navBar {
-  overflow: hidden;
-  background-color: #4169e1;	/*U of T blue*/
-}
-
-/*Style the nav bar links*/
-.navBar a {
-  float: left;	/*Cells left aligned*/
-  display: block;	/*Makes whole cell clickable*/
-  color: #fff;	/*Colour for unselected text in nav bar*/
-  text-align: center; /*Center text in cell*/
-  padding: 14px 20px;	/*Cell Size for nav bar item*/
-  text-decoration: none; /*No style of text*/
-}
-
-/* Change color on hover */
-.navBar a:hover {
-  background-color: #EEE;	/*Background colour for hovered nava bar*/
-  color: blue;	/*Colour for hovered text*/
-}
-
-table {
-	margin: 0 auto;
-	width:90%;
-
-	border: 1px solid black;
-}
-table, th, td {
-	border-collapse: collapse;
-}
-th {
-	padding: 15px;
-	text-align: center;
-}
-td {
-	padding: 15px;
-	text-align: left;
-}
-table#infoTable tr:nth-child(even) {
-	background-color: #eee;
-}
-table#infoTable tr:nth-child(odd) {
- background-color: #fff;
-}
-table#infoTable th {
-	background-color: #AAA;
-	color: Black;
-}
-
-.button {
-	display: flex-inline;
-  background-color: #4CAF50;
-  color: white;
-	border: 1px solid #000;
-	border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.table{
-	width: 100%;
-  padding-top: 1%;
+	padding-top: 1%;
 }
 
 .divFilter{
