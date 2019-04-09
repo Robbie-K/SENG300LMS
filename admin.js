@@ -55,9 +55,9 @@ function approveUsers(name) {
         person.delete();
         make_alert(firstName + " " + lastName + " has been successfully approved.", "");
       });
-    };
+    }
   });
-};
+}
 
 //Allows admin to remove users based on certain criteria.
 function removeUser(name) {
@@ -168,7 +168,7 @@ function removeUser(name) {
     } else {
       doc2.delete();
     };
-
+    make_alert(firstName + " " + lastName + " has been successfully removed.", "");
   });
 }
 
@@ -234,3 +234,8 @@ function checkDoc(doc1) {
     };
   }));
 }
+
+function removeMessage(response) {
+  var contact = database.collection("contact").doc(response);
+  contact.delete();
+};

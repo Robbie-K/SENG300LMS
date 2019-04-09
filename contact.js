@@ -25,11 +25,11 @@ function collectData() {
 	// Add message to database
 	let size;
 	contact.get().then(snap => {
-		// Get the total amount of responses to find out new response #
-		size = snap.size + 1;
+		// // Get the total amount of responses to find out new response #
+		// size = snap.size + 1;
 
 		// Add the book to the database
-		contact.doc("Response" + size).set({
+		contact.doc().set({
 			email: id,
 			message: msg
 		}).then(function() {
@@ -38,5 +38,5 @@ function collectData() {
 
 			make_alert("Message has been submitted. Thanks for the feedback!", "window.location.href = 'index.html';");
 		});
-	});       
+	});
 }
