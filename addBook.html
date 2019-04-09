@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> UofT Add Book </title> <!-- Sets the tab name. -->
+  <link rel="icon" type="image/ico" href="UofT.png"> <!-- Sets the tab icon. -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="wrapper">
+
+	<header>
+		<img src="UTL-logo-blue.png" width="450" height="100"></img><br>
+	</header>
+
+	<div class="navBar">
+		<a href="search.html">Home</a>
+		<a href="#" onclicl="">Order Products</a>
+		<a href="#" onclick="">View History</a>
+		<a href="#" onclick="">Damaged Books</a>
+		<a href="#" onclick="">Users</a>
+		<a href="#" onclick="logout()">Logout</a>
+	</div>
+
+	<main>
+		<b id="title">Check Book Existence</b><br><br>
+		<input required type="text" id="book_name" placeholder="Book Name"><br>
+		<input required type="text" id="book_author" placeholder="Book Author"><br>
+		<span id="extra-spicy" style="display: none;">
+			<input required type="text" id="book_published" placeholder="Year Published"><br>
+			<input required type="text" id="book_quantity" placeholder="Quantity"><br>
+			<input type="button" value="Create" onclick="createNewBook();"><br>
+		</span>
+		<span id="regular-spice">
+			<input type="button" value="Check" onclick="checkBookExistence();"><br>
+		</span>
+
+		<div id="wrongInfo">
+			That book already exists.
+		</div>
+
+	</main>
+
+	<footer>
+	</footer>
+
+</div>
+<center>
+
+</body>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+	<script src="userId.js"></script>
+	<script src="addBook.js"></script>
+</html>
