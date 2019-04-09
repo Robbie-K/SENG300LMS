@@ -21,7 +21,7 @@
     <a href="#" onclick="">View History</a>
     <a href="#" onclick="">Damaged Books</a>
     <a href="#" onclick="">Users</a>
-    <a href="index.html">Logout</a>
+    <a href="#" onclick="logout()">Logout</a>
   </div>
 
   <div id="centered">
@@ -64,11 +64,20 @@
     </br>
 
 </body>
+
+<script>
+  function logout() {
+    var url = window.location.toString();
+    url = url.split("?")[0];
+
+    window.location.href = "index.html";
+  }
+</script>
+
 <!--script for the database-->
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
   <script type="text/JavaScript" src="script.js"></script>
-  <script type="text/JavaScript" src="application.js"></script>
   <script type="text/JavaScript" src="admin.js"></script>
   <script type="text/JavaScript" src="functions.js"></script>
   <script src="userId.js"></script>

@@ -14,7 +14,7 @@
 			<a href="#">Books, CDs, DVDs</a>	<!--Books, CDs, DVDs link-->
 			<a href="#">Materials</a>	<!--Materials link-->
 			<a href="#" onclick="checkUser()">Account</a> <!--Account info-->
-			<a href="index.html" onclick="logout()">Logout</a>	<!--Sign in link-->
+			<a href="#" onclick="logout()">Logout</a>	<!--Sign in link-->
 		</div>
 
 		<main>
@@ -64,13 +64,19 @@
 				window.location.href = "userInfo.html?userId=" + userId;
 			}
 		};
+
+	  function logout() {
+	    var url = window.location.toString();
+	    url = url.split("?")[0];
+
+	    window.location.href = "index.html";
+	  }
 	</script>
 
 	<!--script for the database-->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
 	<script type="text/JavaScript" src="functions.js"></script>
-	<script type="text/JavaScript" src="applications.js"></script>
 	<script type="text/JavaScript" src="userInformation.js"></script>
 	<script src="userId.js"></script>
 	<script src="genreButton.js"></script>

@@ -1,13 +1,13 @@
 // Initialize Firebase server api
-// var config = {
-//   apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
-//   authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
-//   databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
-//   projectId: "librarymanagmentsystem-ce706",
-//   storageBucket: "librarymanagmentsystem-ce706.appspot.com",
-//   messagingSenderId: "533299745296"
-// };
-// firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+  authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+  databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+  projectId: "librarymanagmentsystem-ce706",
+  storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+  messagingSenderId: "533299745296"
+};
+firebase.initializeApp(config);
 
 // setting the filter and database to be global variables to be used
 var database = firebase.firestore();

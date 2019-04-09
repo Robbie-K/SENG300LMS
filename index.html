@@ -5,25 +5,6 @@
 	<title> UofT Login </title>
 	<link rel="icon" type="image/ico" href="UofT.png">
 	<link rel="stylesheet" type="text/css" href="style.css">
-
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
-	<script src="userId.js"></script>
-	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
-			authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
-			databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
-			projectId: "librarymanagmentsystem-ce706",
-			storageBucket: "librarymanagmentsystem-ce706.appspot.com",
-			messagingSenderId: "533299745296"
-		};
-		firebase.initializeApp(config);
-		var database = firebase.firestore();
-	</script>
-	<script type="text/JavaScript" src="login.js"></script>
-
 </head>
 
 <body><!--Body of webpage-->
@@ -46,7 +27,7 @@
 
 			<!--Button to submit login info, and attempt logging in-->
 			<input type="button" id="log" value="Log in" onclick="logIn()"><br>
-			
+
 			<div id="wrongInfo">Email or password are invalid.</div>
 
 			<!--Button that redirects user to create an account page on click-->
@@ -64,7 +45,22 @@
 	</div>
 </body><!--End of body setup-->
 
-<script type="text/JavaScript" src="accounts.json"></script><!--JavaScript used for storing of accounts and their login credentials-->
-<script type="text/JavaScript" src="login.js"></script><!--JavaScript used for ensuring login information entered is correct-->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script src="userId.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyD4WbKGk37cw68SM4zAA9ZakywahHyeyGI",
+		authDomain: "librarymanagmentsystem-ce706.firebaseapp.com",
+		databaseURL: "https://librarymanagmentsystem-ce706.firebaseio.com",
+		projectId: "librarymanagmentsystem-ce706",
+		storageBucket: "librarymanagmentsystem-ce706.appspot.com",
+		messagingSenderId: "533299745296"
+	};
+	firebase.initializeApp(config);
+	var database = firebase.firestore();
+</script>
+<script type="text/JavaScript" src="login.js"></script>
 
 </html><!--End-->
