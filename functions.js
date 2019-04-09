@@ -207,18 +207,7 @@ function createButton(cell, quantity, type, name, bookID){
 
   if (type == 1)
   {
-    if (quantity > 0){
-      button.innerHTML = "Reserve";
-      button.onclick = function() { reserveBook(name, bookID, button); };
-      button.className = "genreButton greenButton";
-      // set a class for a button --> will add css
-      // set an id for the button so that it can be ascessed in other parts of the function
-    }
-    else {
-      button.innerHTML = "Hold";
-      button.setAttribute("onclick", "holdBook(test)");
-      button.className = "genreButton redButton";
-    }
+    findCheckedStatus(name, bookID, quantity, button);
   }
   else if (type == 2) {
     button.innerHTML = "Approve";
@@ -240,19 +229,19 @@ function reserveBook(bookName, bookID, button){
   button.onclick = function() { unreserveBook(name, bookID, button); };
 }
 
-function holdBook(){
+function holdBook(bookName, bookID, button){
   changeQuery("set", bookName, bookID);
   button.innerHTML = "Un-Hold";
   button.onclick = function() { unholdBook(name, bookID, button); };
 }
 
-function unreserveBook(){
+function unreserveBook(bookName, bookID, button){
   changeQuery("clear", bookName, bookID);
   button.innerHTML = "Reserve";
   button.onclick = function() { reserveBook(name, bookID, button); };
 }
 
-function unholdBook(){
+function unholdBook(bookName, bookID, button){
   changeQuery("clear", bookName, bookID);
   button.innerHTML = "Hold";
   button.onclick = function() { holdBook(name, bookID, button); };
@@ -273,31 +262,38 @@ function findCheckedStatus(bookName, bookID, quantity, button){
       var book4Name = doc.get("book4Name");
       var book5Name = doc.get("book5Name");
 
-      if( quatity > 0){
-        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+      if( quantity > 0){
+        if(bookName == book1Name || bookName == book2Name || bookName == book3Name || bookName == book4Name|| bookName == book5Name){
           button.innerHTML = "Un-Reserve";
           button.onclick = function() { unreserveBook(bookName, bookID, button); };
+          button.className = "genreButton greenButton";
+
         }
         else{
           button.innerHTML = "Reserve";
           button.onclick = function() { reserveBook(bookName, bookID, button); };
+          button.className = "genreButton greenButton";
+
         }
       }
       else{
-        if(bookName == book2Name || bookName == book2Name || bookName == book2Name || bookName == book2Name|| bookName == book2Name){
+        if(bookName == book1Name || bookName == book2Name || bookName == book3Name || bookName == book4Name|| bookName == book5Name){
           button.innerHTML = "Un-Hold";
           button.onclick = function() { unholdBook(bookName, bookID, button); };
+          button.className = "genreButton redButton";
+
         }
         else{
           button.innerHTML = "Hold";
           button.onclick = function() { holdBook(bookName, bookID, button); };
+          button.className = "genreButton redButton";
         }
       }
     });
   });
 }
 
-function changeQuery(criteria, bookName, bookId){
+function changeQuery(criteria, bookName, bookID){
   var date = new Date();
   var day = date.getDate();
   var month = date.getMonth();
@@ -322,61 +318,70 @@ function changeQuery(criteria, bookName, bookId){
       var book5Name = doc.get("book5Name");
       var newBooksCheckedOut = doc.get("booksCheckedOut");
       /*
-      either checking if the criteria is to clear the book name or if its to set the right info
+      either checking if the criteria is to clear the book name or if its to set the right info.
+      if clear - find name of book and it's values, replace with empty
+      if set- find clear spot and put book information there
       */
+      var findCriteria;
+
       if(criteria == "clear"){
         dateFormat = "";
         newDate = "";
         newBookInfo = "";
-        bookId = "";
-        dateFormat = "";
-        newDate = "";
+        bookID = "";
         newBooksCheckedOut = newBooksCheckedOut - 1;
+        findCriteria = bookName;
       }
       else{
         newBooksCheckedOut = newBooksCheckedOut + 1;
+        findCriteria = "";
       }
 
-      if(book1Name == criteria){
+      if(newBooksCheckedOut > 5){
+        alert ("YOU CAN ONLY HAVE 5 BOOKS CHECKED OUT");
+        return window.stop();
+      }
+
+      if(book1Name == findCriteria){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID1: bookID,
-          book1Name: bookName,
+          book1Name: newBookInfo,
           dateOut1: dateFormat,
           dateRet1: newDate,
           booksCheckedOut: newBooksCheckedOut
         });
       }
-      else if(book2Name == criteria){
+      else if(book2Name == findCriteria){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID2: bookID,
-          book2Name: bookName,
+          book2Name: newBookInfo,
           dateOut2: dateFormat,
           dateRet2: newDate,
           booksCheckedOut: newBooksCheckedOut
         });
       }
-      else if(book3Name == criteria){
+      else if(book3Name == findCriteria){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID3: bookID,
-          book3Name: bookName,
+          book3Name: newBookInfo,
           dateOut3: dateFormat,
           dateRet3: newDate,
           booksCheckedOut: newBooksCheckedOut
         });
       }
-      else if(book4Name == criteria){
+      else if(book4Name == findCriteria){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID4: bookID,
-          book4Name: bookName,
+          book4Name: newBookInfo,
           dateOut4: dateFormat,
           dateRet4: newDate,
           booksCheckedOut: newBooksCheckedOut
         });
       }
-      else if(book5Name == criteria){
+      else if(book5Name == findCriteria){
         database.collection("users").doc(userName).collection("History").doc("Current").update({
           ID5: bookID,
-          book5Name: bookName,
+          book5Name: newBookInfo,
           dateOut5: dateFormat,
           dateRet5: newDate,
           booksCheckedOut: newBooksCheckedOut
