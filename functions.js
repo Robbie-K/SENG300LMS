@@ -83,27 +83,30 @@ function search(){
   });
 }
 
-
+//Function that searches for users or newUsers.
 function searchUser() {
   var userType;
 
-  if (filter == "books") {
-    userType = "books";
-  } else if (filter == "users") {
+  //Determines what part of the database to use.
+  if (filter == "users") {
     userType = "users";
   } else {
     userType = "newUsers";
   }
 
+  //Gets search bar entry, calls the database information, and creates table.
   var searchEntry = document.getElementById('search').value;
   var user = database.collection(userType);
   var table = document.getElementById("userTable");
 
+  //Removes the rows from the table when the button has been clicked.
   removeRows("userTable");
 
   var rowCount = 1;
   user.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
+
+      //Going through each user/newUser in the database to get their information.
       var data = documentSnapshot.data();
       var firstName = data.firstName;
       var lastName = data.lastName;
@@ -111,6 +114,7 @@ function searchUser() {
       var searchEntryLower = searchEntry.toLowerCase();
       var nameLower = globalName.toLowerCase();
 
+      //Checks to see if the search entry matches any user/newUser in the database.
       if(nameLower.includes(searchEntryLower) == true || nameLower.includes(searchEntryLower) == true){
         var first = data.firstName;
         var last = data.lastName;
@@ -118,6 +122,7 @@ function searchUser() {
         var email = data.email;
         var extra = " ";
 
+        //Adds the users information to the table.
         var row = table.insertRow(rowCount);
         rowCount = rowCount + 1;
         var cell0 = row.insertCell(0);
@@ -129,33 +134,41 @@ function searchUser() {
         cell1.innerHTML = id;
         cell2.innerHTML = email;
 
+        //Determines if users or newUsers is being used to create buttons.
         if (userType == "users") {
-          createButton(cell4, 0, 3, globalName, "");
           cell3.innerHTML = extra;
+          createButton(cell4, 0, 3, globalName, "");
         } else if (userType == "newUsers") {
           createButton(cell3, 0, 2, globalName, "");
           createButton(cell4, 0, 3, globalName, "");
         }
       }
     });
+    //Makes the table visible.
     table.style.display = "table";
   });
 }
 
+//Gets the messages from the database that have been submitted through the contact form.
 function reviewContactForms() {
   var form = database.collection("contact");
   var table = document.getElementById("contactTable");
 
+  //Removes all the rows when the button has been clicked to refresh the results.
   removeRows("contactTable");
 
+  //Counts the rows.
   var rowCount = 1;
   form.get().then(function(querySnapshot) {
     querySnapshot.forEach(function (documentSnapshot){
+
+      //Gets the information of each message in the database.
       var data = documentSnapshot.data();
       var id = documentSnapshot.id;
       var email = data.email;
       var message = data.message;
 
+      //Adds information to the table by populating the cells.
       var row = table.insertRow(rowCount);
       rowCount = rowCount + 1;
       var cell0 = row.insertCell(0);
@@ -165,6 +178,7 @@ function reviewContactForms() {
       cell1.innerHTML = message;
       createButton(cell2, 0, 4, id, "");
     });
+    //Makes the table visible.
     table.style.display = "table";
   });
 }
@@ -460,7 +474,7 @@ function updateBookQuantity(bookName, changeVal){
   var info = database.collection("books").doc(bookName);
   info.get().then(function(doc) {
     // first it needs to change the quanaity value from a string to an int, then it needs to
-    // change that value and then converts it back into a string and updates that feild in the database. 
+    // change that value and then converts it back into a string and updates that feild in the database.
     var quantity = doc.get("Quantity");
     var quantityNum = parseInt(quantity);
     var updateQuantity = quantityNum + changeVal;

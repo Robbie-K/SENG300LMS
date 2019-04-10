@@ -14,6 +14,7 @@
 	</div>
 	<div class="wrapper">
 		<header>
+			<!--Adds image to the top of the page.-->
 			<img src="UTL-logo-blue.png" width="450" height="100"></img>
 		</header>
 		<!--Create nav bar links-->
@@ -26,19 +27,23 @@
 			<div id="centered">
 				<div id="user-input">
 					<div id="filterInfo" class="divFilter">
+						<!--Create the title and buttons for the filters.-->
 						<b id="filterValue" type="text" >Search: Title</b><br>
 						<button class="genreButton active" id="filterTitle" onclick="setFilterTitle()"> Title </button>
 						<button class="genreButton" id="filterAuthor" onclick="setFilterAuthor()"> Author </button>
 						<button class="genreButton" id="filterGenre" onclick="setFilterGenre()"> Genre </button>
 					</div>
 
+					<!--Creates the search bar and button for the page.-->
 					<input type="text" id="search" placeholder="What are you looking for?" type="text">
 					<button class="button" id="searchButton" onclick="search()"> Search </button>
 				</div>
 				<br>
 				<div id="information">
+					<!--Creates a table for books.-->
 					<table style="display: none;" id="bookTable" class="table">
 						<tr>
+							<!--Adds titles for the columns in the table.-->
 							<th>Book</th>
 							<th>Author</th>
 							<th>Published</th>
@@ -58,6 +63,7 @@
 	</div>
 </body>
 
+<!--script for the database-->
 <script src="script.js"></script>
 <script>
 	//Checks to see what the user ID is to determine what page to go to next.
@@ -78,14 +84,12 @@
     window.location.href = "index.html";
   }
 </script>
-
-	<!--script for the database-->
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
-	<script type="text/JavaScript" src="functions.js"></script>
-	<script type="text/JavaScript" src="userInformation.js"></script>
-	<script src="alert.js"></script>
-	<script src="userId.js"></script>
-	<script src="genreButton.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script type="text/JavaScript" src="functions.js"></script>
+<script type="text/JavaScript" src="userInformation.js"></script>
+<script src="alert.js"></script>
+<script src="userId.js"></script>
+<script src="genreButton.js"></script>
 
 </html>
