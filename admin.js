@@ -169,7 +169,7 @@ function removeUser(name) {
     } else {
       doc2.delete();
     };
-    make_alert(firstName + " " + lastName + " has been successfully removed.", "");
+    make_alert(firstName + " " + lastName + " has been successfully removed.", "searchUser();");
   });
 }
 
