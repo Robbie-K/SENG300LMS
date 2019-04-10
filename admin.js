@@ -63,6 +63,9 @@ function removeUser(name) {
   var NEW_USERS = 0;
   var section = undefined;
 
+  var firstName;
+  var lastName;
+
 
   //Checks if the users already exists in the database.
   var doc1 = database.collection("users").doc(name);
@@ -86,8 +89,8 @@ function removeUser(name) {
     };
     return doc.get();
   }).then(function(doc) {
-    var firstName = doc.get("firstName");
-    var lastName = doc.get("lastName");
+    firstName = doc.get("firstName");
+    lastName = doc.get("lastName");
     var id = doc.get("id");
     var email = doc.get("email");
     var password = doc.get("password");
