@@ -60,6 +60,7 @@
 
 <script src="script.js"></script>
 <script>
+	//Checks to see what the user ID is to determine what page to go to next.
 	function checkUser() {
 		var userId = getUserId();
 		if (userId >= 10099900 && userId < 10099999) {
@@ -69,6 +70,7 @@
 		}
 	};
 
+	//Removes the user ID when logging out.
   function logout() {
     var url = window.location.toString();
     url = url.split("?")[0];

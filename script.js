@@ -1,3 +1,4 @@
+//Changes the colour of the buttons when the mouse is hovering over them.
 function load() {
 	let buttons = document.getElementsByClassName("option");
 	for (let i = 0; i < buttons.length; i++) {
