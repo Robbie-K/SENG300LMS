@@ -22,6 +22,7 @@ function approveUsers(name) {
       email: email,
       password: password
     }).then(function() {
+      //Creates the fields for the users current history when the account has been approved.
       database.collection("users").doc(firstName + " " + lastName).collection("History").doc("Current").set({
         ID1: "",
         ID2: "",
@@ -48,20 +49,24 @@ function approveUsers(name) {
         feesPaid: 0,
         feesTotal: 0
       });
+      //Creates an emoty document for the users past history.
       database.collection('users').doc(name).collection("History").doc("Past").set({});
 
-      //Deletes the user from "newUsers".
+      //Deletes the user from "newUsers" and creates alert for proper approval.
       person.delete();
-      alert(firstName + " " + lastName + " has been successfully approved.");
+      make_alert(firstName + " " + lastName + " has been successfully approved.", "searchUser();");
     });
   });
-};
+}
 
 //Allows admin to remove users based on certain criteria.
 function removeUser(name) {
   var USERS = 1;
   var NEW_USERS = 0;
   var section = undefined;
+
+  var firstName;
+  var lastName;
 
 
   //Checks if the users already exists in the database.
@@ -85,8 +90,8 @@ function removeUser(name) {
     };
     return doc.get();
   }).then(function(doc) {
-    var firstName = doc.get("firstName");
-    var lastName = doc.get("lastName");
+    firstName = doc.get("firstName");
+    lastName = doc.get("lastName");
     var id = doc.get("id");
     var email = doc.get("email");
     var password = doc.get("password");
@@ -133,10 +138,9 @@ function removeUser(name) {
       var feesPaid = current.get("feesPaid");
       var feesTotal = current.get("feesTotal");
 
-
-
+      //Moves the information of the users history to oldUsers.
       database.collection("oldUsers").doc(name).collection("History").doc("Current")
-      .set( {
+      .set({
         ID1: id1,
         ID2: id2,
         ID3: id3,
@@ -165,63 +169,11 @@ function removeUser(name) {
     } else {
       doc2.delete();
     };
-    alert(firstName + " " + lastName + " has been successfully removed.");
+    make_alert(firstName + " " + lastName + " has been successfully removed.", "searchUser();");
   });
 }
 
-//Remove books from library and add them to damaged book list.
-function addDamagedBooks() {
-  var name = document.getElementById('book').value;
-
-  //Check to see if the book exists.
-  if (database.collection("books").doc(name) != null) {
-    var book = database.collection("books").doc(name);
-
-    //Get the book infromation.
-    book.get().then(function(book) {
-      var bookName = book.get("book_name");
-      var published = book.get("published");
-      var quantity = book.get("quantity").value;
-      var author = book.get("book_author");
-      var id = book.get("book_id");
-
-      //Copy the books information into "damagedBooks".
-      database.collection("damagedBooks").doc(bookName).set({
-        book_name: bookName,
-        published: published,
-        book_author: author,
-        book_id: id,
-      });
-    });
-
-    //Reduce the quantity of that book by 1 as it is now damaged.
-    quantity -= 1;
-
-    //Update the quantity of the book in "books".
-    database.collection("books").doc(book).update({
-      quantity: quantity
-    });
-  }
-}
-
-//Allows admin to view history of orders.
-function viewHistory() {
-  //Gets the name of the book being inputted by the admin user.
-  var book = document.getElementById('book').value;
-  var currentBook = database.collection("books").doc("History").collection("history");
-
-  //Gets the name and history of the book selected.
-  currentBook.get().then(function(doc) {
-    var title = doc.get("book_name");
-    var history = doc.get("history");
-  });
-}
-
-//Allows admin to order new products for the library.
-function orderProducts() {
-
-}
-
+//Checks to see if a document (user) exists in the database.
 function checkDoc(doc1) {
   return (doc1.get().then(function(doc) {
     if (doc.exists) {
@@ -232,6 +184,7 @@ function checkDoc(doc1) {
   }));
 }
 
+//Removes the messages from the contact forms that have been submitted.
 function removeMessage(response) {
   var contact = database.collection("contact").doc(response);
   contact.delete();

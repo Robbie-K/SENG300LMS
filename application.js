@@ -14,6 +14,7 @@ var database = firebase.firestore();
 
 
 function checkFields() {
+  document.getElementById('wrongInfo').style.display = 'none';
   //Takes information from application.html as input for variables
   var first = document.getElementById('firstName').value;
   var last = document.getElementById('lastName').value;
@@ -60,7 +61,7 @@ function checkFields() {
 
         // if the info exists an error is displayed and nothing is changed in the database
       } else {
-        alert("An error has occured. Please try again or contact us.")
+        make_alert("An error has occured. Please try again or contact us.", "")
       };
 
     });
@@ -149,7 +150,7 @@ function addUser(name, first, last, email, id, pass) {
     lastName: last,
     password: pass
   })).then(function () {
-    alert("Account has been made. Please wait for admin verification. In the event that this takes longer than 2 business days please contact us.");
+    make_alert("Account has been made. Please wait for admin verification. In the event that this takes longer than 2 business days please contact us.", "");
   });
 }
 

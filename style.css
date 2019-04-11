@@ -8,6 +8,47 @@ body {
 	height: 100%;
 }
 
+#alert-outer {
+	display: none;
+	position: absolute;
+	z-index: 100000;
+	background-color: rgba(0,0,0,0.3);
+	width: 100%;
+	height: 100%;
+}
+
+#alert-inner {
+	position: absolute;
+	width: 400px;
+	height: auto;
+
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+
+	border-radius: 25px;
+	background-color: #EEE;
+
+	padding: 25px;
+}
+
+#alert-button {
+	position: relative;
+
+	left: 50%;
+	transform: translate(-50%, 0);
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
+	-moz-transform: translate(-50%, 0);
+
+	height: 30px;
+
+}
+
 input {
 	border-radius: 15px;
 	border: 1px solid #AAA;
