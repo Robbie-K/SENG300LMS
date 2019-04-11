@@ -72,13 +72,12 @@ function removeUser(name) {
     if (doc != undefined) {
       section = USERS;
     } else {
-      // checkDoc(doc2).then(function(doc) {
-      //   if (doc != undefined) {
       section = NEW_USERS;
     };
   })
   //Gets the users information from either "newUsers" or "users".
   .then(function() {
+    // if the user was fully instated this moves their info to the oldUsers collection in the database
     if (section == USERS) {
       var doc = database.collection("users").doc(name);
     } else {

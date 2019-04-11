@@ -11,11 +11,9 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.firestore();
-var exists1 = undefined;
-var exists2 = undefined;
+
 
 function checkFields() {
-  // var correct = 0;
   //Takes information from application.html as input for variables
   var first = document.getElementById('firstName').value;
   var last = document.getElementById('lastName').value;
@@ -24,7 +22,9 @@ function checkFields() {
   var email = document.getElementById('email').value;
   var id = document.getElementById('ID').value;
 
+  //to be used below
   var allowed = undefined;
+
   // checking if any fields are empty
   if (first == "" || last == "" || pass == "" || confPass == "" || email == "" || id == "") {
     document.getElementById('wrongInfo').style.display = 'inline-block';
@@ -43,6 +43,7 @@ function checkFields() {
         checkExists(doc1, doc2).then(function (exists) {
           return exists;
         }) .then(function (exists) {
+          ////////////////////////// This was to be used for duplicate users but due to time we scrapped it
           // if the doc exists and the email and id don't we allow the user to create an account
           // if (exists && allowed) {
           //   // addSameName finds the proper document name to use and returns a promise containing it
@@ -152,25 +153,25 @@ function addUser(name, first, last, email, id, pass) {
   });
 }
 
-// Tbis function allows for people with the exact same first and last name to create accounts
-// it adds the string "(n)" to their name where n is however many of that name already exist
-// This is still experimental, only works for (1) so far
-function addSameName(first, last, n) {
-  var name = first + " " + last + "(" +n.toString() + ")";
-  var doc1 = database.collection('users').doc(name);
-  var doc2 = database.collection('newUsers').doc(name);
-  return (checkExists(doc1, doc2).then(function (exists) {
-    if (exists) {
-      console.log("it does exist");
-      return n+1;
-    } else {
-      return name;
-    };
-  }).then(function (newName) {
-    if (isNaN(newName)) {
-      return newName;
-    } else {
-      addSameName(first, last, newName);
-    }
-  })
-)}
+// // Tbis function allows for people with the exact same first and last name to create accounts
+// // it adds the string "(n)" to their name where n is however many of that name already exist
+// // This is still experimental, never got it to work for more than 1 duplicate
+// function addSameName(first, last, n) {
+//   var name = first + " " + last + "(" +n.toString() + ")";
+//   var doc1 = database.collection('users').doc(name);
+//   var doc2 = database.collection('newUsers').doc(name);
+//   return (checkExists(doc1, doc2).then(function (exists) {
+//     if (exists) {
+//       console.log("it does exist");
+//       return n+1;
+//     } else {
+//       return name;
+//     };
+//   }).then(function (newName) {
+//     if (isNaN(newName)) {
+//       return newName;
+//     } else {
+//       addSameName(first, last, newName);
+//     }
+//   })
+// )}
