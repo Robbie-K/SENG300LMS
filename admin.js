@@ -73,6 +73,7 @@ function removeUser(name) {
   var doc1 = database.collection("users").doc(name);
   var doc2 = database.collection("newUsers").doc(name);
 
+  // If doc1 is defined then the section is "USERS" else the section is "NEW_USERS"
   checkDoc(doc1).then(function (doc){
     if (doc != undefined) {
       section = USERS;
@@ -95,6 +96,7 @@ function removeUser(name) {
     var id = doc.get("id");
     var email = doc.get("email");
     var password = doc.get("password");
+    // sets the users info into the new document in the oldUsers collection
     if (section == USERS) {
       database.collection("oldUsers").doc(firstName + " " + lastName).set({
         firstName: firstName,
