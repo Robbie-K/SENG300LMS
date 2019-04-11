@@ -17,6 +17,7 @@
   </div>
 </div>
   <div class="wrapper">
+    <!--Adds image to the top of the page.-->
 		<header>
 			<img src="UTL-logo-blue.png" width="450" height="100"></img>
 		</header>
@@ -34,11 +35,13 @@
         <!--Adds search feature and buttons-->
         <div id="user-input">
           <div id="filterInfo" class="divFilter">
+            <!--Creates title and buttons for the search filters for newUsers or users.-->
             <b id="filterValue" type="text">Search: New User</b><br>
             <button class="genreButton active" id="filterNewUser" onclick="setFilterNewUser()">New User</button>
             <button class="genreButton" id="filterUser" onclick="setFilterUser()">Users</button>
           </div>
 
+          <!--Creates the search bar and button.-->
     			<input type= "text" id="search" placeholder="What are you looking for?" type="text">
     			<button class="button" id="searchButton" onclick="searchUser()">Search</button>
     		</div>
@@ -46,6 +49,7 @@
         <!--Creates table titles for users-->
     		<table style="display: none;" id = "userTable" class="table">
     			<tr>
+            <!--Names for the columns in the table.-->
     				<th>Name</th>
     				<th>ID</th>
     				<th>Email</th>
@@ -61,6 +65,7 @@
   </div>
 </body>
 
+<!--Ensures that the user ID has been removed from the url when logging out.-->
 <script>
   function logout() {
     var url = window.location.toString();
