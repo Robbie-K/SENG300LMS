@@ -57,7 +57,8 @@ function userInfo() {
 
 /*
   Takes in user's ID, and returns their full name
-  as a string.
+  as a string. The user name is then used as part of the class path
+  for getting their personal history.
 */
 function getName(userID){
   let userQuery = database.collection("users").where("id", "==", userID);
@@ -74,18 +75,23 @@ function getName(userID){
   });
 }
 
+/*
+  Converts a timestamp of when the user checked out a book and when the
+  user must return the book into a string. Then return the string of the 
+  date.
+*/
 function convertDay(dateIn){
-  if(dateIn != ""){
-    let date = dateIn.toDate();
+  if(dateIn != ""){ //If there is actually a date to convert into a date string
+    let date = dateIn.toDate(); //Converts timestamp into date
 
-    let month = date.getUTCMonth() + 1;
-    let day = date.getUTCDate();
-    let year = date.getUTCFullYear();
+    let month = date.getUTCMonth() + 1; //Get month from date timestamp (+1 corrects for months numbered 1-12)
+    let day = date.getUTCDate();  //Get date from date timestamp
+    let year = date.getUTCFullYear(); //Get year from date timestamp
 
-    var dayFormat = year + "-" + month + "-" + day;
-    return dayFormat;
+    var dayFormat = year + "-" + month + "-" + day; //Format date into string
+    return dayFormat; //Return day string
   }
-  else{
+  else{ //Else there is no date, and nothing is changed
     return "";
   }
 }
