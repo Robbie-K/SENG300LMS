@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="icon" type="image/ico" href="UofT.png">
 	</head>
-	<body onload="userInfo()">
+	<body onload="userInfo()"> <!--When the page first loads, if reads the users history information to be displayed-->
 		<div class="wrapper">
 			<header>
 				<!--Displays UofT banner on top of page with respective dimensions-->
@@ -16,13 +16,13 @@
 				<a href="search.html">Home</a>	<!--Home page link-->
 				<a href="#" onclick="logout()">Logout</a>	<!--Sign in link-->
 			</div>
-			<main>
+			<main> <!--Displays the tables of both the users checked out books, and fee history-->
 				<table id=infoTable>
 					<tr>
-						<th colspan="6">Current Books Borrowed</th>	<!--Displays current page-->
+						<th colspan="6">Current Books Borrowed</th>	<!--Book checkout table title-->
 					</tr>
 					<tr>
-						<td>Books Borrowed</td>
+						<td>Books Borrowed</td> <!--5 options for books to be displayed using inner html-->
 						<td id=book1Name></td>
 						<td id=book2Name></td>
 						<td id=book3Name></td>
@@ -30,7 +30,7 @@
 						<td id=book5Name></td>
 					</tr>
 					<tr>
-						<td>Date Checked Out (DD/MM/YY)</td>
+						<td>Date Checked Out (DD/MM/YY)</td>	<!--5 options for checkout dates to be displayed using inner html-->
 						<td id=dateOut1></td>
 						<td id=dateOut2></td>
 						<td id=dateOut3></td>
@@ -38,7 +38,7 @@
 						<td id=dateOut5></td>
 					</tr>
 					<tr>
-						<td>Return Date (DD/MM/YY)</td>
+						<td>Return Date (DD/MM/YY)</td>	<!--5 options for return dates to be displayed using inner html-->
 						<td id=dateRet1></td>
 						<td id=dateRet2></td>
 						<td id=dateRet3></td>
@@ -49,17 +49,17 @@
 
 				<br>
 
-				<!--Past user history-->
+				<!--Fee History table-->
 				<table id=infoTable>
 					<tr>
-						<th colspan="6">Fees</th>
+						<th colspan="6">Fees</th>	<!--Fees table title-->
 					</tr>
 					<tr>
-						<td>Owed Fees ($CAD):</td>
+						<td>Owed Fees ($CAD):</td>	<!--Spot where owed fees is entered using inner html-->
 						<td id=feesOwed></td>
-						<td>Paid Fees ($CAD):</td>
+						<td>Paid Fees ($CAD):</td>	<!--Spot where paid fees is entered using inner html-->
 						<td id=feesPaid></td>
-						<td>Total Fees ($CAD):</td>
+						<td>Total Fees ($CAD):</td>	<!--Spot where total fees is entered using inner html-->
 						<td id=feesTotal></td>
 					</tr>
 				</table>
@@ -68,14 +68,14 @@
 			</footer>
 		</div>
 	</body>
-	<script src="script.js"></script>
+	<script src="script.js"></script>	<!--Reference to scripts-->
 
-	<script>
+	<script> //Logs user out
 	  function logout() {
 	    var url = window.location.toString();
 	    url = url.split("?")[0];
 
-	    window.location.href = "index.html";
+	    window.location.href = "index.html"; //Swap to sing in link
 	  }
 	</script>
 
