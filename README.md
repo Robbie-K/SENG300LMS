@@ -1,5 +1,5 @@
 # SENG300LMS
-Private repo for the SENG300 Library Management System
+Library management system built using firebase/html/css/js
 
 Step 1: Click on this link to go to the log in page.
 https://regmis.github.io/SENG300LMS/
